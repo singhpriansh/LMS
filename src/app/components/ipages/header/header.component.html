@@ -5,11 +5,19 @@
   <mat-icon></mat-icon>
   <span>Learning Management System</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon">
-    <mat-icon>share</mat-icon>
-  </button>
-  <mat-icon></mat-icon>
-  <button mat-icon-button class="example-icon favorite-icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
+  <ul>
+    <li>
+      <a mat-raised-button routerLinkActive="mat-accent" color="primary">Log in</a>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <a mat-raised-button routerLinkActive="mat-accent" (click)="goRegister()" color="primary">Register</a>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <a mat-raised-button routerLinkActive="mat-accent" color="primary">Log out</a>
+    </li>
+  </ul>
 </mat-toolbar>

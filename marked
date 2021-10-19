@@ -1,0 +1,6 @@
+  <button mat-icon-button class="example-icon">
+    <mat-icon>share</mat-icon>
+  </button>
+  <mat-icon></mat-icon>
+  <button mat-icon-button class="example-icon favorite-icon">
+    <mat-icon>favorite</mat-icon>
