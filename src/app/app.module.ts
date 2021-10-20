@@ -10,7 +10,12 @@ import { AngularMaterialModule } from './angular-material';
 import { HomeComponent } from './components/ipages/home/home.component';
 import { StudentsComponent } from './components/institute/students/students.component';
 import { FacultyComponent } from './components/institute/faculty/faculty.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StudentRegiserationComponent } from './components/institute/students/student-regiseration/student-regiseration.component';
+import { FacultyRegiserationComponent } from './components/institute/faculty/faculty-regiseration/faculty-regiseration.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -20,15 +25,21 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     StudentsComponent,
     FacultyComponent,
+    StudentRegiserationComponent,
+    FacultyRegiserationComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     AngularMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

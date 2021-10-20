@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FacultyComponent } from './components/institute/faculty/faculty.component';
-import { StudentsComponent } from './components/institute/students/students.component';
+import { FacultyRegiserationComponent } from './components/institute/faculty/faculty-regiseration/faculty-regiseration.component';
+import { StudentRegiserationComponent } from './components/institute/students/student-regiseration/student-regiseration.component';
 import { HomeComponent } from './components/ipages/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'faculty', component: FacultyComponent },
-  { path: 'students', component: StudentsComponent }
-  // { path: 'class' ,component: ClassComponent}
+  { path: 'faculty-registration', component: FacultyRegiserationComponent },
+  { path: 'student-registration', component: StudentRegiserationComponent }
+  // { path: 'class' ,component: ClassComponent},
 ];
 
 @NgModule({

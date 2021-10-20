@@ -1,0 +1,17 @@
+mat-card {
+    background:rgb(252, 134, 91);
+    flex: auto;
+    margin: 2rem;
+}
+input {
+    color: black;
+}
+
+mat-spinner{
+    margin: auto;
+}
+mat-form-field,
+textarea {
+    margin: 1rem;
+    width: 40%;
+}

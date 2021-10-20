@@ -7,6 +7,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  userIsAuthenticated=false;
 
   constructor(public dialog: MatDialog) {}
 

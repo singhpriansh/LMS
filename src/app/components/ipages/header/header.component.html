@@ -6,17 +6,17 @@
   <span>Learning Management System</span>
   <span class="example-spacer"></span>
   <ul>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a mat-raised-button routerLinkActive="mat-accent" color="primary">Log in</a>
     </li>
   </ul>
   <ul>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a mat-raised-button routerLinkActive="mat-accent" (click)="goRegister()" color="primary">Register</a>
     </li>
   </ul>
   <ul>
-    <li>
+    <li *ngIf="userIsAuthenticated">
       <a mat-raised-button routerLinkActive="mat-accent" color="primary">Log out</a>
     </li>
   </ul>

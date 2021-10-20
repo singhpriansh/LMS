@@ -8,6 +8,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatSelect, MatSelectModule } from "@angular/material/select";
 
 @NgModule({
     exports:[
@@ -19,7 +21,9 @@ import { MatIconModule } from '@angular/material/icon';
         MatPaginatorModule,
         MatProgressSpinnerModule,
         MatDialogModule,
-        MatIconModule
+        MatIconModule,
+        MatDatepickerModule,
+        MatSelectModule,
     ]
 })
 
