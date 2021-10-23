@@ -1,45 +1,72 @@
 <mat-card>
   <mat-spinner *ngIf="this.isLoading"></mat-spinner>
-  <form (submit)="OnRegistration(registrationForm)"
-    #registrationForm="ngForm"
+  <form
+    [formGroup]="form" (submit)="OnRegistration()"
     *ngIf="!this.isLoading">
+    <div class="picture" *ngIf="imageSelected !== '' && imageSelected">
+      <img [src]="this.imageSelected" [alt]="form.value.pic.name"/>
+    </div>
+
     <mat-form-field>
       <input matInput
-        type="name"
-        name="name"
-        required
-        ngModel
-        #nameInput="ngModel"
+        formControlName="name"
+        type="text"
         placeholder="Name"/>
+        <mat-error>
+            Enter a valid name..
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Upload your pic</mat-label>
+      <input matInput
+        formControlName="pic">
+      <button  mat-icon-button matSuffix type="button" (click)="fileInput.click()">
+        <mat-icon>account_box</mat-icon>
+      </button>
+      <input
+        type="file"
+        hidden
+        accept="image/*"
+        (change)="onImagePicked($event)"
+        #fileInput/>
       <mat-error>
-        Enter a valid name..
+        Upload Image file less than 100kb
       </mat-error>
     </mat-form-field>
+
     <mat-form-field>
-      <mat-label>Choose date of birth</mat-label>
       <input matInput
-        name="DOB"
-        ngModel
-        required
+        formControlName="id"
+        type="number"
+        placeholder="Enter id provided by institute"/>
+        <mat-error>
+            Enter a valid id..
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        formControlName="DOB"
         [matDatepicker]="dateOfBirth"
-        />
-        <mat-datepicker-toggle matSuffix
+        placeholder="Enter date of birth"/>
+      <mat-datepicker-toggle matSuffix
         [for]="dateOfBirth">
-        </mat-datepicker-toggle>
+      </mat-datepicker-toggle>
       <mat-datepicker #dateOfBirth></mat-datepicker>
       <mat-error>
-        Enter a valid date
+        Enter a valid date..
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Highest Qualification</mat-label>
-      <mat-select [formControl]="qual_Control" requiired>
-        <mat-option>--</mat-option>
-        <mat-option *ngFor="let qual of study" [value]="qual.value">
-          {{qual.viewValue}}
-        </mat-option>
-      </mat-select>
-       <mat-error *ngIf="qual_Control.hasError('required')">Please choose you qualification</mat-error>
+
+    <mat-form-field>
     </mat-form-field>
+
+    <button mat-raised-button
+        *ngIf="!this.isLoading"
+        color="accent"
+        type="submit">
+        Sign up
+    </button>
   </form>
 </mat-card>

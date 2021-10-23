@@ -10,7 +10,7 @@ import { AngularMaterialModule } from './angular-material';
 import { HomeComponent } from './components/ipages/home/home.component';
 import { StudentsComponent } from './components/institute/students/students.component';
 import { FacultyComponent } from './components/institute/faculty/faculty.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StudentRegiserationComponent } from './components/institute/students/student-regiseration/student-regiseration.component';
 import { FacultyRegiserationComponent } from './components/institute/faculty/faculty-regiseration/faculty-regiseration.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,7 +29,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     FacultyRegiserationComponent,
   ],
   imports: [
-    FormsModule,
     BrowserModule,
     AppRoutingModule,
     AngularMaterialModule,
