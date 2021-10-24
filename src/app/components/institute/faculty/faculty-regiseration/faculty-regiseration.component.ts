@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, NgForm, ValidationErrors, Validators } from '@angular/forms';
 import { mimeType } from '../../validators/mime-type.validator';
 
 
@@ -19,9 +19,7 @@ export class FacultyRegiserationComponent implements OnInit {
   isLoading = false;
   form!: FormGroup;
   imageSelected!: string| ArrayBuffer;
-  imageName:string = "";
-  docSelected!: File;
-  qual_Control= new FormControl('',Validators.required);
+  docSelected !: string| ArrayBuffer;
   study: Selection[] = [
     {value: 'Bachelors in Science', viewValue: 'B.Sc'},
     {value: 'Bachelors in Technology', viewValue: 'B.Tech'},
@@ -35,12 +33,10 @@ export class FacultyRegiserationComponent implements OnInit {
     {value: 'Female', viewValue: 'female'},
     {value: 'Other',viewValue: 'other'}
   ];
-  selectedFile!: File ;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.isLoading=false;
     this.form = new FormGroup({
       name: new FormControl(null,{
         validators: [Validators.required,
@@ -65,22 +61,47 @@ export class FacultyRegiserationComponent implements OnInit {
       }),
       qual_cert: new FormControl(null,{
         validators: [Validators.required]
+        // asyncValidators: [this.pdfValidator]
       }),
-      year_of_joining: new FormControl(null,{
+      date_of_joining: new FormControl(null,{
         validators: [Validators.required]
       }),
       password: new FormControl(null,{
-        validators: [Validators.required]
+        validators: [Validators.required,
+          Validators.minLength(6),
+        this.passwordValidator]
+      }),
+      again_password: new FormControl(null,{
+        validators: [Validators.required,
+        this.passwordValidator]
       })
     });
   }
 
-  nameValidator(control: AbstractControl): {[key: string]:any} | null {
+  nameValidator(control: AbstractControl): ValidationErrors | null {
     var format = /[ `1234567890!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const forbid = format.test(control.value);
     return forbid ? { 'forbidden': {value: control.value}} : null;
   }
-  dateValidator(control: AbstractControl): {[key: string]:any} | null{
+
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
+    var str = control.value;
+    if (str){
+      if (str.match(/[a-z]/g)
+      && str.match( /[A-Z]/g)
+      && str.match(/[0-9]/g)
+      && str.match(/[^a-zA-Z\d]/g)
+      && str.length >= 6){
+        return null;
+      }else{
+        return {'invalid': {value: str}};
+      }
+    }else{
+      return {'invalid': {value: str}};
+    }
+  }
+
+  dateValidator(control: AbstractControl): ValidationErrors | null{
     if(control.value){
       if(parseInt(Date().split(' ')[3])> (parseInt(control.value.toString().split(' ')[3]) + 15)){
         return null;
@@ -89,20 +110,24 @@ export class FacultyRegiserationComponent implements OnInit {
     return {'forbidden': {value: control.value}};
   }
 
+  // pdfValidator(control: AbstractControl): Promise <ValidationErrors | null> | Observable<ValidationErrors | null> {
+  //   const variable = "%PDF";
+  //   if(control.value.indexOf(variable) > -1){
+  //     return of(control.value);
+  //   }
+  //   return of({'invalid' : {value: control.setValue(0)}});
+  // }
+
   onImagePicked(event: any){
-    const file = event.target.files[0];
-    if(file){
-      this.form.value.pic = file;
-      if(file.size < 180000){
-        this.imageName = file.name;
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imageSelected = reader.result as string;
-        };
-        if(event.target.files[0]){
-          reader.readAsDataURL(event.target.files[0]);
-        }
-      }
+    const img = event.target.files[0];
+    if(img && img.size < 180000){
+      this.form.value.pic = img.name;
+      this.form.reset(this.form.value);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageSelected = reader.result as string;
+      };
+      reader.readAsDataURL(event.target.files[0]);
     }
   }
 
@@ -116,10 +141,16 @@ export class FacultyRegiserationComponent implements OnInit {
       this.form.value
       );
   }
-  OnFileSelection(event: Event) {
-    const file = (event.target as HTMLInputElement).files![0];
-    // this.form.patchValue({selectedFile: file});
-    // this.form.get("")
-    // this.selectedFile = event.target.files[0];
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if(file && file.size < 360000){
+      this.form.value.qual_cert = file.name;
+      this.form.reset(this.form.value);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.docSelected = reader.result as ArrayBuffer;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 }

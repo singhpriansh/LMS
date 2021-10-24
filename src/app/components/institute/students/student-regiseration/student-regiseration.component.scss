@@ -1,0 +1,27 @@
+mat-card {
+    background:rgb(255, 170, 59);
+    flex: auto;
+    margin: 2rem;
+}
+input {
+    color: black;
+}
+mat-icon{
+    float: right;
+}
+mat-spinner{
+    margin: auto;
+}
+.picture img{
+    max-width: 20%;
+    float: right;
+}
+
+mat-form-field,
+textarea {
+    margin: 1rem;
+    width: 35%;
+}
+.mat-raised-button {
+    margin: 2rem;
+}

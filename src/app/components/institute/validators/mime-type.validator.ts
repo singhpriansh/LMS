@@ -1,7 +1,8 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { Observable, Observer, of } from 'rxjs';
 
-export const mimeType = (control: AbstractControl): Promise<{[key: string]: any} | null> | Observable<{[key: string]: any} | null>  => {
+export const mimeType = (control: AbstractControl)
+    : Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     if(typeof(control.value) === 'string'){
         return of(null);
     }
@@ -16,10 +17,13 @@ export const mimeType = (control: AbstractControl): Promise<{[key: string]: any}
                 header += arr[i].toString(16);
             }
             switch(header){
-                case "89504e47":
+                case "89504e47":/// image/png
                     isValid = true;
                     break;
-                case "ffd8ffe0":
+                case "47494638":/// image/gif
+                    isValid = true;
+                    break;
+                case "ffd8ffe0":/// image/jpg
                 case "ffd8ffe1":
                 case "ffd8ffe2":
                 case "ffd8ffe3":

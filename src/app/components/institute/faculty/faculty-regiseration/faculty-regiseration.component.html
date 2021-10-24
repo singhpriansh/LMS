@@ -19,9 +19,11 @@
 
     <mat-form-field>
       <mat-label>Upload your pic</mat-label>
-      <input matInput
+      <input matInput 
         formControlName="pic">
-      <button  mat-icon-button matSuffix type="button" (click)="fileInput.click()">
+      <button  mat-icon-button matSuffix
+        type="button"
+        (click)="fileInput.click()">
         <mat-icon>account_box</mat-icon>
       </button>
       <input
@@ -59,7 +61,95 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-select
+       formControlName="gender"
+       placeholder="Your gender"
+       >
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let sex of gender" [value]="sex.value">
+          {{sex.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+       Gender is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-select
+       formControlName="qualification"
+       placeholder="Highest Qualification">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let qual of study" [value]="qual.value">
+          {{qual.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+       Please choose you qualification
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field>
+      <mat-label>Upload qualification certificate</mat-label>
+      <input matInput 
+        formControlName="qual_cert">
+      <button  mat-icon-button
+        matSuffix
+        type="button"
+        (click)="imageInput.click()">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+      <input
+        type="file"
+        hidden
+        accept="*/pdf"
+        (change)="onFileSelected($event)"
+        #imageInput/>
+      <mat-error>
+        Upload PDF less than 200kb
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        formControlName="date_of_joining"
+        [matDatepicker]="dateOfJoining"
+        placeholder="Enter date of birth"/>
+      <mat-datepicker-toggle matSuffix
+        [for]="dateOfJoining">
+      </mat-datepicker-toggle>
+      <mat-datepicker #dateOfJoining></mat-datepicker>
+      <mat-error>
+        Enter a valid date..
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        type="password"
+        formControlName="password"
+        placeholder="Enter a password">
+        <mat-error>
+          Enter a strong password.
+          <div>
+          Password should contain a special character, a number, a capitalised character
+          and a small character.
+          </div>
+          <div>
+          Password should be greater than 6 characters
+          </div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        type="password"
+        formControlName="again_password"
+        placeholder="Enter password again">
+        <mat-error>
+          Ensure same password
+        </mat-error>
     </mat-form-field>
 
     <button mat-raised-button
