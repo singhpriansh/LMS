@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-spinner *ngIf="this.isLoading"></mat-spinner>
+  <form
+    [formGroup]="form" (submit)="OnLogin()"
+    *ngIf="!this.isLoading">
+    
+    <mat-form-field>
+      <input matInput
+        formControlName="id"
+        type="number"
+        placeholder="Enter your id "/>
+        <mat-error>
+            Enter a valid id..
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        type="password"
+        formControlName="password"
+        placeholder="Enter password ">
+        <mat-error>
+          Ensure the password
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button
+        *ngIf="!this.isLoading"
+        color="primary"
+        type="submit">
+        Login
+    </button>
+  </form>
+</mat-card>

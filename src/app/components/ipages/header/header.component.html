@@ -7,17 +7,28 @@
   <span class="example-spacer"></span>
   <ul>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-raised-button routerLinkActive="mat-accent" color="primary">Log in</a>
+      <a mat-raised-button
+        routerLink="/login"
+        routerLinkActive="mat-accent"
+        color="primary">
+          Log in</a>
     </li>
   </ul>
   <ul>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-raised-button routerLinkActive="mat-accent" (click)="goRegister()" color="primary">Register</a>
+      <a mat-raised-button
+        routerLinkActive="mat-accent"
+        (click)="goRegister()"
+        color="primary">
+          Register</a>
     </li>
   </ul>
   <ul>
     <li *ngIf="userIsAuthenticated">
-      <a mat-raised-button routerLinkActive="mat-accent" color="primary">Log out</a>
+      <a mat-raised-button
+        routerLinkActive="mat-accent"
+        color="primary">
+          Log out</a>
     </li>
   </ul>
 </mat-toolbar>

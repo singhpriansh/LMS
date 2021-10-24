@@ -16,6 +16,7 @@ import { FacultyRegiserationComponent } from './components/institute/faculty/fac
 import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     FacultyComponent,
     StudentRegiserationComponent,
     FacultyRegiserationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

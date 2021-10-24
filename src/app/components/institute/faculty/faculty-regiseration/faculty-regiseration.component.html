@@ -115,7 +115,7 @@
       <input matInput
         formControlName="date_of_joining"
         [matDatepicker]="dateOfJoining"
-        placeholder="Enter date of birth"/>
+        placeholder="Enter date of joining"/>
       <mat-datepicker-toggle matSuffix
         [for]="dateOfJoining">
       </mat-datepicker-toggle>
@@ -132,13 +132,6 @@
         placeholder="Enter a password">
         <mat-error>
           Enter a strong password.
-          <div>
-          Password should contain a special character, a number, a capitalised character
-          and a small character.
-          </div>
-          <div>
-          Password should be greater than 6 characters
-          </div>
         </mat-error>
     </mat-form-field>
 
@@ -154,7 +147,7 @@
 
     <button mat-raised-button
         *ngIf="!this.isLoading"
-        color="accent"
+        color="primary"
         type="submit">
         Sign up
     </button>
