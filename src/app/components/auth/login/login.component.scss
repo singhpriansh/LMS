@@ -1,0 +1,19 @@
+mat-card {
+    background:rgb(0, 161, 13);
+    flex: auto;
+    margin: 2rem;
+}
+input {
+    color: black;
+}
+mat-spinner{
+    margin: auto;
+}
+mat-form-field,
+textarea {
+    margin: 1rem;
+    width: 35%;
+}
+.mat-raised-button {
+    margin: 2rem;
+}

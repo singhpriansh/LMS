@@ -1,0 +1,148 @@
+<mat-card>
+  <mat-spinner *ngIf="this.isLoading"></mat-spinner>
+  <form
+    [formGroup]="form" (submit)="OnRegistration()"
+    *ngIf="!this.isLoading">
+    <div class="picture" *ngIf="imageSelected !== '' && imageSelected">
+      <img [src]="this.imageSelected" [alt]="form.value.pic.name"/>
+    </div>
+
+    <mat-form-field>
+      <input matInput
+        formControlName="name"
+        type="text"
+        placeholder="Name"/>
+        <mat-error>
+            Enter a valid name..
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Upload your pic</mat-label>
+      <input matInput 
+        formControlName="pic">
+      <button  mat-icon-button matSuffix
+        type="button"
+        (click)="fileInput.click()">
+        <mat-icon>account_box</mat-icon>
+      </button>
+      <input
+        type="file"
+        hidden
+        accept="image/*"
+        (change)="onImagePicked($event)"
+        #fileInput/>
+      <mat-error>
+        Upload Image file less than 100kb
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput
+        formControlName="id"
+        type="number"
+        placeholder="Enter id provided by institute"/>
+        <mat-error>
+            Enter a valid id..
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        formControlName="DOB"
+        [matDatepicker]="dateOfBirth"
+        placeholder="Enter date of birth"/>
+      <mat-datepicker-toggle matSuffix
+        [for]="dateOfBirth">
+      </mat-datepicker-toggle>
+      <mat-datepicker #dateOfBirth></mat-datepicker>
+      <mat-error>
+        Enter a valid date..
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-select
+       formControlName="gender"
+       placeholder="Your gender"
+       >
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let sex of gender" [value]="sex.value">
+          {{sex.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+       Gender is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-select
+       formControlName="qualification"
+       placeholder="Your current Qualification">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let qual of study" [value]="qual.value">
+          {{qual.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+       Please choose you current qualification
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-select
+       formControlName="branch"
+       placeholder="Choose your branch">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let study of branch" [value]="study.value">
+          {{study.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+       Please choose you current qualification
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        formControlName="date_of_joining"
+        [matDatepicker]="dateOfJoining"
+        placeholder="Enter date of joining"/>
+      <mat-datepicker-toggle matSuffix
+        [for]="dateOfJoining">
+      </mat-datepicker-toggle>
+      <mat-datepicker #dateOfJoining></mat-datepicker>
+      <mat-error>
+        Enter a valid date..
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        type="password"
+        formControlName="password"
+        placeholder="Enter a password">
+        <mat-error>
+          Enter a strong password.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        type="password"
+        formControlName="again_password"
+        placeholder="Enter password again">
+        <mat-error>
+          Ensure same password
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button
+        *ngIf="!this.isLoading"
+        color="primary"
+        type="submit">
+        Sign up
+    </button>
+  </form>
+</mat-card>
