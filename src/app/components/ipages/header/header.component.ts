@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
       width: '300px'
     })
 
-    dialogRef.afterClosed().subscribe(result =>{
-      console.log('The dialog was closed');
-    })
+    // dialogRef.afterClosed().subscribe(result =>{
+    //   console.log('The dialog was closed');
+    // })
   }
 
   ngOnInit(): void {
