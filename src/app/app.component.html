@@ -1,4 +1,52 @@
-<app-header></app-header>
-<main class="screen">
-    <router-outlet></router-outlet>
-</main>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-toolbar color="primary">
+      <button mat-icon-button
+        class="example-icon"
+        aria-label="Menu" 
+        (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-icon></mat-icon>
+      LMS
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-stroked-button
+        routerLink="/whats-new"
+        color="accent"
+        (click)="sidenav.toggle()">
+        What's NEW</a>
+      <a mat-stroked-button
+        routerLink="/whats-new"
+        color="accent"
+        (click)="sidenav.toggle()">
+        What's NEW</a>
+      <a mat-stroked-button
+        routerLink="/whats-new"
+        color="accent"
+        (click)="sidenav.toggle()">
+        What's NEW</a>
+      <a mat-stroked-button
+        routerLink="/whats-new"
+        color="basic"
+        (click)="sidenav.toggle()">
+        What's NEW</a>
+      <app-sidenav>
+      </app-sidenav>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="screen">
+      <mat-toolbar color="primary">
+        <button mat-icon-button
+          class="example-icon"
+          aria-label="Menu" 
+          (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <app-header></app-header>
+        </mat-toolbar>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

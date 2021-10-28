@@ -1,3 +1,37 @@
+.mat-sidenav{
+    max-width:220px;
+    min-width: 22%;
+}
+
 .screen {
+    height: 100vh;
     flex: 1 1;
+}
+a{
+    margin: 4px;
+    padding: 0 4rem;
+}
+
+mat-stroked-button{
+    margin: 5vh;
+}
+
+mat-toolbar {
+    flex:auto;
+    height: 50px;
+    width:100%;
+}
+
+app-header{
+    width:100%;
+}
+
+.mat-sidenav-container {
+    background-color: #ffa3a3;
+}
+.mat-sidenav {
+    background-color: #ffa3a3;
+}
+.mat-nav-list {
+    flex:1 1 auto;
 }

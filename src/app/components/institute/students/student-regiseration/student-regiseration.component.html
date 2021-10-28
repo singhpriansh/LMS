@@ -20,6 +20,7 @@
     <mat-form-field>
       <mat-label>Upload your pic</mat-label>
       <input matInput 
+        readonly
         formControlName="pic">
       <button  mat-icon-button matSuffix
         type="button"
@@ -36,15 +37,19 @@
         Upload Image file less than 100kb
       </mat-error>
     </mat-form-field>
-    
-    <mat-form-field>
-      <input matInput
-        formControlName="id"
-        type="number"
-        placeholder="Enter id provided by institute"/>
-        <mat-error>
-            Enter a valid id..
-        </mat-error>
+
+    <mat-form-field appearance="fill">
+      <mat-select
+       formControlName="gender"
+       placeholder="Your gender">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let sex of gender" [value]="sex.value">
+          {{sex.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+       Gender is required
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -58,21 +63,6 @@
       <mat-datepicker #dateOfBirth></mat-datepicker>
       <mat-error>
         Enter a valid date..
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-select
-       formControlName="gender"
-       placeholder="Your gender"
-       >
-        <mat-option>--</mat-option>
-        <mat-option *ngFor="let sex of gender" [value]="sex.value">
-          {{sex.viewValue}}
-        </mat-option>
-      </mat-select>
-      <mat-error>
-       Gender is required
       </mat-error>
     </mat-form-field>
 
@@ -106,23 +96,34 @@
 
     <mat-form-field>
       <input matInput
-        formControlName="date_of_joining"
-        [matDatepicker]="dateOfJoining"
-        placeholder="Enter date of joining"/>
+        formControlName="id"
+        type="number"
+        placeholder="Enter id provided by institute"/>
+        <mat-error>
+            Enter a valid id..
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        formControlName="date_of_admission"
+        [matDatepicker]="dateOfadmission"
+        placeholder="Enter date of admission"/>
       <mat-datepicker-toggle matSuffix
-        [for]="dateOfJoining">
+        [for]="dateOfadmission">
       </mat-datepicker-toggle>
-      <mat-datepicker #dateOfJoining></mat-datepicker>
+      <mat-datepicker #dateOfadmission></mat-datepicker>
       <mat-error>
         Enter a valid date..
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput
-        type="password"
+      <input matInput [type]="hide1 ? 'password' : 'text'"
         formControlName="password"
         placeholder="Enter a password">
+        <mat-icon class="passicon" matSuffix (click)="hide1 = !hide1">
+        {{hide1 ? 'visibility_off' : 'visibility_off'}}</mat-icon>
         <mat-error>
           Enter a strong password.
         </mat-error>
@@ -130,9 +131,11 @@
 
     <mat-form-field>
       <input matInput
-        type="password"
+        [type]="hide1 ? 'password' : 'text'"
         formControlName="again_password"
         placeholder="Enter password again">
+        <mat-icon class="passicon" matSuffix (click)="hide1 = !hide1">
+        {{hide1 ? 'visibility_off' : 'visibility_off'}}</mat-icon>
         <mat-error>
           Ensure same password
         </mat-error>

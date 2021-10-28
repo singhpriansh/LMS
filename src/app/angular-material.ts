@@ -10,6 +10,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelect, MatSelectModule } from "@angular/material/select";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatListModule } from "@angular/material/list";
 
 @NgModule({
     exports:[
@@ -24,6 +27,9 @@ import { MatSelect, MatSelectModule } from "@angular/material/select";
         MatIconModule,
         MatDatepickerModule,
         MatSelectModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatListModule
     ]
 })
 

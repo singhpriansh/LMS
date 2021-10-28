@@ -1,16 +1,20 @@
 .example-spacer {
     flex: 1 1 auto;
-  }
-.height {
-    flex:auto;
-    height: 50px;
 }
+
+.height {
+  flex:auto;
+  height: 50px;
+  width:100%;
+}
+
 ul {
   list-style: none;
   float: left;
   padding: 1px;
   margin: 1px;
 }
+
 h2 {
   margin: 1.5rem;
 }

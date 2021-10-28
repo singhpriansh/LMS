@@ -17,6 +17,8 @@ export interface Selection {
 
 export class FacultyRegiserationComponent implements OnInit {
   isLoading = false;
+  hide1 = true;
+  hide2 = true;
   form!: FormGroup;
   imageSelected!: string| ArrayBuffer;
   docSelected !: string| ArrayBuffer;

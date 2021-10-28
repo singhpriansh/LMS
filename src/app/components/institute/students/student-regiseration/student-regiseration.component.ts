@@ -14,6 +14,8 @@ export interface Selection {
 })
 export class StudentRegiserationComponent implements OnInit {
   isLoading = false;
+  hide1 = true;
+  hide2 = true;
   form!: FormGroup;
   imageSelected!: string| ArrayBuffer;
   docSelected !: string| ArrayBuffer;
@@ -62,7 +64,7 @@ export class StudentRegiserationComponent implements OnInit {
       branch: new FormControl(null,{
         validators: [Validators.required]
       }),
-      date_of_joining: new FormControl(null,{
+      date_of_admission: new FormControl(null,{
         validators: [Validators.required]
       }),
       password: new FormControl(null,{
@@ -133,6 +135,7 @@ export class StudentRegiserationComponent implements OnInit {
       this.form.value
       );
   }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if(file && file.size < 360000){

@@ -8,6 +8,7 @@ import { AbstractControl, Form, FormControl, FormGroup, ValidationErrors, Valida
 })
 export class LoginComponent implements OnInit {
   isLoading = false;
+  hide = true;
   form!:FormGroup;
 
   constructor() { }
