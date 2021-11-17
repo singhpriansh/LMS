@@ -1,0 +1,32 @@
+<table>
+    <tr *ngFor="let day of table">
+      <th>
+        {{ day[0] }}
+      </th>
+      <td>
+        {{ day[1] }}
+      </td>
+      <td>
+        {{ day[2] }}
+      </td>
+      <td>
+        {{ day[3] }}
+      </td>
+      <td>
+        {{ day[4] }}
+      </td>
+      <td>
+        {{ day[5] }}
+      </td>
+      <td>
+        {{ day[6] }}
+      </td>
+      <br/>
+    </tr>
+</table>
+
+<a mat-button
+  routerLink="/faculty"
+  routerLinkActive="mat-accent"
+  (click)="ok()">
+  OK</a>

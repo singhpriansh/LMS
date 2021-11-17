@@ -5,13 +5,18 @@ import { FacultyRegiserationComponent } from './components/institute/faculty/fac
 import { StudentRegiserationComponent } from './components/institute/students/student-regiseration/student-regiseration.component';
 import { HomeComponent } from './components/ipages/home/home.component';
 import { WhatsNewComponent } from './components/feature/whats-new/whats-new.component';
+import { FacultyComponent } from './components/institute/faculty/faculty.component';
+import { StudentsComponent } from './components/institute/students/students.component';
+import { ClassesComponent } from './components/classes/classes.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'faculty-registration', component: FacultyRegiserationComponent },
   { path: 'student-registration', component: StudentRegiserationComponent },
   { path: 'login', component: LoginComponent },
-  // { path: 'class' ,component: ClassComponent},
+  { path: 'classes' ,component: ClassesComponent},
+  { path: 'faculty', component: FacultyComponent},
+  { path: 'student', component: StudentsComponent},
   { path: 'whats-new', component: WhatsNewComponent }
 ];
 

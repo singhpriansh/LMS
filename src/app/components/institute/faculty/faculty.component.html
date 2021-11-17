@@ -1,1 +1,39 @@
-<p>faculty works!</p>
+<mat-grid-list cols="4">
+  <mat-grid-tile colspan="2">
+    <div>
+      <mat-card class="items" *ngFor="let subject of subjects">
+        {{subject}}
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <div>
+      <mat-card class="items" *ngFor="let subject of subjects">
+          {{subject}}
+          <h5>The information about the subject</h5>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <div>
+      <a mat-button class="items">
+        <a mat-button
+        routerLinkActive="mat-accent"
+        (click)="timetable()">
+        Time Table</a>
+      </a>
+      <a mat-button class="items">
+        <a mat-button
+        routerLinkActive="mat-accent"
+        (click)="syllabus()">
+        Syllabus</a>
+      </a>
+      <a mat-button class="items">
+        <a mat-button routerLink="/classes"
+        routerLinkActive="mat-accent"
+        color="primary">
+        Classes</a>
+      </a>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
