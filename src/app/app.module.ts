@@ -25,10 +25,13 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { WhatsNewComponent } from './components/feature/whats-new/whats-new.component';
 import { ErrorComponent } from './components/feature/error/error.component';
 import { TimetableComponent } from './components/ipages/timetable/timetable.component';
-import { SyllabusComponent } from './components/ipages/syllabus/syllabus.component';
+import { SyllabusComponent } from './components/feature/syllabus/syllabus.component';
 import { ClassesComponent } from './components/classes/classes.component';
-import { TestsheetComponent } from './components/ipages/testsheet/testsheet.component';
+import { TestsheetComponent } from './components/feature/testsheet/testsheet.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { EventsComponent } from './components/feature/events/events.component';
+import { NoticeComponent } from './components/feature/notice/notice.component';
+import { SeminarComponent } from './components/feature/seminar/seminar.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
     SyllabusComponent,
     ClassesComponent,
     TestsheetComponent,
+    EventsComponent,
+    NoticeComponent,
+    SeminarComponent,
   ],
   imports: [
     BrowserModule,

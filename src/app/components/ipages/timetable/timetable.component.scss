@@ -2,16 +2,30 @@
   color: black
 }
 
+table,th,td {
+  border: 1px solid #0000ff;
+  background-color: transparent;
+  color: black;
+  width: 100%;
+  height: 100%;
+}
+
 .mat-column-day {
   width: 25px;
   text-align: center;
 }
 
-.mat-column-Period {
+.mat-column-Period1,
+.mat-column-Period2,
+.mat-column-Period3,
+.mat-column-Period4,
+.mat-column-Period5,
+.mat-column-Period6 {
   width: 20px;
   text-align: center;
 }
 
 a {
+  margin: 1rem;
   float: right;
 }

@@ -12,6 +12,18 @@ export interface TimeTable {
   Period5: String;
   Period6: String;
 }
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+];
 
 const timetable: TimeTable[] = [
   {day:'Monday',Period1:'1',Period2:'2',Period3:'3',
@@ -35,16 +47,18 @@ const timetable: TimeTable[] = [
 })
 
 export class TimetableComponent implements OnInit {
-  columns: string[] = ['day','Period1','Period2','Period3',
-    'Period4','Period5','Period6'];
+  columns: string[] = ['day','Period1','Period2',
+    'Period3','Period4','Period5','Period6'];
   timetableDataSource = timetable;
-
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = ELEMENT_DATA;
   constructor(
     public dialogRef: MatDialogRef<DialogView>,
     @Inject(MAT_DIALOG_DATA) public data: DialogView){}
 
   ok(): void {
     this.dialogRef.close();
+    console.log(timetable)
   }
   
   ngOnInit(): void {

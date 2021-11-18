@@ -1,42 +1,41 @@
-<table mat-table [dataSource]="timetableDataSource" >
-
+<table mat-table [dataSource]="timetableDataSource">
   <ng-container matColumnDef="day">
     <th mat-header-cell *matHeaderCellDef> Day </th>
     <td mat-cell *matCellDef="let element">{{ element.day }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Period">
-    <th mat-header-cell *matHeaderCellDef> 1 </th>
+  <ng-container matColumnDef="Period1">
+    <th mat-header-cell *matHeaderCellDef>Period1</th>
     <td mat-cell *matCellDef="let element">{{ element.Period1 }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Period">
-    <th mat-header-cell *matHeaderCellDef> 2 </th>
+  <ng-container matColumnDef="Period2">
+    <th mat-header-cell *matHeaderCellDef>Period2</th>
     <td mat-cell *matCellDef="let element">{{ element.Period2 }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Period">
-    <th mat-header-cell *matHeaderCellDef>3</th>
+  <ng-container matColumnDef="Period3">
+    <th mat-header-cell *matHeaderCellDef>Period3</th>
     <td mat-cell *matCellDef="let element">{{ element.Period3 }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Period">
-    <th mat-header-cell *matHeaderCellDef>4</th>
+  <ng-container matColumnDef="Period4">
+    <th mat-header-cell *matHeaderCellDef>Period4</th>
     <td mat-cell *matCellDef="let element">{{ element.Period4 }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Period">
-    <th mat-header-cell *matHeaderCellDef>5</th>
+  <ng-container matColumnDef="Period5">
+    <th mat-header-cell *matHeaderCellDef>Period5</th>
     <td mat-cell *matCellDef="let element">{{ element.Period5 }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Period">
-    <th mat-header-cell *matHeaderCellDef>6</th>
+  <ng-container matColumnDef="Period6">
+    <th mat-header-cell *matHeaderCellDef>Period6</th>
     <td mat-cell *matCellDef="let element">{{ element.Period6 }}</td>
   </ng-container>
 
-  <th mat-header-row *matHeaderRowDef="columns"></th>
-  <td mat-row *matRowDef="let row; columns: columns"></td>
+  <tr mat-header-cell *matHeaderRowDef="columns"></tr>
+  <tr mat-cell *matRowDef="let row; columns: columns"></tr>
 </table>
 
 <a mat-button

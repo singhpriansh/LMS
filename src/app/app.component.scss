@@ -16,7 +16,7 @@
 
 a {
     margin: 4px;
-    padding: 0 4rem;
+    padding: 0 2rem;
 }
 
 mat-stroked-button {
@@ -33,15 +33,13 @@ app-header{
     width:100%;
 }
 
-.mat-sidenav-container {
-    background-color: #ffa3a3;
-}
-
-.mat-sidenav {
+.mat-sidenav-container
+,.mat-sidenav {
     background-color: #ffa3a3;
 }
 
 .mat-nav-list {
     height: 80vh;
     flex:1 1 auto;
+    align-self: center;
 }

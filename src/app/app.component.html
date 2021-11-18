@@ -12,23 +12,28 @@
     </mat-toolbar>
     <mat-nav-list>
       <a mat-stroked-button
-        routerLink="/whats-new"
-        color="accent"
+        routerLink="/"
+        color="primary"
         (click)="sidenav.toggle()">
-        What's NEW</a>
+        Home</a>
+      <a mat-stroked-button
+        routerLink="/event"
+        color="primary"
+        (click)="sidenav.toggle()">
+        Events & Activities</a>
+      <a mat-stroked-button
+        routerLink="/notice"
+        color="primary"
+        (click)="sidenav.toggle()">
+        Notice & Recomendation</a>
+      <a mat-stroked-button
+        routerLink="/seminar"
+        color="primary"
+        (click)="sidenav.toggle()">
+        Seminal & Presentations</a>
       <a mat-stroked-button
         routerLink="/whats-new"
-        color="accent"
-        (click)="sidenav.toggle()">
-        What's NEW</a>
-      <a mat-stroked-button
-        routerLink="/whats-new"
-        color="accent"
-        (click)="sidenav.toggle()">
-        What's NEW</a>
-      <a mat-stroked-button
-        routerLink="/whats-new"
-        color="basic"
+        color="warn"
         (click)="sidenav.toggle()">
         What's NEW</a>
       <app-sidenav>

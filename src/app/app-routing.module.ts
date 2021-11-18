@@ -8,7 +8,10 @@ import { WhatsNewComponent } from './components/feature/whats-new/whats-new.comp
 import { FacultyComponent } from './components/institute/faculty/faculty.component';
 import { StudentsComponent } from './components/institute/students/students.component';
 import { ClassesComponent } from './components/classes/classes.component';
-import { TestsheetComponent } from './components/ipages/testsheet/testsheet.component';
+import { TestsheetComponent } from './components/feature/testsheet/testsheet.component';
+import { EventsComponent } from './components/feature/events/events.component';
+import { NoticeComponent } from './components/feature/notice/notice.component';
+import { SeminarComponent } from './components/feature/seminar/seminar.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'classes' ,component: ClassesComponent },
   { path: 'testsheet', component: TestsheetComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'event', component: EventsComponent },
+  { path: 'notice', component: NoticeComponent },
+  { path: 'seminar', component: SeminarComponent },
   { path: 'whats-new', component: WhatsNewComponent }
 ];
 

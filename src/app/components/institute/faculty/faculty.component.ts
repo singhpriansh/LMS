@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SyllabusComponent } from '../../ipages/syllabus/syllabus.component';
+import { SyllabusComponent } from '../../feature/syllabus/syllabus.component';
 import { TimetableComponent } from '../../ipages/timetable/timetable.component';
 
 @Component({
@@ -13,12 +13,19 @@ export class FacultyComponent implements OnInit {
   subjects = [
     "English",
     "Hindi",
-    "Maths"
+    "Maths",
+    "Science"
   ];
 
   constructor(public dialog: MatDialog) {}
 
   timetable(): void {
+    const dialogRef = this.dialog.open(TimetableComponent, {
+      width: '600px'
+    })
+  }
+
+  calender(): void {
     const dialogRef = this.dialog.open(TimetableComponent, {
       width: '600px'
     })
