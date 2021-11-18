@@ -1,7 +1,15 @@
-table,th,td {
-  border: 1px solid white;
-  padding: 5px;
-  margin: 5px;
+:host {
+  color: black
+}
+
+.mat-column-day {
+  width: 25px;
+  text-align: center;
+}
+
+.mat-column-Period {
+  width: 20px;
+  text-align: center;
 }
 
 a {

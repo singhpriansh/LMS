@@ -8,15 +8,17 @@ import { WhatsNewComponent } from './components/feature/whats-new/whats-new.comp
 import { FacultyComponent } from './components/institute/faculty/faculty.component';
 import { StudentsComponent } from './components/institute/students/students.component';
 import { ClassesComponent } from './components/classes/classes.component';
+import { TestsheetComponent } from './components/ipages/testsheet/testsheet.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'faculty-registration', component: FacultyRegiserationComponent },
   { path: 'student-registration', component: StudentRegiserationComponent },
+  { path: 'faculty', component: FacultyComponent },
+  { path: 'student', component: StudentsComponent },
+  { path: 'classes' ,component: ClassesComponent },
+  { path: 'testsheet', component: TestsheetComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'classes' ,component: ClassesComponent},
-  { path: 'faculty', component: FacultyComponent},
-  { path: 'student', component: StudentsComponent},
   { path: 'whats-new', component: WhatsNewComponent }
 ];
 
@@ -24,4 +26,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

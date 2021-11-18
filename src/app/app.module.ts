@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
-import { AngularMaterialModule } from './angular-material';
+import { AngularMaterialModule } from './angular-material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +27,8 @@ import { ErrorComponent } from './components/feature/error/error.component';
 import { TimetableComponent } from './components/ipages/timetable/timetable.component';
 import { SyllabusComponent } from './components/ipages/syllabus/syllabus.component';
 import { ClassesComponent } from './components/classes/classes.component';
+import { TestsheetComponent } from './components/ipages/testsheet/testsheet.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { ClassesComponent } from './components/classes/classes.component';
     TimetableComponent,
     SyllabusComponent,
     ClassesComponent,
+    TestsheetComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,10 @@ import { ClassesComponent } from './components/classes/classes.component';
     MatDatepickerModule,
     MatNativeDateModule 
   ],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule,
+    // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { background-color : aqua }}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

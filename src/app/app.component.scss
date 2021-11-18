@@ -1,18 +1,25 @@
-.mat-sidenav{
+:host {
+    max-height: 100%;
+    min-width: 580px;
+}
+
+.mat-sidenav {
     max-width: 250px;
     min-width: 250px;
 }
 
 .screen {
     height: 100vh;
+    min-width: 580px;
     flex: 1 1;
 }
-a{
+
+a {
     margin: 4px;
     padding: 0 4rem;
 }
 
-mat-stroked-button{
+mat-stroked-button {
     margin: 5vh;
 }
 
@@ -29,9 +36,11 @@ app-header{
 .mat-sidenav-container {
     background-color: #ffa3a3;
 }
+
 .mat-sidenav {
     background-color: #ffa3a3;
 }
+
 .mat-nav-list {
     height: 80vh;
     flex:1 1 auto;

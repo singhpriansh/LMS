@@ -26,7 +26,7 @@ export class FacultyComponent implements OnInit {
 
   syllabus(): void {
     const dialogRef = this.dialog.open(SyllabusComponent, {
-      width: '500px'
+      width: '450px'
     })
   }
 
