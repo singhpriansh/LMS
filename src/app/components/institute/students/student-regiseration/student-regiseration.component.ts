@@ -81,7 +81,7 @@ export class StudentRegiserationComponent implements OnInit {
 
 
   nameValidator(control: AbstractControl): ValidationErrors | null {
-    var format = /[ `1234567890!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    var format = /[`1234567890!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const forbid = format.test(control.value);
     return forbid ? { 'forbidden': {value: control.value}} : null;
   }
@@ -124,7 +124,6 @@ export class StudentRegiserationComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
-
 
   OnRegistration():void {
     if(this.form.invalid){

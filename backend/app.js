@@ -2,6 +2,10 @@ const path = require("path");
 const express = require('express');
 const mongoose = require("mongoose");
 const app = express();
+
+const studentRoutes = require("./routes/student");
+const facultyRoutes = require('./routes/faculty');
+
 mongoose.connect("mongodb+srv://mongodb:3nYH8uOZTozuTNK8@cluster0.c7q1k.mongodb.net/node-angular?retryWrites=true&w=majority")
 // mongoose.connect("mongodb+srv://priyanshu:"+process.env.Mongo_atls_pss+"@cluster0.c7q1k.mongodb.net/node-angular?retryWrites=true&w=majority")
     .then(() => {
@@ -39,5 +43,8 @@ app.use((req, res, next) => {
     res.send('Hello from express!');
     
 });
+
+app.use("/api/student",studentRoutes);
+app.use("/api/faculty",facultyRoutes);
 
 module.exports = app;
