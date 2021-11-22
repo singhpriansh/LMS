@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, NgForm, ValidationErrors, Validators } from '@angular/forms';
 import { mimeType } from '../../validators/mime-type.validator';
 
-
 export interface Selection {
   value: string,
   viewValue: string
@@ -70,18 +69,19 @@ export class FacultyRegiserationComponent implements OnInit {
       }),
       password: new FormControl(null,{
         validators: [Validators.required,
-          Validators.minLength(6),
+        Validators.minLength(6),
         this.passwordValidator]
       }),
       again_password: new FormControl(null,{
         validators: [Validators.required,
+        this.sameString,
         this.passwordValidator]
       })
     });
   }
 
   nameValidator(control: AbstractControl): ValidationErrors | null {
-    var format = /[ `1234567890!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    var format = /[`1234567890!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const forbid = format.test(control.value);
     return forbid ? { 'forbidden': {value: control.value}} : null;
   }
@@ -100,6 +100,16 @@ export class FacultyRegiserationComponent implements OnInit {
       }
     }else{
       return {'invalid': {value: str}};
+    }
+  }
+
+  sameString(control: AbstractControl): ValidationErrors | null {
+    var confirm = control.value;
+    var pass = control.parent?.get('password')?.value;
+    if(confirm !== pass) {
+      return {'pasword not same': {value: pass}};
+    } else {
+      return null;
     }
   }
 
@@ -133,16 +143,6 @@ export class FacultyRegiserationComponent implements OnInit {
     }
   }
 
-
-  OnRegistration():void {
-    if(this.form.invalid){
-      return;
-    }
-    this.isLoading = true;
-    console.log(
-      this.form.value
-      );
-  }
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if(file && file.size < 360000){
@@ -154,5 +154,18 @@ export class FacultyRegiserationComponent implements OnInit {
       };
       reader.readAsDataURL(event.target.files[0]);
     }
+  }
+
+  OnRegistration():void {
+    if(this.form.invalid){
+      return;
+    }
+    this.isLoading = true;
+    console.log(
+      this.form.value,
+      this.imageSelected,
+      this.docSelected
+      );
+      this.form.reset();
   }
 }

@@ -44,7 +44,8 @@ app.use((req, res, next) => {
     
 });
 
-app.use("/api/student",studentRoutes);
+app.use("/images", express.static(path.join("backend/images")));
+// app.use("/api/student",studentRoutes);
 app.use("/api/faculty",facultyRoutes);
 
 module.exports = app;
