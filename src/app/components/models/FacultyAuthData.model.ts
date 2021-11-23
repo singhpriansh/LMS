@@ -1,12 +1,12 @@
 export interface FacultyAuthData {
   name: String;
-  picture: String;
-  gender: String;
-  dob: Date;
-  qualification: String;
-  qual_cert: String;
+  pic: String;
   id: Number;
-  doj: Date;
+  dobirth: Date;
+  gender: String;
+  qualdegree: String;
+  qualcert: String;
+  dojoin: Date;
   password: String;
   imageBuffer: ArrayBuffer | String;
   docBuffer: ArrayBuffer | String;

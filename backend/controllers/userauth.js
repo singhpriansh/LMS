@@ -7,30 +7,52 @@ exports.CreateStudent = (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash => {
     const student = new Student({
       name: req.body.name,
-      pic:req.body.pic,
-      gender: req.body.gender,
+      pic:req.body.pic.toLowerCase().split(' ').join('_'),
+      id: req.body.id,
       dobirth: req.body.dobirth,
+      gender: req.body.gender,
       qualdegree: req.body.qualdegree,
       branch: req.body.branch,
-      id: req.body.id,
       doadmitn: req.body.doadmitn,
-      password: req.body.password
-    })
-  })
+      password: hash,
+    });
+    student.save().then(result => {
+      res.status(201).json({
+        message: "New Student registered",
+        result: result
+      });
+    }).catch(err => {
+      console.log(err)
+      res.status(500).json({
+        message: 'Invalid authentication credentials'
+      });
+    });
+  });
 }
 
 exports.CreateFaculty = (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash => {
-    const Faculty = new Faculty({
+    const faculty = new Faculty({
       name: req.body.name,
-      pic: req.body.pic,
-      gender: req.body.gender,
-      dobirth: req.body.dobirth,
-      qualdegree: req.body.qualdegree,
-      qualcert: req.body.qualcert,
+      pic: req.body.pic.toLowerCase().split(' ').join('_'),
       id: req.body.id,
+      dobirth: req.body.dobirth,
+      gender: req.body.gender,
+      qualdegree: req.body.qualdegree,
+      qualcert: req.body.qualcert.toLowerCase().split(' ').join('_'),
       dojoin: req.body.dojoin,
-      password: req.body.password
-    })
-  })
+      password: hash
+    });
+    faculty.save().then(result => {
+      res.status(201).json({
+        message: "New Faculty registered",
+        result: result
+      });
+    }).catch(err => {
+      console.log(err)
+      res.status(500).json({
+        message: 'Invalid authentication credentials'
+      });
+    });
+  });
 }

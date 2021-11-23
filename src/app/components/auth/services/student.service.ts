@@ -5,10 +5,10 @@ import { environment } from "src/environments/environment";
 import { StudentAuthData } from "../../models/StudentAuthData.model";
 import { LoginService } from "./login.service";
 
-const BACK_URL =environment.apiUrls + "faculty/";
+const BACK_URL = environment.apiUrls + "faculty/";
 
 @Injectable({providedIn: 'root'})
-export class FacultyService {
+export class StudentService {
   constructor(private http: HttpClient,
     private loginService: LoginService,
     private router: Router) {}
@@ -16,27 +16,28 @@ export class FacultyService {
   createStudentUser(
     name: String,
     picture: String,
-    gender: String,
+    id: number,
     dob: Date,
+    gender: String,
     qualification: String,
     branch: String,
-    id: number,
     doa: Date,
     password: String,
     imageBuffer: ArrayBuffer | String){
       const authdata: StudentAuthData = {
         name: name,
-        picture: picture,
-        gender: gender,
-        dob: dob,
-        qualification: qualification,
-        branch: branch,
+        pic: picture,
         id: id,
-        doa: doa,
+        dobirth: dob,
+        gender: gender,
+        qualdegree: qualification,
+        branch: branch,
+        doadmitn: doa,
         password: password,
         imageBuffer: imageBuffer
       };
-      this.http.post<any>(BACK_URL + "auth", authdata)
+      console.log(authdata);
+      this.http.post<any>(BACK_URL + "reg", authdata)
         .subscribe(response => {
           console.log(response);
           this.loginService.loginUser(id,password);

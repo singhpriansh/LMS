@@ -30,7 +30,7 @@
       <input
         type="file"
         hidden
-        accept="image/*"
+        accept=".png,.jpg,.jpeg,.gif"
         (change)="onImagePicked($event)"
         #fileInput/>
       <mat-error>
@@ -140,11 +140,11 @@
 
     <mat-form-field>
       <input matInput
-        [type]="hide1 ? 'password' : 'text'"
+        [type]="hide2 ? 'password' : 'text'"
         formControlName="again_password"
         placeholder="Enter password again">
-        <mat-icon class="passicon" matSuffix (click)="hide1 = !hide1">
-        {{hide1 ? 'visibility_off' : 'visibility_off'}}</mat-icon>
+        <mat-icon class="passicon" matSuffix (click)="hide2 = !hide2">
+        {{hide2 ? 'visibility_off' : 'visibility_off'}}</mat-icon>
         <mat-error >
           Ensure same password
         </mat-error>

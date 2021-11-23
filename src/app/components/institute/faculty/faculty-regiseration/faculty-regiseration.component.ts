@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, NgForm, ValidationErrors, Validators } from '@angular/forms';
+import { FacultyService } from 'src/app/components/auth/services/faculty.service';
 import { mimeType } from '../../validators/mime-type.validator';
 
 export interface Selection {
@@ -35,7 +36,7 @@ export class FacultyRegiserationComponent implements OnInit {
     {value: 'Other',viewValue: 'other'}
   ];
 
-  constructor() { }
+  constructor(private facultyservice: FacultyService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -161,11 +162,19 @@ export class FacultyRegiserationComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    console.log(
-      this.form.value,
+    this.facultyservice.createFacultyUser(
+      this.form.value.name,
+      this.form.value.pic,
+      this.form.value.id,
+      this.form.value.DOB,
+      this.form.value.gender,
+      this.form.value.qualification,
+      this.form.value.qual_cert,
+      this.form.value.date_of_joining,
+      this.form.value.password,
       this.imageSelected,
       this.docSelected
-      );
-      this.form.reset();
+    );
+    this.form.reset();
   }
 }

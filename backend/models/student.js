@@ -9,9 +9,9 @@ const studentSchema = mongoose.Schema({
   qualdegree: {type: String, required: true },
   branch: {type: String, required: true },
   id: {type: Number, required: true, unique: true },
-  doadmitn: {type: Number, required: true},
+  doadmitn: {type: Date, required: true},
   password: {type: String, required: true }
 });
 
 studentSchema.plugin(uniqueValidator);
-module.exports = mongoose.model("sudent",studentSchema);
+module.exports = mongoose.model("Student",studentSchema);

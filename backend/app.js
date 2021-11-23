@@ -3,8 +3,7 @@ const express = require('express');
 const mongoose = require("mongoose");
 const app = express();
 
-const studentRoutes = require("./routes/student");
-const facultyRoutes = require('./routes/faculty');
+const apiroute = require("./routes/api");
 
 mongoose.connect("mongodb+srv://mongodb:3nYH8uOZTozuTNK8@cluster0.c7q1k.mongodb.net/node-angular?retryWrites=true&w=majority")
 // mongoose.connect("mongodb+srv://priyanshu:"+process.env.Mongo_atls_pss+"@cluster0.c7q1k.mongodb.net/node-angular?retryWrites=true&w=majority")
@@ -15,8 +14,8 @@ mongoose.connect("mongodb+srv://mongodb:3nYH8uOZTozuTNK8@cluster0.c7q1k.mongodb.
         console.log('Connection failed!')
     });
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
     res.setHeader(
@@ -39,13 +38,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/images", express.static(path.join("backend/images")));
-app.use((req, res, next) => {
-    res.send('Hello from express!');
-    
-});
-
-app.use("/images", express.static(path.join("backend/images")));
-// app.use("/api/student",studentRoutes);
-app.use("/api/faculty",facultyRoutes);
+app.use("/document", express.static(path.join("backend/document")));
+app.use("/api", apiroute);
 
 module.exports = app;

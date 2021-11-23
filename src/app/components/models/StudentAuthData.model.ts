@@ -1,12 +1,12 @@
 export interface StudentAuthData {
   name: String;
-  picture: String;
-  gender: String;
-  dob: Date;
-  qualification: String;
-  branch: String;
+  pic: String;
   id: Number;
-  doa: Date;
+  dobirth: Date;
+  gender: String;
+  qualdegree: String;
+  branch: String;
+  doadmitn: Date;
   password: String;
   imageBuffer: ArrayBuffer | String;
 }

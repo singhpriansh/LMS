@@ -46,7 +46,7 @@ export class LoginService {
           this.userId = response.userId;
           this.authStatusListener.next(true);
           this.saveAuthData(token, this.userId);
-          this.router.navigate(['/faculty']);
+          // this.router.navigate(['/faculty']);
         }
       }, error => {
         this.authStatusListener.next(false);

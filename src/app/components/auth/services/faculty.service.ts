@@ -16,29 +16,30 @@ export class FacultyService {
   createFacultyUser(
     name: String,
     picture: String,
-    gender: String,
+    id: number,
     dob: Date,
+    gender: String,
     qualification: String,
     qual_cert: String,
-    id: number,
     doj: Date,
     password: String,
     imageBuffer: ArrayBuffer | String,
     docBuffer: ArrayBuffer | String ){
       const authdata: FacultyAuthData = {
         name: name,
-        picture: picture,
-        gender: gender,
-        dob: dob,
-        qualification: qualification,
-        qual_cert: qual_cert,
+        pic: picture,
         id: id,
-        doj: doj,
+        dobirth: dob,
+        gender: gender,
+        qualdegree: qualification,
+        qualcert: qual_cert,
+        dojoin: doj,
         password: password,
-        imageBuffer:  imageBuffer,
+        imageBuffer: imageBuffer,
         docBuffer: docBuffer,
       };
-      this.http.post<any>(BACK_URL + "auth", authdata)
+      console.log(authdata);
+      this.http.post<any>(BACK_URL + "reg", authdata)
         .subscribe(response => {
           console.log(response);
           this.loginService.loginUser(id,password);
