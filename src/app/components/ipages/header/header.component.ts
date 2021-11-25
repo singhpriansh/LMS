@@ -1,15 +1,20 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LoginService } from '../../auth/services/login.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated=false;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    // private authListenerSubs: Subscription,
+    private loginService: LoginService,
+    public dialog: MatDialog
+  ) {}
 
   goRegister(): void {
     const dialogRef = this.dialog.open(DialogView, {
@@ -21,7 +26,21 @@ export class HeaderComponent implements OnInit {
     // })
   }
 
+  logout() {
+    this.loginService.logOutUser();
+  }
+
   ngOnInit(): void {
+    this.userIsAuthenticated = this.loginService.IsAuth();
+    this.loginService
+      .getAuthStatusListerner()
+      .subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+      })
+  }
+
+  ngOnDestroy(): void {
+    this.loginService.getAuthStatusListerner().unsubscribe();
   }
 
 }

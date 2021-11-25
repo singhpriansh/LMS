@@ -48,7 +48,7 @@ export class FacultyService {
               this.http.post<any>(BACK_URL + "faculty/reg", authdata)
                 .subscribe(response => {
                   console.log(response);
-                  // this.loginService.loginUser(id,password);
+                  this.loginService.loginUser(id,password);
                 }, error => {
                   this.loginService.getAuthStatusListerner().next(false);
                   // this.authStatusListener.next(false);

@@ -23,6 +23,7 @@
     <li *ngIf="userIsAuthenticated">
     <a mat-raised-button
       routerLinkActive="mat-accent"
+      (click)="logout()"
       color="primary">
         Log out</a>
     </li>

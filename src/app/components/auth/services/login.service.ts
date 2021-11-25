@@ -13,6 +13,7 @@ export class LoginService {
   private userisAuthenticated = false;
   private token: string='';
   private userId: string='';
+  private desk: string='';
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -27,6 +28,10 @@ export class LoginService {
 
   getUserID(){
     return this.userId;
+  }
+
+  getdesk(){
+    return this.desk;
   }
 
   getAuthStatusListerner() {
@@ -45,13 +50,14 @@ export class LoginService {
         if(token != ''){
           this.userisAuthenticated = true;//
           this.userId = response.user.id.toString();
-          this.authStatusListener.next(true);
           this.saveAuthData(token, this.userId);
           if(response.user.user === "Faculty"){
-            this.router.navigate(['/faculty']);
+            this.desk = '/faculty';
           }else{
-            this.router.navigate(['/student']);
+            this.desk = '/student';
           }
+          this.authStatusListener.next(true);
+          this.router.navigate([this.desk]);
         }
       }, error => {
         this.authStatusListener.next(false);
