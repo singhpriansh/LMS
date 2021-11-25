@@ -4,12 +4,13 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { AuthData } from "../../models/AuthData.model";
+import { User } from "../../models/Usermodel";
 
-const BACK_URL =environment.apiUrls + "faculty/";
+const BACK_URL =environment.apiUrls;
 
 @Injectable({providedIn: 'root'})
 export class LoginService {
-  private isAuthenticated = false;
+  private userisAuthenticated = false;
   private token: string='';
   private userId: string='';
   private authStatusListener = new Subject<boolean>();
@@ -21,7 +22,7 @@ export class LoginService {
   }
 
   IsAuth(){
-    return this.isAuthenticated;
+    return this.userisAuthenticated;
   }
 
   getUserID(){
@@ -37,16 +38,20 @@ export class LoginService {
       id: id,
       password: password
     };
-    this.http.post<{token: string, userId: string}>(BACK_URL + "login",authdata)
+    this.http.post<{token: string, user: User}>(BACK_URL + "login",authdata)
       .subscribe(response => {
         const token = response.token;
         this.token = token;
-        if(token !=''){
-          this.isAuthenticated = true;
-          this.userId = response.userId;
+        if(token != ''){
+          this.userisAuthenticated = true;//
+          this.userId = response.user.id.toString();
           this.authStatusListener.next(true);
           this.saveAuthData(token, this.userId);
-          // this.router.navigate(['/faculty']);
+          if(response.user.user === "Faculty"){
+            this.router.navigate(['/faculty']);
+          }else{
+            this.router.navigate(['/student']);
+          }
         }
       }, error => {
         this.authStatusListener.next(false);
@@ -56,7 +61,7 @@ export class LoginService {
   logOutUser() {
     this.token = '';
     this.userId = '';
-    this.isAuthenticated = false;
+    this.userisAuthenticated = false;//
     this.authStatusListener.next(false);
     this.clearAuthData();
     this.router.navigate(['/home'])

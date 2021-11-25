@@ -9,25 +9,23 @@ const MIME_TYPE_MAP = {
 };
 
 const storage = multer.diskStorage({
-  destination: (req, res, cb) => {
-    console.log(req);
-    const isValid = MIME_TYPE_MAP[req.body.imageBuffer.mimetype];
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
     let error = new Error("Invalid mime type");
     if(isValid){
       error = null;
       if(isValid == 'pdf'){
         store = "backend/document";
-      }else{
-        store = "backend/images"
+      } else {
+        store = "backend/images";
       }
     }
     cb(error, store)
   },
-  filename: (req, res, cb) => {
-    const name = req.body.pic.toLowerCase().split(' ').join('_');
-    const ext = MIME_TYPE_MAP[req.body.imageBuffer.mimetype];
-    cb(null,name + '-' + Date.now() + '.' + ext);
+  filename: (req, file, cb) => {
+    file.originalname = Date.now()+"_"+ file.originalname.toLowerCase().split(' ').join('_');
+    cb(null, file.originalname);
   }
 });
 
-module.exports = multer({ storage: storage }).single("file");
+module.exports = multer({ storage: storage }).array("file");

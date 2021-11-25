@@ -5,8 +5,8 @@ const app = express();
 
 const apiroute = require("./routes/api");
 
-mongoose.connect("mongodb+srv://mongodb:3nYH8uOZTozuTNK8@cluster0.c7q1k.mongodb.net/node-angular?retryWrites=true&w=majority")
-// mongoose.connect("mongodb+srv://priyanshu:"+process.env.Mongo_atls_pss+"@cluster0.c7q1k.mongodb.net/node-angular?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://mongodb:3nYH8uOZTozuTNK8@cluster0.c7q1k.mongodb.net/LMS?retryWrites=true&w=majority")
+// mongoose.connect("mongodb+srv://priyanshu:"+process.env.Mongo_atls_pss+"@cluster0.c7q1k.mongodb.net/LMS?retryWrites=true&w=majority")
     .then(() => {
         console.log('Connected to the database!')
     })

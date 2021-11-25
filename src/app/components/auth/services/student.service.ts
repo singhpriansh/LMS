@@ -5,7 +5,7 @@ import { environment } from "src/environments/environment";
 import { StudentAuthData } from "../../models/StudentAuthData.model";
 import { LoginService } from "./login.service";
 
-const BACK_URL = environment.apiUrls + "faculty/";
+const BACK_URL = environment.apiUrls;
 
 @Injectable({providedIn: 'root'})
 export class StudentService {
@@ -14,38 +14,43 @@ export class StudentService {
     private router: Router) {}
 
   createStudentUser(
-    name: String,
-    picture: String,
+    name: string,
+    pic: File,
+    picname: string,
     id: number,
     dob: Date,
-    gender: String,
-    qualification: String,
-    branch: String,
+    gender: string,
+    qualdegree: string,
+    branch: string,
     doa: Date,
-    password: String,
-    imageBuffer: ArrayBuffer | String){
-      const authdata: StudentAuthData = {
-        name: name,
-        pic: picture,
-        id: id,
-        dobirth: dob,
-        gender: gender,
-        qualdegree: qualification,
-        branch: branch,
-        doadmitn: doa,
-        password: password,
-        imageBuffer: imageBuffer
-      };
-      console.log(authdata);
-      this.http.post<any>(BACK_URL + "reg", authdata)
+    password: string){
+      const img = new FormData();
+      img.append("file",pic,picname);
+      this.http.post<any>(BACK_URL + "file",img)
         .subscribe(response => {
-          console.log(response);
-          this.loginService.loginUser(id,password);
+          const authdata: StudentAuthData = {
+            name: name,
+            picname: response.result,
+            id: id,
+            dobirth: dob,
+            gender: gender,
+            qualdegree: qualdegree,
+            branch: branch,
+            doadmitn: doa,
+            password: password
+          };
+          this.http.post<any>(BACK_URL + "student/reg", authdata)
+            .subscribe(response => {
+              console.log(response);
+              // this.loginService.loginUser(id,password);
+            }, error => {
+              this.loginService.getAuthStatusListerner().next(false);
+              // this.authStatusListener.next(false);
+            });
         }, error => {
           this.loginService.getAuthStatusListerner().next(false);
-          // this.authStatusListener.next(false);
+              // this.authStatusListener.next(false);
         }
       );
-  }
-
+    }
 }

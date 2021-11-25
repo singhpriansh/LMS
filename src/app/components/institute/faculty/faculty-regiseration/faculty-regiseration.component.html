@@ -4,7 +4,7 @@
     [formGroup]="form" (submit)="OnRegistration()"
     *ngIf="!this.isLoading">
     <div class="picture" *ngIf="imageSelected !== '' && imageSelected">
-      <img [src]="this.imageSelected" [alt]="form.value.pic.name"/>
+      <img [src]="this.imageSelected" [alt]="form.value.picname"/>
     </div>
 
     <mat-form-field>
@@ -21,7 +21,7 @@
       <mat-label>Upload your pic</mat-label>
       <input matInput 
         readonly
-        formControlName="pic">
+        formControlName="picname">
       <button  mat-icon-button matSuffix
         type="button"
         (click)="fileInput.click()">
@@ -69,7 +69,7 @@
 
     <mat-form-field appearance="fill">
       <mat-select
-       formControlName="qualification"
+       formControlName="qualdegree"
        placeholder="Highest Qualification">
         <mat-option>--</mat-option>
         <mat-option *ngFor="let qual of study" [value]="qual.value">
@@ -84,7 +84,7 @@
     <mat-form-field>
       <mat-label>Upload qualification certificate</mat-label>
       <input matInput readonly
-        formControlName="qual_cert">
+        formControlName="certname">
       <button  mat-icon-button
         matSuffix
         type="button"

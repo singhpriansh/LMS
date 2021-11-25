@@ -48,6 +48,9 @@ export class FacultyRegiserationComponent implements OnInit {
         validators: [Validators.required],
         asyncValidators: [mimeType]
       }),
+      picname: new FormControl(null,{
+        validators: [Validators.required]
+      }),
       id: new FormControl(null,{
         validators: [Validators.required]
       }),
@@ -58,12 +61,15 @@ export class FacultyRegiserationComponent implements OnInit {
       gender: new FormControl(null,{
         validators: [Validators.required]
       }),
-      qualification: new FormControl(null,{
+      qualdegree: new FormControl(null,{
         validators: [Validators.required]
       }),
       qual_cert: new FormControl(null,{
         validators: [Validators.required]
         // asyncValidators: [this.pdfValidator]
+      }),
+      certname: new FormControl(null, {
+        validators: [Validators.required]
       }),
       date_of_joining: new FormControl(null,{
         validators: [Validators.required]
@@ -134,26 +140,30 @@ export class FacultyRegiserationComponent implements OnInit {
   onImagePicked(event: any){
     const img = event.target.files[0];
     if(img && img.size < 180000){
-      this.form.value.pic = img.name;
+      this.form.patchValue({pic: img});
+      this.form.get("pic")?.updateValueAndValidity();
+      this.form.value.picname = img.name;
       this.form.reset(this.form.value);
       const reader = new FileReader();
       reader.onload = () => {
         this.imageSelected = reader.result as string;
       };
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(img);
     }
   }
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if(file && file.size < 360000){
-      this.form.value.qual_cert = file.name;
+      this.form.patchValue({qual_cert: file});
+      this.form.get("qual_cert")?.updateValueAndValidity();
+      this.form.value.certname = file.name;
       this.form.reset(this.form.value);
       const reader = new FileReader();
       reader.onload = () => {
         this.docSelected = reader.result as ArrayBuffer;
       };
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(file);
     }
   }
 
@@ -165,15 +175,15 @@ export class FacultyRegiserationComponent implements OnInit {
     this.facultyservice.createFacultyUser(
       this.form.value.name,
       this.form.value.pic,
+      this.form.value.picname,
       this.form.value.id,
       this.form.value.DOB,
       this.form.value.gender,
-      this.form.value.qualification,
+      this.form.value.qualdegree,
       this.form.value.qual_cert,
+      this.form.value.certname,
       this.form.value.date_of_joining,
-      this.form.value.password,
-      this.imageSelected,
-      this.docSelected
+      this.form.value.password
     );
     this.form.reset();
   }

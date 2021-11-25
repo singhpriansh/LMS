@@ -49,6 +49,9 @@ export class StudentRegiserationComponent implements OnInit {
         validators: [Validators.required],
         asyncValidators: [mimeType]
       }),
+      picname: new FormControl(null, {
+        validators: [Validators.required]
+      }),
       id: new FormControl(null,{
         validators: [Validators.required]
       }),
@@ -59,7 +62,7 @@ export class StudentRegiserationComponent implements OnInit {
       gender: new FormControl(null, {
         validators: [Validators.required]
       }),
-      qualification: new FormControl(null,{
+      qualdegree: new FormControl(null,{
         validators: [Validators.required]
       }),
       branch: new FormControl(null,{
@@ -127,13 +130,14 @@ export class StudentRegiserationComponent implements OnInit {
   onImagePicked(event: any){
     const img = event.target.files[0];
     if(img && img.size < 180000){
-      this.form.value.pic = img.name;
+      this.form.value.pic = img;
+      this.form.value.picname = img.name;
       this.form.reset(this.form.value);
       const reader = new FileReader();
       reader.onload = () => {
         this.imageSelected = reader.result as string;
       };
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(img);
     }
   }
 
@@ -145,14 +149,14 @@ export class StudentRegiserationComponent implements OnInit {
     this.studentservice.createStudentUser(
       this.form.value.name,
       this.form.value.pic,
+      this.form.value.picname,
       this.form.value.id,
       this.form.value.DOB,
       this.form.value.gender,
-      this.form.value.qualification,
+      this.form.value.qualdegree,
       this.form.value.branch,
       this.form.value.date_of_admission,
       this.form.value.password,
-      this.imageSelected,
     );
     this.form.reset();
   }
