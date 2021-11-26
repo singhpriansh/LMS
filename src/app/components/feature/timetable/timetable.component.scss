@@ -3,20 +3,28 @@
 }
 .mat-table {
   color: black;
+  font-size: 16px;
   text-align: center;
-  background-color:aquamarine;
+  background-color:rgb(255, 88, 255);
   width: 100%;
 }
 
+.table-div {
+  padding: 1rem;
+}
+
 table {
-  border: 3px solid black;
+  border: 3px solid rgb(255, 88, 255);
+  margin: 5px;
+  padding: 5px;
   border-radius: 5px;
-  border-collapse: collapse;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+  // border-collapse: collapse;
 }
 
 th, td {
-  padding: 2px;
-  border: 1px solid black;
+  padding: 5px;
+  // border: 1px solid black;
 }
 
 

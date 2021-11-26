@@ -22,7 +22,7 @@ export class FacultyComponent implements OnInit {
 
   timetable(): void {
     const dialogRef = this.dialog.open(TimetableComponent, {
-      width: '600px'
+      width: '800px'
     })
   }
 

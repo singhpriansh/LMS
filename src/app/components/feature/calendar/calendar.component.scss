@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
   list-style: none;
   margin: 0;
   outline: none;
@@ -16,25 +15,25 @@ body, html {
 }
 
 body {
-	background: #dfebed;
-	font-family: 'Roboto', sans-serif;
+	background: black;
 }
 
 .container {
 	align-items: center;
-	display: flex;
-	height: 100%;
+	// display: flex;
 	justify-content: center;
-	margin: 0 auto;
-	max-width: 550px;
+	padding: 1rem;
+	max-width: 600px;
+	min-width: 450px;
+	height: 100%;
 	width: 100%;
 }
 
 .calendar {
-	background-color: purple;
+	background-color: rgb(255, 88, 255);
 	border-radius: 5px;
 	box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
-	height: 501px;
+	height: 470px;
   perspective: 1000;
 	transition: .9s;
 	transform-style: preserve-3d;
@@ -54,17 +53,17 @@ body {
 }
 
 .current-date h1 {
-	color: #dfebed;
+	color: black;
 	font-size: 1.4em;
 	font-weight: 300;
 }
 
 .week-days {
-	color: #dfebed;
+	color: black;
 	display: flex;
 	justify-content: space-between;
 	font-weight: 600;
-	padding: 30px 40px;
+	padding: 20px 40px;
 }
 
 .days {
@@ -74,7 +73,7 @@ body {
 }
 
 .weeks {
-	color: #fff;
+	color: black;
 	display: flex;
 	flex-direction: column;
 	padding: 0 40px;
@@ -90,7 +89,7 @@ body {
 }
 
 .last-month {
-	opacity: .3;
+	opacity: .6;
 }
 
 .weeks span {
