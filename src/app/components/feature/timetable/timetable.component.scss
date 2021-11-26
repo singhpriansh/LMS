@@ -1,14 +1,24 @@
 :host {
   color: black
 }
-
-table,th,td {
-  border: 1px solid #0000ff;
-  background-color: transparent;
+.mat-table {
   color: black;
+  text-align: center;
+  background-color:aquamarine;
   width: 100%;
-  height: 100%;
 }
+
+table {
+  border: 3px solid black;
+  border-radius: 5px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 2px;
+  border: 1px solid black;
+}
+
 
 .mat-column-day {
   width: 25px;

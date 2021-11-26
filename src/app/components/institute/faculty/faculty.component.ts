@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CalendarComponent } from '../../feature/calendar/calendar.component';
 import { SyllabusComponent } from '../../feature/syllabus/syllabus.component';
-import { TimetableComponent } from '../../ipages/timetable/timetable.component';
+import { TimetableComponent } from '../../feature/timetable/timetable.component';
 
 @Component({
   selector: 'app-faculty',
@@ -26,7 +27,7 @@ export class FacultyComponent implements OnInit {
   }
 
   calender(): void {
-    const dialogRef = this.dialog.open(TimetableComponent, {
+    const dialogRef = this.dialog.open(CalendarComponent, {
       width: '600px'
     })
   }

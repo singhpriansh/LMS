@@ -10,7 +10,6 @@ const BACK_URL =environment.apiUrls;
 
 @Injectable({providedIn: 'root'})
 export class LoginService {
-  private userisAuthenticated = false;
   private token: string='';
   private userId: string='';
   private desk: string='';
@@ -20,10 +19,6 @@ export class LoginService {
 
   getToken() {
     return this.token;
-  }
-
-  IsAuth(){
-    return this.userisAuthenticated;
   }
 
   getUserID(){
@@ -48,7 +43,6 @@ export class LoginService {
         const token = response.token;
         this.token = token;
         if(token != ''){
-          this.userisAuthenticated = true;//
           this.userId = response.user.id.toString();
           this.saveAuthData(token, this.userId);
           if(response.user.user === "Faculty"){
@@ -67,10 +61,9 @@ export class LoginService {
   logOutUser() {
     this.token = '';
     this.userId = '';
-    this.userisAuthenticated = false;//
     this.authStatusListener.next(false);
     this.clearAuthData();
-    this.router.navigate(['/home'])
+    this.router.navigate(['/']);
   }
 
   private saveAuthData(token: string, userId: string) {

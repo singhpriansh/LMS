@@ -22,9 +22,9 @@ import { FacultyRegiserationComponent } from './components/institute/faculty/fac
 
 import { LoginComponent } from './components/auth/login/login.component';
 
-import { WhatsNewComponent } from './components/feature/whats-new/whats-new.component';
+import { WhatsNewComponent } from './components/ipages/whats-new/whats-new.component';
 import { ErrorComponent } from './components/feature/error/error.component';
-import { TimetableComponent } from './components/ipages/timetable/timetable.component';
+import { TimetableComponent } from './components/feature/timetable/timetable.component';
 import { SyllabusComponent } from './components/feature/syllabus/syllabus.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { TestsheetComponent } from './components/feature/testsheet/testsheet.component';
@@ -32,6 +32,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { EventsComponent } from './components/feature/events/events.component';
 import { NoticeComponent } from './components/feature/notice/notice.component';
 import { SeminarComponent } from './components/feature/seminar/seminar.component';
+import { CalendarComponent } from './components/feature/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SeminarComponent } from './components/feature/seminar/seminar.component
     EventsComponent,
     NoticeComponent,
     SeminarComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,

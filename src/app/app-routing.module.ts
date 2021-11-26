@@ -4,7 +4,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { FacultyRegiserationComponent } from './components/institute/faculty/faculty-regiseration/faculty-regiseration.component';
 import { StudentRegiserationComponent } from './components/institute/students/student-regiseration/student-regiseration.component';
 import { HomeComponent } from './components/ipages/home/home.component';
-import { WhatsNewComponent } from './components/feature/whats-new/whats-new.component';
+import { WhatsNewComponent } from './components/ipages/whats-new/whats-new.component';
 import { FacultyComponent } from './components/institute/faculty/faculty.component';
 import { StudentsComponent } from './components/institute/students/students.component';
 import { ClassesComponent } from './components/classes/classes.component';
