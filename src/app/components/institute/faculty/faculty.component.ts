@@ -22,18 +22,21 @@ export class FacultyComponent implements OnInit {
 
   timetable(): void {
     const dialogRef = this.dialog.open(TimetableComponent, {
+      minWidth: '700px',
       width: '800px'
     })
   }
 
   calender(): void {
     const dialogRef = this.dialog.open(CalendarComponent, {
+      minWidth: '500px',
       width: '600px'
     })
   }
 
   syllabus(): void {
     const dialogRef = this.dialog.open(SyllabusComponent, {
+      minWidth: '500px',
       width: '450px'
     })
   }

@@ -13,8 +13,8 @@ export interface TimeTable {
   Period6: String;
 }
 
-const TIMETABLE: TimeTable[] = [
-  {day:'Monday',Period1:'1',Period2:'2',Period3:'3',
+const TIMETABLE = [
+  {day:'Monday',Period2:'2',Period3:'3',
     Period4:'4',Period5:'5',Period6:'6'},
   {day:'Tuesday',Period1:'1',Period2:'2',Period3:'3',
     Period4:'4',Period5:'5',Period6:'6'},

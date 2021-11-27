@@ -8,6 +8,5 @@ body {
 }
 mat-dialog-container {
     background-color: rgb(255, 219, 206) !important;
-    overflow: hidden !important;
-    min-width: 500px;
+    overflow: inherit !important;
 }

@@ -5,65 +5,32 @@
         <h1>{{ this.day }} {{ this.datenum }}{{this.salutation}}</h1>
         <h1>{{ this.month }} {{ this.year }}</h1>
       </div>
+      <div class="date-schroll">
+        <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon">
+          <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"/>
+        </svg>
+        <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon">
+          <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"/>
+        </svg>
+      </div>
       <div class="current-month">
         <ul class="week-days">
+          <li>SUN</li>
           <li>MON</li>
           <li>TUE</li>
           <li>WED</li>
           <li>THU</li>
           <li>FRI</li>
           <li>SAT</li>
-          <li>SUN</li>
         </ul>
-        <div class="weeks">
-          <div class="first">
-            <span class="last-month">28</span>
-            <span class="last-month">29</span>
-            <span class="last-month">30</span>
-            <span class="last-month">31</span>
-            <span>01</span>
-            <span>02</span>
-            <span>03</span>
-          </div>
-
-          <div class="second">
-            <span>04</span>
-            <span>05</span>
-            <span class="event">06</span>
-            <span>07</span>
-            <span>08</span>
-            <span>09</span>
-            <span>10</span>
-          </div>
-
-          <div class="third">
-            <span>11</span>
-            <span>12</span>
-            <span>13</span>
-            <span>14</span>
-            <span class="active">15</span>
-            <span>16</span>
-            <span>17</span>
-          </div>
-
-          <div class="fourth">
-            <span>18</span>
-            <span>19</span>
-            <span>20</span>
-            <span>21</span>
-            <span>22</span>
-            <span>23</span>
-            <span>24</span>
-          </div>
-
-          <div class="fifth">
-            <span>25</span>
-            <span>26</span>
-            <span>27</span>
-            <span>28</span>
-            <span>29</span>
-            <span>30</span>
-            <span>31</span>
+        <div class="weeks new">
+          <div *ngFor="let week of weeks" class={{week}}>
+            <!-- class => active -> curent
+            class => event -> forevent -->
+            <span *ngFor="let day of [0,1,2,3,4,5,6]"
+              class="{{ this.nextCalendarDate() }} {{ this.datectclass(this.vardate) }}">
+              {{ this.datetoStringArr(this.vardate)[2] }}
+            </span>
           </div>
         </div>
       </div>

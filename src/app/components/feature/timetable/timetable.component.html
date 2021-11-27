@@ -1,12 +1,14 @@
 <div class="table-div">
   <table class="mat-table">
-    <th>Day</th>
-    <th>Period1</th>
-    <th>Period2</th>
-    <th>Period3</th>
-    <th>Period4</th>
-    <th>Period5</th>
-    <th>Period6</th>
+    <tr>
+      <th>Day</th>
+      <th>Period1</th>
+      <th>Period2</th>
+      <th>Period3</th>
+      <th>Period4</th>
+      <th>Period5</th>
+      <th>Period6</th>
+    </tr>
     <tr *ngFor="let element of timetable">
       <td>{{ element.day }}</td>
       <td>{{ element.Period1 }}</td>
