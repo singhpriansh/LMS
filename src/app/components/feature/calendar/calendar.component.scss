@@ -20,6 +20,7 @@ body {
 
 h1, h3 {
 	margin-bottom: 0;
+	color: black;
 }
 
 .container {
@@ -36,7 +37,7 @@ h1, h3 {
 .calendar {
   grid-column: 1;
   grid-row: 1;
-	background-color: rgb(255, 88, 255);
+	background-color: rgb(255, 120, 255);
 	border-radius: 5px;
 	box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
 	height: 460px;
@@ -145,12 +146,10 @@ h1, h3 {
 }
 
 .eventname {
-	background: none;
 	border-bottom: 1px solid black;
-	color: black;
-	font-size: 1.4em;
+	font-size: 1.2em;
 	font-weight: 500;
-	padding: 25px 40px;
+	padding: 10px 40px;
 	width: 100%;
 }
 
@@ -162,6 +161,12 @@ input::placeholder {
 input,
 textarea {
 	color:black;
+}
+
+.round {
+	border-radius: 30%;
+	background-color: rgb(255, 100, 255);
+	border-color:rgb(255, 100, 255);;
 }
 
 .timeinput {

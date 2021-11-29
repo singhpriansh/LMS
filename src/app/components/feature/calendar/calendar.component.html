@@ -1,15 +1,17 @@
 <div class="container">
   <div class="calendar" [class.back]="!this.flip">
-    <form [formGroup]="eventform">
+    <form [formGroup]="eventform" (submit)="submit()">
       <div class="eventname">
-        <input matInput formControlName="eventname"
-          placeholder="What's the event?">
+        <mat-form-field>
+          <input matInput formControlName="eventname" placeholder="Event">
+        </mat-form-field>
       </div>
       <div class="info">
         <div class="date">
           <mat-form-field>
             <input matInput placeholder="Date" disabled
             value="{{ this.eventdate.split(' ')[2] }} {{ this.eventdate.split(' ')[1] }}, {{ this.eventdate.split(' ')[3] }}">
+            <mat-error></mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput formControlName="time" type="time" placeholder="Time">
@@ -25,12 +27,11 @@
           <input matInput formControlName="observations" placeholder="Observations">
         </mat-form-field>
       </div>
-    </form>
-  
-    <div class="actions">
-      <button class="save" (click)="submit()">
-        <svg version="1.1" id="Capa_1"  x="0px" y="0px" width="25px" height="25px"
-          viewBox="0 0 45.338 45.338" style="enable-background:new 0 0 45.338 45.338;" xml:space="preserve">
+      
+      <div class="actions">
+        <button class="save" type="submit">
+          <svg version="1.1" id="Capa_1"  x="0px" y="0px" width="25px" height="25px"
+            viewBox="0 0 45.338 45.338" style="enable-background:new 0 0 45.338 45.338;" xml:space="preserve">
           <path style="fill:#010002;" d="M39.329,5.629c-0.927,0-1.819,0.209-2.651,0.622c-10.119,4.997-16.997,14.53-20.585,20.624
             l-6.626-4.694c-1.019-0.723-2.218-1.105-3.465-1.105c-1.944,0-3.776,0.947-4.899,2.532C-0.81,26.307-0.17,30.06,2.53,31.972
             l8.174,5.791c1.797,1.273,3.86,1.946,5.967,1.946c0.74,0,1.484-0.084,2.214-0.25c2.853-0.649,5.348-2.567,6.845-5.262
@@ -40,23 +41,24 @@
             c-1.35-0.956-1.67-2.832-0.714-4.182c0.562-0.793,1.479-1.267,2.452-1.267c0.622,0,1.221,0.191,1.73,0.553l9.34,6.616l0.812-1.462
             c3.122-5.615,9.887-15.789,20.122-20.843c0.417-0.206,0.861-0.311,1.322-0.311c1.153,0,2.186,0.641,2.695,1.672
             C42.379,11.02,42.433,11.834,42.176,12.592z"/>
-        </svg> Save
-      </button>
-      <button class="dismiss" (click)="reject()">
-        <svg version="1.1" id="cross" x="0px" y="0px"
-        width="20px" height="20px" viewBox="0 0 415.188 415.188" style="enable-background:new 0 0 415.188 415.188;" xml:space="preserve">
-            <path d="M412.861,78.976c3.404-6.636,2.831-14.159-0.15-20.404c0.84-7.106-1.02-14.321-7.746-19.855
-              c-6.262-5.151-12.523-10.305-18.781-15.457c-11.005-9.055-28.237-11.913-38.941,0c-48.619,54.103-99.461,105.856-152.167,155.725
-              c-39.185-36.605-78.846-72.713-118.223-108.868c-13.82-12.693-33.824-8.71-42.519,6.411c-12.665,6.286-22.931,14.481-31.42,28.468
-              c-4.042,6.664-3.727,15.076,0,21.764c25.421,45.578,74.557,85.651,114.957,122.529c-5.406,4.839-10.772,9.724-16.287,14.461
-              c-54.43,46.742-91.144,76.399-23.029,124.325c0.919,0.647,1.856,0.504,2.789,0.882c1.305,0.602,2.557,1.026,4.004,1.264
-              c0.45,0.017,0.87,0.093,1.313,0.058c1.402,0.114,2.774,0.471,4.195,0.192c36.621-7.18,70.677-35.878,101.576-67.48
-              c30.1,29.669,62.151,58.013,97.395,74.831c8.391,4.005,18.395,1.671,24.855-3.931c10.832,0.818,20.708-5.913,25.665-15.586
-              c0.734-0.454,1.207-0.713,2.002-1.21c15.748-9.838,17.187-29.431,5.534-42.936c-26.313-30.492-54.284-59.478-82.798-87.95
-              C316.426,196.043,380.533,141.939,412.861,78.976z"/>
-        </svg> Dismiss
-      </button>
-    </div>
+          </svg> Save
+        </button>
+        <button class="dismiss" type="reset" (click)="reject()">
+          <svg version="1.1" id="cross" x="0px" y="0px"
+            width="20px" height="20px" viewBox="0 0 415.188 415.188" style="enable-background:new 0 0 415.188 415.188;" xml:space="preserve">
+          <path d="M412.861,78.976c3.404-6.636,2.831-14.159-0.15-20.404c0.84-7.106-1.02-14.321-7.746-19.855
+            c-6.262-5.151-12.523-10.305-18.781-15.457c-11.005-9.055-28.237-11.913-38.941,0c-48.619,54.103-99.461,105.856-152.167,155.725
+            c-39.185-36.605-78.846-72.713-118.223-108.868c-13.82-12.693-33.824-8.71-42.519,6.411c-12.665,6.286-22.931,14.481-31.42,28.468
+            c-4.042,6.664-3.727,15.076,0,21.764c25.421,45.578,74.557,85.651,114.957,122.529c-5.406,4.839-10.772,9.724-16.287,14.461
+            c-54.43,46.742-91.144,76.399-23.029,124.325c0.919,0.647,1.856,0.504,2.789,0.882c1.305,0.602,2.557,1.026,4.004,1.264
+            c0.45,0.017,0.87,0.093,1.313,0.058c1.402,0.114,2.774,0.471,4.195,0.192c36.621-7.18,70.677-35.878,101.576-67.48
+            c30.1,29.669,62.151,58.013,97.395,74.831c8.391,4.005,18.395,1.671,24.855-3.931c10.832,0.818,20.708-5.913,25.665-15.586
+            c0.734-0.454,1.207-0.713,2.002-1.21c15.748-9.838,17.187-29.431,5.534-42.936c-26.313-30.492-54.284-59.478-82.798-87.95
+            C316.426,196.043,380.533,141.939,412.861,78.976z"/>
+          </svg> Dismiss
+        </button>
+      </div>
+    </form>
   </div>
   <div class="calendar" [class.front]="this.flip">
     <div class="current-date">
@@ -64,12 +66,19 @@
       <h1>{{ this.month }} {{ this.year }}</h1>
     </div>
     <div class="date-schroll">
-      <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon">
-        <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"/>
-      </svg>
-      <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon">
-        <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"/>
-      </svg>
+      <button class="round" (click)="previousMonth()">
+        <svg  width="20px" height="20px" viewBox="0 0 1024 1024" class="icon">
+          <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"/>
+        </svg>
+      </button>
+      <h3>{{ MONTH_MAP.get(this.date.toDateString().split(' ')[1]) }} 
+        {{ this.date.toDateString().split(' ')[3] }}
+      </h3>
+      <button class="round" (click)="nextMonth()">
+        <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon">
+          <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"/>
+        </svg>
+      </button>
     </div>
     <div class="current-month">
       <ul class="week-days">
@@ -87,7 +96,7 @@
           class => event -> forevent -->
           <span *ngFor="let day of [0,1,2,3,4,5,6]"
             class="{{ this.datectclass(this.calendar[week][day]) }}"
-            (click)="setevent(this.calendar[week][day])">
+            (click)="this.setevent(this.calendar[week][day])">
             {{ this.calendar[week][day].split(" ")[2] }}
           </span>
         </div>

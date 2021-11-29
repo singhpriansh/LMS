@@ -1,7 +1,6 @@
 <mat-card>
   <mat-spinner *ngIf="this.isLoading"></mat-spinner>
-  <form
-    [formGroup]="form" (submit)="OnRegistration()"
+  <form [formGroup]="form" (submit)="OnRegistration()"
     *ngIf="!this.isLoading">
     <div class="picture" *ngIf="imageSelected !== '' && imageSelected">
       <img [src]="this.imageSelected" [alt]="form.value.picname"/>

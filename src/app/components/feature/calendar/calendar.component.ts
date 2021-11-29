@@ -26,7 +26,6 @@ MONTH_MAP.set("Nov","November");
 MONTH_MAP.set("Dec","December");
 
 
-
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -48,6 +47,7 @@ export class CalendarComponent implements OnInit {
   flip: Boolean = false;
   eventdate: string='';
   eventform!: FormGroup;
+  MONTH_MAP = MONTH_MAP;
   // yesterday = new Date(this.date);
   // tommorow = new Date(this.date);
   
@@ -66,6 +66,16 @@ export class CalendarComponent implements OnInit {
       }
       this.calendar.push(datearray);
     }
+  }
+
+  previousMonth(){
+    this.date = new Date(this.date.getFullYear(),this.date.getMonth()-1,this.date.getDate());
+    this.resetcalendar();
+  }
+
+  nextMonth(){
+    this.date = new Date(this.date.getFullYear(),this.date.getMonth()+1,this.date.getDate());
+    this.resetcalendar();
   }
 
   startOfMonth(date: Date) {
@@ -139,18 +149,23 @@ export class CalendarComponent implements OnInit {
 
 
   setevent(date: string) {
+    this.eventform.reset();
     this.eventdate = date;
     this.eventform.value.date = date;
     this.flip = !this.flip;
   }
 
-  submit(){
+  submit(): void {
+    console.log("called")
+    if(this.eventform.invalid){
+      return;
+    }
     console.log(this.eventform.value);
-    this.flip = !this.flip; 
+    this.flip = !this.flip;
+    this.eventform.reset();
   }
 
   reject(){
-    this.eventform.reset();
     this.flip = !this.flip;
   }
 
@@ -177,5 +192,4 @@ export class CalendarComponent implements OnInit {
       })
     });
   }
-
 }
