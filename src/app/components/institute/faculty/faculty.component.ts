@@ -29,7 +29,7 @@ export class FacultyComponent implements OnInit {
 
   calender(): void {
     const dialogRef = this.dialog.open(CalendarComponent, {
-      minWidth: '500px',
+      minWidth: '550px',
       width: '600px'
     })
   }

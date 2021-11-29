@@ -33,8 +33,6 @@ import { EventsComponent } from './components/feature/events/events.component';
 import { NoticeComponent } from './components/feature/notice/notice.component';
 import { SeminarComponent } from './components/feature/seminar/seminar.component';
 import { CalendarComponent } from './components/feature/calendar/calendar.component';
-import { FrontComponent } from './components/feature/calendar/front/front.component';
-import { BackComponent } from './components/feature/calendar/back/back.component';
 
 @NgModule({
   declarations: [
@@ -58,8 +56,6 @@ import { BackComponent } from './components/feature/calendar/back/back.component
     NoticeComponent,
     SeminarComponent,
     CalendarComponent,
-    FrontComponent,
-    BackComponent,
   ],
   imports: [
     BrowserModule,
