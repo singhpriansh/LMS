@@ -7,6 +7,7 @@ import { LoginService } from '../../auth/services/login.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated=false;
 

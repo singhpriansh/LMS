@@ -8,7 +8,7 @@ mat-grid-list {
 }
 
 mat-grid-tile {
-  height: 70vh;
+  height:calc(70vh - 50px);
 }
 
 .items {

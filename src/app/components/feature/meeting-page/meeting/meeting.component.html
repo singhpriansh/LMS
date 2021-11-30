@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Meeting queue</h1>
+<div *ngIf="!this.meeting">
+  <ul>
+    <h3>No meeting in progress</h3>
+  </ul>
+</div>
+<div *ngIf="this.meeting">
+  <ul>
+    <h3>Meeting <br>
+      in progress
+    </h3>
+  </ul>
+  <ul>
+    <li>
+      <a mat-button
+      routerLink="/meeting-page"
+      routerLinkActive="mat-primary"
+      (click)="exit()">
+      Teacher</a>
+    </li>
+    <li>
+      <a mat-button
+      routerLink="/meeting-page"
+      routerLinkActive="mat-primary"
+      (click)="exit()">
+      Student</a>
+    </li>
+  </ul>
+</div>

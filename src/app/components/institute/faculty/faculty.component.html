@@ -1,4 +1,4 @@
-<mat-grid-list cols="7">
+<mat-grid-list cols="7" >
   <mat-grid-tile colspan="3">
     <div>
       <mat-card class="items" *ngFor="let subject of subjects">
@@ -27,12 +27,6 @@
         routerLinkActive="mat-accent"
         (click)="timetable()">
         Time Table</a>
-      </a>
-      <a mat-button class="items">
-        <a mat-button
-        routerLinkActive="mat-accent"
-        (click)="syllabus()">
-        Syllabus</a>
       </a>
       <a mat-button class="items">
         <a mat-button routerLink="/faculty"

@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { StudentService } from 'src/app/components/auth/services/student.service';
+import { AbstractControl, FormControl, FormGroup, NgForm, ValidationErrors, Validators } from '@angular/forms';
+import { FacultyService } from 'src/app/components/auth/services/faculty.service';
 import { mimeType } from '../../validators/mime-type.validator';
 
 export interface Selection {
-  value:string,
+  value: string,
   viewValue: string
 }
 
 @Component({
-  selector: 'app-student-regiseration',
-  templateUrl: './student-regiseration.component.html',
-  styleUrls: ['./student-regiseration.component.scss']
+  selector: 'app-faculty-registration',
+  templateUrl: './faculty-registration.component.html',
+  styleUrls: ['./faculty-registration.component.scss']
 })
-export class StudentRegiserationComponent implements OnInit {
+
+
+export class FacultyRegistrationComponent implements OnInit {
   isLoading = false;
   hide1 = true;
   hide2 = true;
@@ -21,8 +23,11 @@ export class StudentRegiserationComponent implements OnInit {
   imageSelected!: string| ArrayBuffer;
   docSelected !: string| ArrayBuffer;
   study: Selection[] = [
+    {value: 'Bachelors in Science', viewValue: 'B.Sc'},
     {value: 'Bachelors in Technology', viewValue: 'B.Tech'},
+    {value: 'Masters in Science', viewValue: 'M.Sc'},
     {value: 'Masters in Technology', viewValue: 'M.Tech'},
+    {value: 'Masters of Bussiness Administration', viewValue: 'MBA'},
     {value: 'Doctor of Philosophy', viewValue: 'Phd'}
   ];
   gender: Selection[] =  [
@@ -30,26 +35,20 @@ export class StudentRegiserationComponent implements OnInit {
     {value: 'Female', viewValue: 'female'},
     {value: 'Other',viewValue: 'other'}
   ];
-  branch: Selection[] = [
-    {value: 'Computer Science and Engineering', viewValue: 'CSE'},
-    {value: 'Electronics and Communication Engineering', viewValue: 'ECE'},
-    {value: 'Electrical and Electronics Engineering', viewValue: 'EEE'},
-    {value: 'Electrical Engineering', viewValue: 'EE'},
-    {value: 'Mechanical Engineering', viewValue: 'Mech'},
-  ];
-  constructor(private studentservice: StudentService) { }
+
+  constructor(private facultyservice: FacultyService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl(null,{
         validators: [Validators.required,
-        this.nameValidator]
+          this.nameValidator]
       }),
-      pic: new FormControl(null, {
+      pic: new FormControl(null,{
         validators: [Validators.required],
         asyncValidators: [mimeType]
       }),
-      picname: new FormControl(null, {
+      picname: new FormControl(null,{
         validators: [Validators.required]
       }),
       id: new FormControl(null,{
@@ -59,16 +58,20 @@ export class StudentRegiserationComponent implements OnInit {
         validators: [Validators.required,
         this.dateValidator]
       }),
-      gender: new FormControl(null, {
+      gender: new FormControl(null,{
         validators: [Validators.required]
       }),
       qualdegree: new FormControl(null,{
         validators: [Validators.required]
       }),
-      branch: new FormControl(null,{
+      qual_cert: new FormControl(null,{
+        validators: [Validators.required]
+        // asyncValidators: [this.pdfValidator]
+      }),
+      certname: new FormControl(null, {
         validators: [Validators.required]
       }),
-      date_of_admission: new FormControl(null,{
+      date_of_joining: new FormControl(null,{
         validators: [Validators.required]
       }),
       password: new FormControl(null,{
@@ -83,7 +86,6 @@ export class StudentRegiserationComponent implements OnInit {
       })
     });
   }
-
 
   nameValidator(control: AbstractControl): ValidationErrors | null {
     var format = /[`1234567890!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -127,10 +129,19 @@ export class StudentRegiserationComponent implements OnInit {
     return {'forbidden': {value: control.value}};
   }
 
+  // pdfValidator(control: AbstractControl): Promise <ValidationErrors | null> | Observable<ValidationErrors | null> {
+  //   const variable = "%PDF";
+  //   if(control.value.indexOf(variable) > -1){
+  //     return of(control.value);
+  //   }
+  //   return of({'invalid' : {value: control.setValue(0)}});
+  // }
+
   onImagePicked(event: any){
     const img = event.target.files[0];
     if(img && img.size < 180000){
-      this.form.value.pic = img;
+      this.form.patchValue({pic: img});
+      this.form.get("pic")?.updateValueAndValidity();
       this.form.value.picname = img.name;
       this.form.reset(this.form.value);
       const reader = new FileReader();
@@ -141,12 +152,27 @@ export class StudentRegiserationComponent implements OnInit {
     }
   }
 
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if(file && file.size < 360000){
+      this.form.patchValue({qual_cert: file});
+      this.form.get("qual_cert")?.updateValueAndValidity();
+      this.form.value.certname = file.name;
+      this.form.reset(this.form.value);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.docSelected = reader.result as ArrayBuffer;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   OnRegistration():void {
     if(this.form.invalid){
       return;
     }
     this.isLoading = true;
-    this.studentservice.createStudentUser(
+    this.facultyservice.createFacultyUser(
       this.form.value.name,
       this.form.value.pic,
       this.form.value.picname,
@@ -154,24 +180,11 @@ export class StudentRegiserationComponent implements OnInit {
       this.form.value.DOB,
       this.form.value.gender,
       this.form.value.qualdegree,
-      this.form.value.branch,
-      this.form.value.date_of_admission,
-      this.form.value.password,
+      this.form.value.qual_cert,
+      this.form.value.certname,
+      this.form.value.date_of_joining,
+      this.form.value.password
     );
     this.form.reset();
   }
-
-
-  // onFileSelected(event: any) {
-  //   const file = event.target.files[0];
-  //   if(file && file.size < 360000){
-  //     this.form.value.qual_cert = file.name;
-  //     this.form.reset(this.form.value);
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       this.docSelected = reader.result as ArrayBuffer;
-  //     };
-  //     reader.readAsDataURL(event.target.files[0]);
-  //   }
-  // }
 }

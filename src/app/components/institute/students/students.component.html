@@ -1,24 +1,41 @@
-<mat-grid-list cols="4">
-  <mat-grid-tile colspan="2">
+<mat-grid-list cols="7" >
+  <mat-grid-tile colspan="3">
     <div>
       <mat-card class="items" *ngFor="let subject of subjects">
         {{subject}}
       </mat-card>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile colspan="1">
+  <mat-grid-tile colspan="2">
     <div>
       <mat-card class="items" *ngFor="let subject of subjects">
-          {{subject}}
-          <h5>The information about the subject</h5>
+        {{subject}}
+        <h5>The information about the subject</h5>
       </mat-card>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile colspan="1">
+  <mat-grid-tile colspan="2">
     <div>
-      <mat-card class="items" *ngFor="let subject of subjects">
-          {{subject}}
-      </mat-card>
+      <a mat-button class="items">
+        <a mat-button
+        (click)="calender()">
+        Calender</a>
+      </a>
+      <a mat-button class="items">
+        <a mat-button
+        (click)="timetable()">
+        Time Table</a>
+      </a>
+      <a mat-button class="items">
+        <a mat-button
+        (click)="meeting()">
+        Meeting</a>
+      </a>
+      <a mat-button class="items">
+        <a mat-button routerLink="/classes"
+        color="primary">
+        Classes</a>
+      </a>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

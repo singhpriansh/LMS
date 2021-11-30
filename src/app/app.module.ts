@@ -17,8 +17,8 @@ import { SidenavComponent } from './components/ipages/sidenav/sidenav.component'
 
 import { StudentsComponent } from './components/institute/students/students.component';
 import { FacultyComponent } from './components/institute/faculty/faculty.component';
-import { StudentRegiserationComponent } from './components/institute/students/student-regiseration/student-regiseration.component';
-import { FacultyRegiserationComponent } from './components/institute/faculty/faculty-regiseration/faculty-regiseration.component';
+import { StudentRegistrationComponent } from './components/institute/students/student-registration/student-registration.component';
+import { FacultyRegistrationComponent } from './components/institute/faculty/faculty-registration/faculty-registration.component';
 
 import { LoginComponent } from './components/auth/login/login.component';
 
@@ -26,13 +26,15 @@ import { WhatsNewComponent } from './components/ipages/whats-new/whats-new.compo
 import { ErrorComponent } from './components/feature/error/error.component';
 import { TimetableComponent } from './components/feature/timetable/timetable.component';
 import { SyllabusComponent } from './components/feature/syllabus/syllabus.component';
-import { ClassesComponent } from './components/classes/classes.component';
+import { ClassesComponent } from './components/institute/classes/classes.component';
 import { TestsheetComponent } from './components/feature/testsheet/testsheet.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { EventsComponent } from './components/feature/events/events.component';
 import { NoticeComponent } from './components/feature/notice/notice.component';
 import { SeminarComponent } from './components/feature/seminar/seminar.component';
 import { CalendarComponent } from './components/feature/calendar/calendar.component';
+import { MeetingComponent } from './components/feature/meeting-page/meeting/meeting.component';
+import { MeetingPageComponent } from './components/feature/meeting-page/meeting-page.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +44,8 @@ import { CalendarComponent } from './components/feature/calendar/calendar.compon
     HomeComponent,
     StudentsComponent,
     FacultyComponent,
-    StudentRegiserationComponent,
-    FacultyRegiserationComponent,
+    StudentRegistrationComponent,
+    FacultyRegistrationComponent,
     LoginComponent,
     WhatsNewComponent,
     ErrorComponent,
@@ -56,6 +58,8 @@ import { CalendarComponent } from './components/feature/calendar/calendar.compon
     NoticeComponent,
     SeminarComponent,
     CalendarComponent,
+    MeetingComponent,
+    MeetingPageComponent,
   ],
   imports: [
     BrowserModule,
