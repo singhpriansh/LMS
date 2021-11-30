@@ -40,17 +40,14 @@ h1, h3 {
 	background-color: rgb(255, 120, 255);
 	border-radius: 5px;
 	box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
-	height: 460px;
+	height: 470px;
   // perspective: 1000;
 	transition: .9s;
 	transform-style: preserve-3d;
 	width:450px;
+	backface-visibility: hidden;
 }
 
-/* Front - Calendar */
-.front {
-	transform: rotateY(180deg);
-}
 
 .display{
 	display: none;
@@ -122,7 +119,7 @@ h1, h3 {
 	border-radius: 15%;
 }
 
-.weeks span:not(.other-month):hover {
+.weeks span:not(.other-month):hover div {
 	cursor: pointer;
 	font-weight: 600;
 }
@@ -140,16 +137,11 @@ h1, h3 {
 	top: -4px;
 }
 
-/* Back - Event form */
-.back {
-	transform: rotateY(180deg);
-}
-
 .eventname {
 	border-bottom: 1px solid black;
 	font-size: 1.2em;
 	font-weight: 500;
-	padding: 10px 40px;
+	padding: 20px 40px 2px 40px;
 	width: 100%;
 }
 
@@ -233,7 +225,7 @@ textarea {
 	border-right: 1px solid black;
 }
 
-.actions button:hover {
+button:hover {
 	cursor: pointer;
 }
 
@@ -247,8 +239,4 @@ textarea {
 /* Flip animation */
 .flip {
   transform: rotateY(180deg);
-}
-
-.front, .back {
-	backface-visibility: hidden;
 }

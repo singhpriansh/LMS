@@ -1,0 +1,50 @@
+export interface Subj {
+  name: string;
+  code: string;
+  unit: [
+    {
+      unit_number: Number;
+      sections: [
+        {
+          name: string;
+          section_topics: string[];
+        }
+      ]
+    }
+  ]
+}
+
+export interface Syllabus {
+  branch: string;
+  subject: Subj[];
+}
+
+const SYLLABUS: Syllabus = {
+  branch: "Computer Science and Engineering",
+  subject: [
+    {
+      name: "Advanced Computer Networks",
+      code: "ECS 802",
+      unit: [
+        {
+          unit_number: 1,
+          sections: [
+            {
+              name: "Modeling",
+              section_topics: [
+                "OSI model and TCP/IP model",
+                "Layered architecture",
+                "layer interfaces",
+                "Services and protocols",
+                "ATM (Design Goals, Problems, Architecture)",
+                "ATM Connection establishment and release",
+                "ATM switching", "ATM layers", "QoS in ATM"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

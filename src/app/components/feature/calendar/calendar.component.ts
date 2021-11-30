@@ -90,8 +90,7 @@ export class CalendarComponent implements OnInit {
     return vardate;
   }
 
-  datectclass(date: string){
-    let finalstring = "";
+  detectclass(date: string){
     if(date.split(" ")[2] === '01') {
       if(this.focusmonth === 'other-month'){
         this.focusmonth = 'current-month';
@@ -99,7 +98,7 @@ export class CalendarComponent implements OnInit {
         this.focusmonth = 'other-month';
       }
     }
-    finalstring = this.focusmonth;
+    let finalstring = this.focusmonth;
     let today = new Date();
     today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     if(date === today.toDateString()){
@@ -156,17 +155,19 @@ export class CalendarComponent implements OnInit {
   }
 
   submit(): void {
-    console.log("called")
     if(this.eventform.invalid){
       return;
     }
     console.log(this.eventform.value);
     this.flip = !this.flip;
-    this.eventform.reset();
   }
 
   reject(){
     this.flip = !this.flip;
+  }
+
+  print(d:any){
+    console.log(d);
   }
 
   ngOnInit(): void {

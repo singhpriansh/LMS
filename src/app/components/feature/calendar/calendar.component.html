@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="calendar" [class.back]="!this.flip">
+  <div class="calendar" [class.flip]="!this.flip">
     <form [formGroup]="eventform" (submit)="submit()">
       <div class="eventname">
         <mat-form-field>
@@ -9,9 +9,8 @@
       <div class="info">
         <div class="date">
           <mat-form-field>
-            <input matInput placeholder="Date" disabled
+            <input matInput placeholder="Date" readonly
             value="{{ this.eventdate.split(' ')[2] }} {{ this.eventdate.split(' ')[1] }}, {{ this.eventdate.split(' ')[3] }}">
-            <mat-error></mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput formControlName="time" type="time" placeholder="Time">
@@ -60,7 +59,7 @@
       </div>
     </form>
   </div>
-  <div class="calendar" [class.front]="this.flip">
+  <div class="calendar" [class.flip]="this.flip">
     <div class="current-date">
       <h1>{{ this.day }} {{ this.datenum }}{{this.salutation}}</h1>
       <h1>{{ this.month }} {{ this.year }}</h1>
@@ -95,9 +94,14 @@
           <!-- class => active -> curent
           class => event -> forevent -->
           <span *ngFor="let day of [0,1,2,3,4,5,6]"
-            class="{{ this.datectclass(this.calendar[week][day]) }}"
-            (click)="this.setevent(this.calendar[week][day])">
-            {{ this.calendar[week][day].split(" ")[2] }}
+            class="{{ this.detectclass(this.calendar[week][day]) }}">
+            <div *ngIf="this.focusmonth === 'current-month'"
+              (click)="this.setevent(this.calendar[week][day])">
+              {{ this.calendar[week][day].split(" ")[2] }}
+            </div>
+            <div *ngIf="this.focusmonth === 'other-month'">
+              {{ this.calendar[week][day].split(" ")[2] }}
+            </div>
           </span>
         </div>
       </div>
