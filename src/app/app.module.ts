@@ -28,13 +28,12 @@ import { TimetableComponent } from './components/feature/timetable/timetable.com
 import { SyllabusComponent } from './components/feature/syllabus/syllabus.component';
 import { ClassesComponent } from './components/institute/classes/classes.component';
 import { TestsheetComponent } from './components/feature/testsheet/testsheet.component';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { EventsComponent } from './components/feature/events/events.component';
 import { NoticeComponent } from './components/feature/notice/notice.component';
 import { SeminarComponent } from './components/feature/seminar/seminar.component';
 import { CalendarComponent } from './components/feature/calendar/calendar.component';
-import { MeetingComponent } from './components/feature/meeting-page/meeting/meeting.component';
-import { MeetingPageComponent } from './components/feature/meeting-page/meeting-page.component';
+import { MeetingComponent } from './components/feature/meeting/meeting.component';
+import { VideomeetComponent } from './components/institute/videomeet/videomeet.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +58,7 @@ import { MeetingPageComponent } from './components/feature/meeting-page/meeting-
     SeminarComponent,
     CalendarComponent,
     MeetingComponent,
-    MeetingPageComponent,
+    VideomeetComponent,
   ],
   imports: [
     BrowserModule,

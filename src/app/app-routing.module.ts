@@ -12,7 +12,7 @@ import { TestsheetComponent } from './components/feature/testsheet/testsheet.com
 import { EventsComponent } from './components/feature/events/events.component';
 import { NoticeComponent } from './components/feature/notice/notice.component';
 import { SeminarComponent } from './components/feature/seminar/seminar.component';
-import { MeetingPageComponent } from './components/feature/meeting-page/meeting-page.component';
+import { VideomeetComponent } from './components/institute/videomeet/videomeet.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'whats-new', component: WhatsNewComponent },
   { path: 'faculty-registration', component: FacultyRegistrationComponent },
   { path: 'student-registration', component: StudentRegistrationComponent },
-  { path: 'meeting-page', component: MeetingPageComponent },
+  { path: 'videomeet', component: VideomeetComponent },
   { path: 'faculty', component: FacultyComponent },
   { path: 'student', component: StudentsComponent },
   { path: 'classes' ,component: ClassesComponent },

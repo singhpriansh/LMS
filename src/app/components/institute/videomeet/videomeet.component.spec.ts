@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MeetingPageComponent } from './meeting-page.component';
+import { VideomeetComponent } from './videomeet.component';
 
-describe('MeetingPageComponent', () => {
-  let component: MeetingPageComponent;
-  let fixture: ComponentFixture<MeetingPageComponent>;
+describe('VideomeetComponent', () => {
+  let component: VideomeetComponent;
+  let fixture: ComponentFixture<VideomeetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MeetingPageComponent ]
+      declarations: [ VideomeetComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeetingPageComponent);
+    fixture = TestBed.createComponent(VideomeetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
