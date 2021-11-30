@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { StudentService } from 'src/app/components/auth/services/student.service';
 import { mimeType } from '../../validators/mime-type.validator';
 
 export interface Selection {
@@ -14,6 +15,8 @@ export interface Selection {
 })
 export class StudentRegiserationComponent implements OnInit {
   isLoading = false;
+  hide1 = true;
+  hide2 = true;
   form!: FormGroup;
   imageSelected!: string| ArrayBuffer;
   docSelected !: string| ArrayBuffer;
@@ -34,7 +37,7 @@ export class StudentRegiserationComponent implements OnInit {
     {value: 'Electrical Engineering', viewValue: 'EE'},
     {value: 'Mechanical Engineering', viewValue: 'Mech'},
   ];
-  constructor() { }
+  constructor(private studentservice: StudentService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -46,6 +49,9 @@ export class StudentRegiserationComponent implements OnInit {
         validators: [Validators.required],
         asyncValidators: [mimeType]
       }),
+      picname: new FormControl(null, {
+        validators: [Validators.required]
+      }),
       id: new FormControl(null,{
         validators: [Validators.required]
       }),
@@ -56,22 +62,23 @@ export class StudentRegiserationComponent implements OnInit {
       gender: new FormControl(null, {
         validators: [Validators.required]
       }),
-      qualification: new FormControl(null,{
+      qualdegree: new FormControl(null,{
         validators: [Validators.required]
       }),
       branch: new FormControl(null,{
         validators: [Validators.required]
       }),
-      date_of_joining: new FormControl(null,{
+      date_of_admission: new FormControl(null,{
         validators: [Validators.required]
       }),
       password: new FormControl(null,{
         validators: [Validators.required,
-          Validators.minLength(6),
+        Validators.minLength(6),
         this.passwordValidator]
       }),
       again_password: new FormControl(null,{
         validators: [Validators.required,
+        this.sameString,
         this.passwordValidator]
       })
     });
@@ -79,7 +86,7 @@ export class StudentRegiserationComponent implements OnInit {
 
 
   nameValidator(control: AbstractControl): ValidationErrors | null {
-    var format = /[ `1234567890!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    var format = /[`1234567890!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const forbid = format.test(control.value);
     return forbid ? { 'forbidden': {value: control.value}} : null;
   }
@@ -101,6 +108,16 @@ export class StudentRegiserationComponent implements OnInit {
     }
   }
 
+  sameString(control: AbstractControl): ValidationErrors | null {
+    var confirm = control.value;
+    var pass = control.parent?.get('password')?.value;
+    if(confirm !== pass) {
+      return {'pasword not same': {value: pass}};
+    } else {
+      return null;
+    }
+  }
+
   dateValidator(control: AbstractControl): ValidationErrors | null{
     if(control.value){
       if(parseInt(Date().split(' ')[3])> (parseInt(control.value.toString().split(' ')[3]) + 15)){
@@ -113,36 +130,48 @@ export class StudentRegiserationComponent implements OnInit {
   onImagePicked(event: any){
     const img = event.target.files[0];
     if(img && img.size < 180000){
-      this.form.value.pic = img.name;
+      this.form.value.pic = img;
+      this.form.value.picname = img.name;
       this.form.reset(this.form.value);
       const reader = new FileReader();
       reader.onload = () => {
         this.imageSelected = reader.result as string;
       };
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(img);
     }
   }
-
 
   OnRegistration():void {
     if(this.form.invalid){
       return;
     }
     this.isLoading = true;
-    console.log(
-      this.form.value
-      );
+    this.studentservice.createStudentUser(
+      this.form.value.name,
+      this.form.value.pic,
+      this.form.value.picname,
+      this.form.value.id,
+      this.form.value.DOB,
+      this.form.value.gender,
+      this.form.value.qualdegree,
+      this.form.value.branch,
+      this.form.value.date_of_admission,
+      this.form.value.password,
+    );
+    this.form.reset();
   }
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if(file && file.size < 360000){
-      this.form.value.qual_cert = file.name;
-      this.form.reset(this.form.value);
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.docSelected = reader.result as ArrayBuffer;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  }
+
+
+  // onFileSelected(event: any) {
+  //   const file = event.target.files[0];
+  //   if(file && file.size < 360000){
+  //     this.form.value.qual_cert = file.name;
+  //     this.form.reset(this.form.value);
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       this.docSelected = reader.result as ArrayBuffer;
+  //     };
+  //     reader.readAsDataURL(event.target.files[0]);
+  //   }
+  // }
 }

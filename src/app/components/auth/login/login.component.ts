@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Form, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,10 @@ import { AbstractControl, Form, FormControl, FormGroup, ValidationErrors, Valida
 })
 export class LoginComponent implements OnInit {
   isLoading = false;
+  hide = true;
   form!:FormGroup;
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -44,6 +46,10 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    console.log(this.form.value);
+    this.loginService.loginUser(
+      this.form.value.id,
+      this.form.value.password
+    )
+    this.form.reset();
   }
 }

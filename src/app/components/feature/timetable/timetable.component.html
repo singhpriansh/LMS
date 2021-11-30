@@ -1,0 +1,27 @@
+<div class="table-div">
+  <table class="mat-table">
+    <tr>
+      <th>Day</th>
+      <th>Period1</th>
+      <th>Period2</th>
+      <th>Period3</th>
+      <th>Period4</th>
+      <th>Period5</th>
+      <th>Period6</th>
+    </tr>
+    <tr *ngFor="let element of timetable">
+      <td>{{ element.day }}</td>
+      <td>{{ element.Period1 }}</td>
+      <td>{{ element.Period2 }}</td>
+      <td>{{ element.Period3 }}</td>
+      <td>{{ element.Period4 }}</td>
+      <td>{{ element.Period5 }}</td>
+      <td>{{ element.Period6 }}</td>
+    </tr>
+  </table>  
+</div>
+<!-- 
+<a mat-button
+  routerLinkActive="mat-primary"
+  (click)="ok()">
+  OK</a> -->

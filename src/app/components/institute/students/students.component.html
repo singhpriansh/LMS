@@ -1,1 +1,24 @@
-<p>students works!</p>
+<mat-grid-list cols="4">
+  <mat-grid-tile colspan="2">
+    <div>
+      <mat-card class="items" *ngFor="let subject of subjects">
+        {{subject}}
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <div>
+      <mat-card class="items" *ngFor="let subject of subjects">
+          {{subject}}
+          <h5>The information about the subject</h5>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <div>
+      <mat-card class="items" *ngFor="let subject of subjects">
+          {{subject}}
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

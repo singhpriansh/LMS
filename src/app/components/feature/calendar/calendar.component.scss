@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+	background: black;
+}
+
+h1, h3 {
+	margin-bottom: 0;
+	color: black;
+}
+
+.container {
+	align-items: center;
+	display: grid;
+	justify-content: center;
+	padding: 1rem;
+	max-width: 600px;
+	min-width: 450px;
+	height: 100%;
+	width: 100%;
+}
+
+.calendar {
+  grid-column: 1;
+  grid-row: 1;
+	background-color: rgb(255, 120, 255);
+	border-radius: 5px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+	height: 470px;
+  // perspective: 1000;
+	transition: .9s;
+	transform-style: preserve-3d;
+	width:450px;
+	backface-visibility: hidden;
+}
+
+
+.display{
+	display: none;
+}
+
+.current-date {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 40px;
+}
+
+.date-schroll{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 70px;
+}
+
+.current-date h1 {
+	color: black;
+}
+
+.month {
+	color: black;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+}
+
+.week-days {
+	color: black;
+	display: flex;
+	justify-content: space-between;
+	font-weight: 600;
+	padding: 20px 45px;
+}
+
+.days {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.weeks {
+	color: black;
+	display: flex;
+	flex-direction: column;
+	padding: 0 40px;
+}
+
+.weeks div {
+	display: flex;
+	font-size: 1rem;
+	font-weight: 400;
+	justify-content: space-between;
+	margin-bottom: 5px;
+	width: 100%;
+}
+
+.other-month {
+	opacity: .3;
+}
+
+.weeks span {
+	padding: 10px;
+}
+
+.weeks span.active {
+	background: rgb(255, 184, 159);
+	border-radius: 15%;
+}
+
+.weeks span:not(.other-month):hover div {
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.event {
+	position: relative;
+}
+
+.event:after {
+	content: '•';
+	color: white;
+	font-size: 1.4em;
+	position: absolute;
+	right: -4px;
+	top: -4px;
+}
+
+.eventname {
+	border-bottom: 1px solid black;
+	font-size: 1.2em;
+	font-weight: 500;
+	padding: 20px 40px 2px 40px;
+	width: 100%;
+}
+
+
+input::placeholder {
+	color:rgba(0, 0, 0, .4);
+}
+
+input,
+textarea {
+	color:black;
+}
+
+.round {
+	border-radius: 30%;
+	background-color: rgb(255, 100, 255);
+	border-color:rgb(255, 100, 255);;
+}
+
+.timeinput {
+	padding: 0;
+	font-size: 1.1rem;
+	width: fit-content;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	font-weight: 600;
+	font-size: 1.2em;
+	padding: 30px 40px;
+}
+
+textarea {
+	width: 100%;
+	font-size: 1rem;
+	padding:5px;
+}
+
+.info p {
+	font-weight: 500;
+	color:rgba(0, 0, 0, .9);
+}
+
+.info span {
+	font-weight: 400;
+	color:rgba(0, 0, 0, .8);
+}
+
+.info .date {
+	display: flex;
+	justify-content: space-between;
+}
+
+.info .address .date p {
+	width: 100%;
+}
+
+.actions {
+	bottom: 0;
+	border-top: 1px solid black;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	width: 100%;
+}
+
+.actions button {
+	background: none;
+	border: 0;
+	color: black;
+	font-weight: 600;
+	letter-spacing: 3px;
+	margin: 0;
+	padding: 20px 0;
+	text-transform: uppercase;
+	width: 50%;
+}
+
+.actions button:first-of-type {
+	border-right: 1px solid black;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+.save:hover {
+	background-color: rgb(14, 228, 14) !important;
+}
+.dismiss:hover {
+	background-color: red !important;
+}
+
+/* Flip animation */
+.flip {
+  transform: rotateY(180deg);
+}
