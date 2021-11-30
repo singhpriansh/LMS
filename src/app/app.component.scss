@@ -1,0 +1,47 @@
+:host {
+    max-height: 100%;
+    min-width: 580px;
+}
+
+.mat-sidenav {
+    max-width: 250px;
+    min-width: 250px;
+}
+
+.screen {
+    height: 100vh;
+    min-width: 580px;
+    flex: 1 1;
+}
+
+a {
+    margin: 4px;
+    padding: 0 2rem;
+    width: 220px;
+    height: 30px;
+    text-align: left;
+}
+
+mat-stroked-button {
+    margin: 5vh;
+}
+
+mat-toolbar {
+    flex:auto;
+    height: 50px;
+    width:100%;
+}
+
+app-header{
+    width:100%;
+}
+
+.mat-sidenav-container
+,.mat-sidenav {
+    background-color: #ffa3a3;
+}
+
+.mat-nav-list {
+    flex:1 1 auto;
+    align-self: center;
+}

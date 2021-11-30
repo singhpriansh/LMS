@@ -1,0 +1,27 @@
+:host {
+  padding: 5px;
+  display: block;
+}
+
+mat-grid-list {
+  display: flex;
+}
+
+mat-grid-tile {
+  height: 70vh;
+}
+
+.items {
+  margin: 10px;
+  background-color: white;
+  color: black;
+}
+
+div {
+  width: 100%;
+  align-self: start;
+}
+
+a {
+  width: 80%;
+}

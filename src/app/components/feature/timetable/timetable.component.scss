@@ -1,0 +1,48 @@
+:host {
+  color: black
+}
+.mat-table {
+  color: black;
+	font-size: 1rem;
+	font-weight: 400;
+  text-align: center;
+  background-color:rgb(255, 88, 255);
+  width: 100%;
+}
+
+.table-div {
+  padding: 1rem;
+}
+
+table {
+  border: 3px solid rgb(255, 88, 255);
+  border-radius: 5px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+  // border-collapse: collapse;
+}
+
+th, td, table {
+  padding: 10px 5px;
+  // border: 1px solid black;
+}
+
+
+.mat-column-day {
+  width: 25px;
+  text-align: center;
+}
+
+.mat-column-Period1,
+.mat-column-Period2,
+.mat-column-Period3,
+.mat-column-Period4,
+.mat-column-Period5,
+.mat-column-Period6 {
+  width: 10px;
+  text-align: center;
+}
+
+a {
+  margin: 1rem;
+  float: right;
+}
