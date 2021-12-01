@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarComponent } from '../../feature/calendar/calendar.component';
 import { MeetingComponent } from '../../feature/meeting/meeting.component';
+import { SyllabusComponent } from '../../feature/syllabus/syllabus.component';
 import { TimetableComponent } from '../../feature/timetable/timetable.component';
 
 @Component({
@@ -35,6 +36,13 @@ export class StudentsComponent implements OnInit {
     const dialogRef = this.dialog.open(MeetingComponent, {
       minWidth: '300px',
       width: '400px'
+    })
+  }
+
+  syllabus(): void {
+    const dialogRef = this.dialog.open(SyllabusComponent, {
+      minWidth: '500px',
+      width: '450px'
     })
   }
 

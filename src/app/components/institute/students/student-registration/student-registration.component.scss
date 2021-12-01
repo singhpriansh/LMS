@@ -1,17 +1,31 @@
+:host {
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+div {
+    padding: 1px;
+}
+
 mat-card {
-    background:rgb(56, 190, 67);
+    background:rgb(0, 255, 21);
     flex: auto;
     margin: 2rem;
 }
+
 input {
     color: black;
 }
+
 mat-icon{
+    cursor: pointer;
     float: right;
 }
+
 mat-spinner{
     margin: auto;
 }
+
 .picture img{
     max-width: 20%;
     max-height: 300px;
@@ -24,12 +38,15 @@ textarea {
     margin: 1rem;
     width: 35%;
 }
+
 .mat-raised-button {
     margin: 2rem;
 }
+
 .passicon{
     font-size: 15px;
 }
+
 .mat-icon{
     width:22px !important;
 }

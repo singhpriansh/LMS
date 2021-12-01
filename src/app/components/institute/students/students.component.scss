@@ -3,6 +3,38 @@
   display: block;
 }
 
+.syllabus {
+  margin-top: 5px;
+  width: 100%;
+  background-color: rgb(255, 139, 255);
+}
+
+.span_code {
+  display: inline-block;
+  width: 85px;
+}
+
+.span_width {
+  display: inline-block;
+  width: 100px;
+}
+
+span {
+  font-weight: 500;
+}
+
+h2, h3 {
+  margin: 0;
+}
+
+h4, h5 {
+  margin-bottom:5px;
+}
+
+.cards {
+  margin:10px;
+}
+
 mat-grid-list {
   display: flex;
 }
@@ -11,10 +43,13 @@ mat-grid-tile {
   height:calc(70vh - 50px);
 }
 
+.subject {
+  margin:0px 10px 10px 10px;
+}
+
 .items {
   margin: 10px;
   background-color: white;
-  color: black;
 }
 
 div {

@@ -16,14 +16,14 @@
         </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field
+      (click)="fileInput.click()">
       <mat-label>Upload your pic</mat-label>
       <input matInput 
         readonly
         formControlName="picname">
       <button  mat-icon-button matSuffix
-        type="button"
-        (click)="fileInput.click()">
+        type="button">
         <mat-icon>account_box</mat-icon>
       </button>
       <input
@@ -80,14 +80,14 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field
+      (click)="imageInput.click()">
       <mat-label>Upload qualification certificate</mat-label>
       <input matInput readonly
         formControlName="certname">
       <button  mat-icon-button
         matSuffix
-        type="button"
-        (click)="imageInput.click()">
+        type="button">
         <mat-icon>content_copy</mat-icon>
       </button>
       <input
@@ -157,3 +157,4 @@
     </button>
   </form>
 </mat-card>
+<div></div>

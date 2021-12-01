@@ -17,14 +17,14 @@
         </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field
+    (click)="fileInput.click()">
       <mat-label>Upload your pic</mat-label>
       <input matInput 
         readonly
         formControlName="picname">
       <button  mat-icon-button matSuffix
-        type="button"
-        (click)="fileInput.click()">
+        type="button">
         <mat-icon>account_box</mat-icon>
       </button>
       <input
@@ -149,3 +149,4 @@
     </button>
   </form>
 </mat-card>
+<div></div>
