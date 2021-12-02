@@ -34,6 +34,7 @@ import { SeminarComponent } from './components/feature/seminar/seminar.component
 import { CalendarComponent } from './components/feature/calendar/calendar.component';
 import { MeetingComponent } from './components/feature/meeting/meeting.component';
 import { VideomeetComponent } from './components/institute/videomeet/videomeet.component';
+import { GraphComponent } from './components/feature/graph/graph.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { VideomeetComponent } from './components/institute/videomeet/videomeet.c
     CalendarComponent,
     MeetingComponent,
     VideomeetComponent,
+    GraphComponent,
   ],
   imports: [
     BrowserModule,
