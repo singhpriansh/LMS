@@ -14,6 +14,7 @@ import {
   Legend,
 } from 'chart.js';
 import * as Sub from "../../auth/services/subject";
+import { SyllabusService } from '../../auth/services/syllabus.service';
 
 Chart.register(
   CategoryScale,
@@ -42,7 +43,7 @@ export class FacultyComponent implements OnInit {
     "Distributed database Management System"
   ];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,private syllabusService: SyllabusService) {}
 
   timetable(): void {
     const dialogRef = this.dialog.open(TimetableComponent, {
@@ -66,6 +67,12 @@ export class FacultyComponent implements OnInit {
   }
 
   syllabus(): void {
+    this.syllabusService.getSyllabus()
+      .subscribe(response =>{
+        console.log(response);
+      }, error =>{
+        console.log(error);
+      });
     const dialogRef = this.dialog.open(SyllabusComponent, {
       minWidth: '500px',
       width: '450px'

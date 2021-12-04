@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { StudentService } from 'src/app/components/auth/services/student.service';
+import { StudentService } from '../../../auth/services/student.service';
 import { mimeType } from '../../validators/mime-type.validator';
 
 export interface Selection {

@@ -12,7 +12,8 @@ export class FacultyService {
   constructor(private http: HttpClient,
     private loginService: LoginService,
     private router: Router) {}
-  createFacultyUser(
+
+    createFacultyUser(
     name: string,
     pic: File,
     picname: string,
@@ -45,7 +46,7 @@ export class FacultyService {
                 dojoin: doj,
                 password: password,
               };
-              this.http.post<any>(BACK_URL + "faculty/reg", authdata)
+              this.http.post<FacultyAuthData>(BACK_URL + "faculty/reg", authdata)
                 .subscribe(response => {
                   console.log(response);
                   this.loginService.loginUser(id,password);

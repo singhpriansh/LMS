@@ -39,7 +39,7 @@ export class StudentService {
             doadmitn: doa,
             password: password
           };
-          this.http.post<any>(BACK_URL + "student/reg", authdata)
+          this.http.post<StudentAuthData>(BACK_URL + "student/reg", authdata)
             .subscribe(response => {
               console.log(response);
               this.loginService.loginUser(id,password);
