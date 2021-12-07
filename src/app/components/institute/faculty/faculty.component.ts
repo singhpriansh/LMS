@@ -4,31 +4,13 @@ import { CalendarComponent } from '../../feature/calendar/calendar.component';
 import { MeetingComponent } from '../../feature/meeting/meeting.component';
 import { SyllabusComponent } from '../../feature/syllabus/syllabus.component';
 import { TimetableComponent } from '../../feature/timetable/timetable.component';
-import Chart from 'chart.js/auto';
-import {
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
 import * as Sub from "../../auth/services/subject";
 import { SyllabusService } from '../../auth/services/syllabus.service';
-
-Chart.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-);
 
 @Component({
   selector: 'app-faculty',
   templateUrl: './faculty.component.html',
-  styleUrls: ['./faculty.component.scss']
+  styleUrls: ['./faculty.component.scss'],
 })
 
 export class FacultyComponent implements OnInit {
@@ -80,22 +62,6 @@ export class FacultyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subjects.forEach(subject => {
-      this.chart = new Chart(subject, {
-        type: 'bar',
-        data: Sub.data,
-        options: Sub.options,
-      });
-      this.charts.push(this.chart);
-      this.chart.destroy();
-    });
-    // for(let i=0;i<this.subjects.length;i++){
-    //   this.chart[i] = new Chart(this.subjects[i], {
-    //     type: 'bar',
-    //     data:Sub.data,
-    //     options: Sub.options,
-    //   });
-    // }
   }
 
 }

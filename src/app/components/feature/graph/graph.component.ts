@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import {
   CategoryScale,
@@ -22,20 +22,23 @@ Chart.register(
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.scss']
+  styleUrls: ['./graph.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GraphComponent implements OnInit {
+  @Input() id!: string;
   chart: any = [];
-  id="strng";
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.chart = new Chart(this.id, {
+  chart_maker(id:string) {
+    return (new Chart(id,{
       type: 'bar',
       data:Sub.data,
       options: Sub.options,
-    });
+    }));
   }
 
+  ngOnInit(): void {
+  }
 }
