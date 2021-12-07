@@ -9,6 +9,10 @@ export class VideomeetComponent implements OnInit {
 
   constructor() { }
 
+  send() {
+    console.log("text send");
+  }
+
   ngOnInit(): void {
   }
 

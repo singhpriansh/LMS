@@ -25,6 +25,7 @@ Chart.register(
   styleUrls: ['./graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class GraphComponent implements OnInit {
   @Input() id!: string;
   chart: any = [];
