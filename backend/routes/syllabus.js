@@ -4,7 +4,7 @@ const { syllabus } = require("../raw_data/syllabus");
 
 router.get("", (req,res,next) => {
   const SYLLABUS = syllabus;
-  res.json(SYLLABUS);
+  res.status(200).json(SYLLABUS);
 })
 // router.post("");
 

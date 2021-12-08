@@ -1,0 +1,87 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav-container,
+mat-sidenav,
+mat-toolbar {
+  background: transparent;
+}
+
+mat-toolbar {
+  height: 45px;
+}
+
+mat-sidenav {
+  max-width: 220px;
+}
+
+mat-nav-list {
+  padding: 10px;
+}
+
+h2 {
+  padding-left:40px;
+}
+
+a {
+  margin: 4px;
+  width: 180px;
+  height: 35px;
+  text-align: left;
+}
+
+mat-icon {
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.separator {
+  margin: 1rem;
+}
+
+.recents mat-card {
+  float: left;
+  flex: auto;
+  margin: 2rem 0 2rem 2rem;  width: 20%;
+
+  @media only screen and (max-width: 1600px) {
+    width: 19%;
+  }
+  @media only screen and (max-width: 1600px) {
+    width: 19%;
+  }
+  @media only screen and (max-width: 1500px) {
+    width: 25%;
+  }
+  @media only screen and (max-width: 1183px) {
+    width: 24%;
+  }
+  @media only screen and (max-width: 1097px) {
+    width: 40%;
+  }
+  @media only screen and (max-width: 1024px) {
+    width: 35%;
+  }
+  @media only screen and (max-width: 800px) {
+    width: 30%;
+  }
+  @media only screen and (max-width: 670px) {
+    width: 80%;
+  }
+  @media only screen and (max-width: 630px) {
+    width: 75%;
+  }
+  height: 100px;
+}
+
+.items {
+  margin: 1rem;
+}
+
+.items mat-card {
+  float: left;
+  flex: auto;
+  margin: 1rem;
+  width: 50px;
+}

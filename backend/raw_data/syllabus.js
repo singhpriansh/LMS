@@ -12,15 +12,15 @@ export const syllabus = {
               name: "Periodicity & Chemical Bonding",
               section_topics: [
                 "Atomic radii",
-                " Ionization potential",
-                " Electro negativity",
+                "Ionization potential",
+                "Electro negativity",
                 "Electropositivity",
                 "Electron affinity and their periodicity",
                 "Hybridization involving s, p and d orbital",
-                "partialionic character",
-                "dipole moment and its applications",
-                "hydrogen bond and Vander Waal’s forces",
-                "elementary treatment of M.O. theory and its application to homo nuclear diatomic molecules of I and II period elements"
+                "Partialionic character",
+                "Dipole moment and its applications",
+                "Hydrogen bond and Vander Waal’s forces",
+                "Elementary treatment of M.O. theory and its application to homo nuclear diatomic molecules of I and II period elements"
               ]
             },
             {
@@ -31,7 +31,6 @@ export const syllabus = {
               ]
             }
           ]
-          
         },
         {
           unit_number: 2,
@@ -41,18 +40,18 @@ export const syllabus = {
               section_topics: [
                 "Arrhenius equation",
                 "determination of activation energy",
-                "theories of reaction rates(collision and absolute reaction rate theory)"
+                "Theories of reaction rates(collision and absolute reaction rate theory)"
               ]
             },
             {
               name: "Photochemistry",
               section_topics: [
-                  "Laws of Photochemistry",
-                  "Quantum yield",
-                  "Fluorescence",
-                  "Phosphorescence",
-                  "Chemiluminescence",
-                  "Jabolinski diagram"
+                "Laws of Photochemistry",
+                "Quantum yield",
+                "Fluorescence",
+                "Phosphorescence",
+                "Chemiluminescence",
+                "Jabolinski diagram"
               ]
             }
           ]
@@ -85,24 +84,19 @@ export const syllabus = {
             {
               name: "Polymers",
               section_topics: [
-                  "Polymers",
-                  "thermoplastics",
-                  "thermosetting plastic",
-                  "linear, branched & cross linked polymers",
-                  "industrial application of polymers",
-                  " addition, condensation polymerizations",
-                  {
-                      "Plastics": [
-                          "Structure",
-                          "properties and uses of thermoplastic (Polyvinyl chloride, Teflon, Nylons and Polymethyl methacrylate) and thermosetting (Bakelite) materials"
-                      ],
-                      "Rubber":  [
-                          "natural Rubber and it’s preparations",
-                          "vulcanization",
-                          "mechanism of vulcanization",
-                          "synthetic rubber (General)"
-                      ]
-                  }
+                "Polymers",
+                "Thermoplastics",
+                "Thermosetting plastic",
+                "Linear, branched & cross linked polymers",
+                "Industrial application of polymers",
+                "Addition, condensation polymerizations",
+                "Plastics Structure",
+                "Plastics Properties",
+                "Plastics uses of thermoplastic (Polyvinyl chloride, Teflon, Nylons and Polymethyl methacrylate) and thermosetting (Bakelite) materials",
+                "Rubber natural Rubber and it’s preparations",
+                "Rubber vulcanization",
+                "Rubber mechanism of vulcanization",
+                "Rubber synthetic rubber (General)"
               ]
             }
           ] 
@@ -115,28 +109,26 @@ export const syllabus = {
               section_topics: [
                 "Definition and classification",
                 "Calorific value; Gross & Net calorific value and their determination by Bomb calorimeter",
+                "Solid fuels Coke-it’s manufacture by Otto Hoffman oven and uses",
                 {
-                    "Solid fuels":[
-                        "Coke-it’s manufacture by Otto Hoffman oven and uses"
-                    ],
-                    "Liquid fuels":[
-                      "Conversion of coal into liquid fuels (Bergius process & Fischer Tropsch process and mechanism)",
-                      "Petroleum- its chemical composition and fractional distillation",
-                      "Cracking of Heavy oil residues (Thermal cracking and catalytic cracking)",
-                      "Knocking & Anti knocking agents",
-                      "octane and cetane numbers and their significance"
-                    ],
-                    "Gaseous fuels":[
-                      "Natural Gas",
-                      "Producer gas",
-                      "Water gas",
-                      "Carburetted water gas",
-                      "Coal gas and Oil gas"
-                    ],
-                    "Nuclear fuels":[
-                      "Nuclear fission and nuclear fusion",
-                      "Nuclear reactor"
-                    ]
+                  "Liquid fuels":[
+                    "Conversion of coal into liquid fuels (Bergius process & Fischer Tropsch process and mechanism)",
+                    "Petroleum- its chemical composition and fractional distillation",
+                    "Cracking of Heavy oil residues (Thermal cracking and catalytic cracking)",
+                    "Knocking & Anti knocking agents",
+                    "octane and cetane numbers and their significance"
+                  ],
+                  "Gaseous fuels":[
+                    "Natural Gas",
+                    "Producer gas",
+                    "Water gas",
+                    "Carburetted water gas",
+                    "Coal gas and Oil gas"
+                  ],
+                  "Nuclear fuels":[
+                    "Nuclear fission and nuclear fusion",
+                    "Nuclear reactor"
+                  ]
                 }
               ]
             },
@@ -145,11 +137,11 @@ export const syllabus = {
               section_topics: [
                   "Definition and types of corrosion",
                   "Electrochemical Theory of corrosion",
-                  "laws of oxide film",
-                  "different theories of corrosion",
+                  "Laws of oxide film",
+                  "Different theories of corrosion",
                   "Atmospheric corrosion",
-                  "stress corrosion water line",
-                  "pitting and soil corrosion",
+                  "Stress corrosion water line",
+                  "Pitting and soil corrosion",
                   "Protective measures against corrosion "
               ]
             }
@@ -164,27 +156,26 @@ export const syllabus = {
                 "Principle of Lubrication",
                 "types of Lubrication",
                 "Lubricating oil",
-                "fraction from crude oil",
-                "de-waxing of oil fraction",
-                "acid and solvent",
-                "refining of lubricating oils",
-                "properties of refined oils(viscosity, viscosity index, acid value, saponification value & iodine value)",
-                "pour point and cloud point",
-                "flash point and fire point",
-                "aniline point",
-                "and their determination",
+                "Fraction from crude oil",
+                "De-waxing of oil fraction",
+                "Acid and solvent",
+                "Refining of lubricating oils",
+                "Properties of refined oils(viscosity, viscosity index, acid value, saponification value & iodine value)",
+                "Pour point and cloud point",
+                "Flash point and fire point",
+                "Aniline point and their determination",
                 "Lubricant greases (Semi solid) and their Penetration and drop point tests",
-                "solid lubricants"
+                "Solid lubricants"
               ]
             },
             {
               name: "Name Reactions",
               section_topics: [
-                  "Reimer Tieman reaction",
-                  "Aldol Condensation",
-                  "Diel’s Alder Reaction",
-                  "Wurt’z Reaction",
-                  "Claisen Reaction"
+                "Reimer Tieman reaction",
+                "Aldol Condensation",
+                "Diel’s Alder Reaction",
+                "Wurt’z Reaction",
+                "Claisen Reaction"
               ]
             }
           ]

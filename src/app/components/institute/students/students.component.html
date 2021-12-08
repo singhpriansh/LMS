@@ -14,8 +14,8 @@
             <h3><span class="span_width">current unit:</span> UNIT 3</h3>
             <h3><span class="span_width">covered:</span> topic1 topic2</h3>
             <h3><span class="span_width">remaining:</span> topic3 topic4</h3>
-            <h2>Graph</h2>
           </div>
+          <app-graph id="{{subject}}"></app-graph>
           <div>
             <a mat-button class="syllabus"
               (click)="syllabus()">
@@ -45,6 +45,11 @@
       <a mat-button class="items"
         (click)="timetable()">
         Time Table
+      </a>
+      <a mat-button class="items"
+        routerLink="/drive"
+        routerLinkActive="mat-accent">
+        Directory
       </a>
       <a mat-button class="items"
         (click)="meeting()">

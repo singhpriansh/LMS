@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
-const Subject = require("./subject");
 
 const syllabusSchema = mongoose.Schema ({
   branch: {type: String, required: true },

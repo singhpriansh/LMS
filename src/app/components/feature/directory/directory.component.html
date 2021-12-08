@@ -1,0 +1,48 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" #sidenav opened>
+    <mat-toolbar color="accent">
+      <h2>Storage</h2>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-button
+        color="primary">
+        <mat-icon>cloud_upload</mat-icon>
+        Upload</a>
+      <br>
+      <a mat-button
+        color="primary">
+        <mat-icon>folder_shared</mat-icon>
+        Shared</a>
+      <br>
+      <a mat-button
+        color="">
+        <mat-icon>restore_from_trash</mat-icon>
+        Trash</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="screen">
+      <mat-toolbar color="accent">
+        <mat-icon>subdirectory_arrow_right</mat-icon>
+        {{path}}
+      </mat-toolbar>
+      <div class="recents">
+        <mat-card *ngFor="let no of tiles">recents</mat-card>
+      </div>
+      <div class="separator">
+        <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+      </div>
+      <div class="items">
+        <mat-card>new card</mat-card>
+        <mat-card>new card</mat-card>
+        <mat-card>new card</mat-card>
+        <mat-card>new card</mat-card>
+        <mat-card>new card</mat-card>
+        <mat-card>new card</mat-card>
+        <mat-card>new card</mat-card>
+        <mat-card>new card</mat-card>
+        <mat-card>new card</mat-card>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

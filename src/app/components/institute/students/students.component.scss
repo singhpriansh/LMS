@@ -32,15 +32,14 @@ mat-grid-list {
   display: flex;
 }
 
-app-graph {
-  display: inline-block;
-  height: 140px;
-  border: 2px solid black;
-  width: 90%;
-}
-
 mat-grid-tile {
   height:calc(70vh - 50px);
+}
+
+app-graph {
+  max-height: 100px;
+  display: flex;
+  width: 100%;
 }
 
 .cards {

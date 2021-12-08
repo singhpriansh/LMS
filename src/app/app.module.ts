@@ -35,6 +35,7 @@ import { CalendarComponent } from './components/feature/calendar/calendar.compon
 import { MeetingComponent } from './components/feature/meeting/meeting.component';
 import { VideomeetComponent } from './components/institute/videomeet/videomeet.component';
 import { GraphComponent } from './components/feature/graph/graph.component';
+import { DirectoryComponent } from './components/feature/directory/directory.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { GraphComponent } from './components/feature/graph/graph.component';
     MeetingComponent,
     VideomeetComponent,
     GraphComponent,
+    DirectoryComponent,
   ],
   imports: [
     BrowserModule,

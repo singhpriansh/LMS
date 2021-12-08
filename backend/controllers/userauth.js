@@ -71,7 +71,7 @@ exports.Login = (req,res,next) => {
   }).then(result => {
     if(!result){
       return res.status(401).json({
-        message: "Access denied, error" + err
+        message: "Access denied, error"
       });
     }
     const token = jwt.sign({
@@ -93,7 +93,7 @@ exports.Login = (req,res,next) => {
     });
   }).catch(err => {
     return res.status(401).json({
-      message: 'Invalid authentication credentials!'
+      message: 'Invalid authentication credentials!' + err
     });
   });
 }
