@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { syllabus } = require("../raw_data/syllabus");
+const syllabus = require("../raw_data/syllabus");
 
 router.get("", (req,res,next) => {
-  const SYLLABUS = syllabus;
-  res.status(200).json(SYLLABUS);
+  res.status(200).json(syllabus);
 })
 // router.post("");
 

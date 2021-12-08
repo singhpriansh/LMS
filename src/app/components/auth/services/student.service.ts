@@ -24,33 +24,23 @@ export class StudentService {
     branch: string,
     doa: Date,
     password: string){
-      const img = new FormData();
-      img.append("file",pic,picname);
-      this.http.post<any>(BACK_URL + "file",img)
+      const authdata = new FormData();
+      authdata.append("name",name);
+      authdata.append("file",pic,picname);
+      authdata.append("id",id.toString());
+      authdata.append("dobirth",dob.toString());
+      authdata.append("gender",gender);
+      authdata.append("qualdegree",qualdegree);
+      authdata.append("branch",branch);
+      authdata.append("doadmitn",doa.toString());
+      authdata.append("password",password);
+      this.http.post<StudentAuthData>(BACK_URL + "student/reg", authdata)
         .subscribe(response => {
-          const authdata: StudentAuthData = {
-            name: name,
-            picname: response.result,
-            id: id,
-            dobirth: dob,
-            gender: gender,
-            qualdegree: qualdegree,
-            branch: branch,
-            doadmitn: doa,
-            password: password
-          };
-          this.http.post<StudentAuthData>(BACK_URL + "student/reg", authdata)
-            .subscribe(response => {
-              console.log(response);
-              this.loginService.loginUser(id,password);
-            }, error => {
-              this.loginService.getAuthStatusListerner().next(false);
-              // this.authStatusListener.next(false);
-            });
+          console.log(response);
+          this.loginService.loginUser(id,password);
         }, error => {
           this.loginService.getAuthStatusListerner().next(false);
-              // this.authStatusListener.next(false);
-        }
-      );
+          // this.authStatusListener.next(false);
+        });
     }
 }

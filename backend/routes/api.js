@@ -7,8 +7,8 @@ const login = require("./login");
 const syllabus = require("./syllabus");
 const multerfile = require("../middleware/multerfile");
 
-router.use('/faculty',faculty);
-router.use('/student',student);
+router.use('/faculty',multerfile,faculty);
+router.use('/student',multerfile,student);
 router.use('/login',login);
 router.use('/syllabus',syllabus);
 router.use('/file',multerfile, (req, res, next)=> {

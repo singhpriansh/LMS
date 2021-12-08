@@ -24,44 +24,25 @@ export class FacultyService {
     qual_cert: File,
     certname: string,
     doj: Date,
-    password: String){
-      const img = new FormData();
-      img.append("file",pic,picname);
-      this.http.post<any>(BACK_URL + "file",img)
-        .subscribe(pic_name => {
-          const file = new FormData();
-          file.append("file",qual_cert,certname);
-          this.http.post<any>(BACK_URL + "file",file)
-            .subscribe(cert_name => {
-              const authdata: FacultyAuthData = {
-                name: name,
-                pic: pic,
-                picname: pic_name.result,
-                id: id,
-                dobirth: dob,
-                gender: gender,
-                qualdegree: qualdegree,
-                qualcert: qual_cert,
-                certname: cert_name.result,
-                dojoin: doj,
-                password: password,
-              };
-              this.http.post<FacultyAuthData>(BACK_URL + "faculty/reg", authdata)
-                .subscribe(response => {
-                  console.log(response);
-                  this.loginService.loginUser(id,password);
-                }, error => {
-                  this.loginService.getAuthStatusListerner().next(false);
-                  // this.authStatusListener.next(false);
-                }
-              );
-            },error => {
-              this.loginService.getAuthStatusListerner().next(false);
-              // this.authStatusListener.next(false);
-            });
-        },error => {
+    password: string){
+      const authdata = new FormData();
+      authdata.append("name",name);
+      authdata.append("file",pic,picname);
+      authdata.append("id",id.toString());
+      authdata.append("dobirth",dob.toString());
+      authdata.append("gender",gender);
+      authdata.append("qualdegree",qualdegree);
+      authdata.append("file",qual_cert,certname);
+      authdata.append("dojoin",doj.toString());
+      authdata.append("password",password);
+      this.http.post<FacultyAuthData>(BACK_URL + "faculty/reg", authdata)
+        .subscribe(response => {
+          console.log(response);
+          this.loginService.loginUser(id,password);
+        }, error => {
           this.loginService.getAuthStatusListerner().next(false);
           // this.authStatusListener.next(false);
-        });
+        }
+      );
   }
 }
