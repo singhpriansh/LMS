@@ -57,21 +57,39 @@ p {
   height:calc(100vh - 110px);
 }
 
-.other-chat, .mine-chat, .write-now {
+.other-chat, .mine-chat{
   background-color: black;
-  width: 200px;
-  margin: 3px;
-  padding: 8px;
+  width: 220px;
+  margin: 5px;
+  padding: 5px 8px;
   border-radius: 6px;
 }
 
-.write-now {
-  float: left;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-color: black;
-  font-size:medium;
+input {
+  background-color: black;
+  height: 30px;
   color: white;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.write-now {
+  border-radius: 3px;
+  border: 5px;
+  padding-left: 8px;
+  width: 210px;
+  background-color: rgb(29, 29, 29);
+  margin: 5px;
+  border-bottom: 2px solid white;
+  font: inherit;
+  line-height: 30px;
+}
+
+.write-now:focus {
+  outline: 0;
+  background-color: black;
+  border-bottom-color: greenyellow;
 }
 
 .other-chat {
@@ -91,4 +109,13 @@ p {
 .svg {
   float:right;
   padding: 5px;
+}
+
+.send {
+  float: right;
+  width: 30px;
+  height: 30px;
+  margin: 6px;
+  background-image: url(../../../assets/send.svg);
+  background-repeat: no-repeat;
 }

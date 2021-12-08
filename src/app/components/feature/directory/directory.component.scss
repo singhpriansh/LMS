@@ -36,23 +36,25 @@ mat-icon {
   padding-right: 10px;
 }
 
-.separator {
-  margin: 1rem;
+mat-divider {
+  width: 100%;
+  clear: both;
+}
+
+mat-card {
+  text-align: center;
 }
 
 .recents mat-card {
   float: left;
   flex: auto;
-  margin: 2rem 0 2rem 2rem;  width: 20%;
-
-  @media only screen and (max-width: 1600px) {
-    width: 19%;
-  }
-  @media only screen and (max-width: 1600px) {
+  margin: 2rem 0 2rem 2rem;
+  width: 20%;
+  @media only screen and (max-width: 1630px) {
     width: 19%;
   }
   @media only screen and (max-width: 1500px) {
-    width: 25%;
+    width: 26%;
   }
   @media only screen and (max-width: 1183px) {
     width: 24%;
@@ -79,9 +81,41 @@ mat-icon {
   margin: 1rem;
 }
 
-.items mat-card {
+.items mat-card{
   float: left;
   flex: auto;
   margin: 1rem;
-  width: 50px;
+  width: 80px;
+}
+
+div.folder {
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  background-image: url(../../../assets/folder.svg);
+  background-repeat: no-repeat;
+}
+
+div.media {
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  background-image: url(../../../assets/vlc.svg);
+  background-repeat: no-repeat;
+}
+
+div.doc {
+  margin: auto;
+  width: 70px;
+  height: 80px;
+  background-image: url(../../../assets/doc.svg);
+  background-repeat: no-repeat;
+}
+
+div.pdf {
+  margin: auto;
+  width: 70px;
+  height: 80px;
+  background-image: url(../../../assets/pdf.svg);
+  background-repeat: no-repeat;
 }

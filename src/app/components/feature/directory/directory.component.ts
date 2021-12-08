@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angul
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DirectoryComponent implements OnInit {
-  tiles:number[] = [0];
+  tiles!:number[];
   path:string = "/ ";
 
   constructor() { }

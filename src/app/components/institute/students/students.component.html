@@ -5,7 +5,7 @@
         <mat-expansion-panel class="subject" *ngFor="let subject of subjects">
           <mat-expansion-panel-header>
             <h3>
-              {{subject}}
+              <span>{{subject}}</span>
             </h3>
           </mat-expansion-panel-header>
           <div>
@@ -49,7 +49,7 @@
       <a mat-button class="items"
         routerLink="/drive"
         routerLinkActive="mat-accent">
-        Directory
+        Drive
       </a>
       <a mat-button class="items"
         (click)="meeting()">
