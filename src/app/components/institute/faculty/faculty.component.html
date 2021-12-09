@@ -1,4 +1,4 @@
-<mat-grid-list cols="7" >
+<mat-grid-list cols="7" rowHeight="100vh">
   <mat-grid-tile colspan="3">
     <div class="cards">
       <mat-accordion multi="false" class="mat-accordion">
@@ -28,7 +28,7 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <div>
-      <mat-card class="cards" *ngFor="let i of [0,1,2,3];">
+      <mat-card class="cards" *ngFor="let i of [0,1,2,3,4];">
         <h2>{{subjects[i]}}</h2>
         <h4>batch: CSE 3rd year</h4>
         <mat-progress-bar mode="determinate" value="{{20 + 10*i}}"></mat-progress-bar>

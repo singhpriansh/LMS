@@ -8,8 +8,12 @@
   width:100%;
 }
 
+.mat-raised-button {
+  background-color: rgb(87, 0, 158) !important;
+}
+
 .mat-accent {
-  background-color: rgb(5, 218, 5) !important;
+  background-color: rgb(93, 248, 93) !important;
 }
 
 .a {
@@ -22,7 +26,7 @@ ul {
   list-style: none;
   float: left;
   padding: 1px;
-  margin: 1px;
+  margin: 5px;
 }
 
 h2 {

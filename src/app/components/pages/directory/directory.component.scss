@@ -1,0 +1,32 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav-container,
+mat-sidenav,
+mat-toolbar {
+  background: transparent;
+}
+
+mat-toolbar {
+  height: 45px;
+}
+
+mat-sidenav {
+  max-width: 220px;
+}
+
+mat-nav-list {
+  padding: 10px;
+}
+
+h2 {
+  padding-left:40px;
+}
+
+a {
+  margin: 4px;
+  width: 180px;
+  height: 35px;
+  text-align: left;
+}

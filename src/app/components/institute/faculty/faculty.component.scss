@@ -32,10 +32,6 @@ mat-grid-list {
   display: flex;
 }
 
-mat-grid-tile {
-  height:calc(70vh - 50px);
-}
-
 app-graph {
   max-height: 100px;
   display: flex;

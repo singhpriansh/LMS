@@ -5,17 +5,24 @@
     </mat-toolbar>
     <mat-nav-list>
       <a mat-button
-        color="primary">
+        color="warn">
         <mat-icon>cloud_upload</mat-icon>
         Upload</a>
       <br>
       <a mat-button
+        routerLink="drive"
+        color="primary">
+        <mat-icon>call_to_action</mat-icon>
+        My Drive</a>
+      <br>
+      <a mat-button
+        routerLink="shared"
         color="primary">
         <mat-icon>folder_shared</mat-icon>
         Shared</a>
       <br>
       <a mat-button
-        color="">
+        routerLink="trash">
         <mat-icon>restore_from_trash</mat-icon>
         Trash</a>
     </mat-nav-list>
@@ -27,29 +34,7 @@
         {{path}}
       </mat-toolbar>
       <mat-divider></mat-divider>
-      <div class="recents">
-        <mat-card *ngFor="let no of tiles">recents</mat-card>
-      </div>
-      <br>
-      <mat-divider></mat-divider>
-      <div class="items">
-        <mat-card>
-          <div class="folder"></div>
-          Sample folder
-        </mat-card>
-        <mat-card>
-          <div class="doc"></div>
-          Uploaded documents
-        </mat-card>
-        <mat-card>
-          <div class="pdf"></div>
-          Pdf files
-        </mat-card>
-        <mat-card>
-          <div class="media"></div>
-          Media files
-        </mat-card>
-      </div>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

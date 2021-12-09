@@ -12,8 +12,7 @@ import { TestsheetComponent } from './components/feature/testsheet/testsheet.com
 import { EventsComponent } from './components/feature/events/events.component';
 import { NoticeComponent } from './components/feature/notice/notice.component';
 import { SeminarComponent } from './components/feature/seminar/seminar.component';
-import { VideomeetComponent } from './components/institute/videomeet/videomeet.component';
-import { DirectoryComponent } from './components/feature/directory/directory.component';
+import { VideomeetComponent } from './components/pages/videomeet/videomeet.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,7 +24,11 @@ const routes: Routes = [
   { path: 'faculty-registration', component: FacultyRegistrationComponent },
   { path: 'student-registration', component: StudentRegistrationComponent },
   { path: 'videomeet', component: VideomeetComponent },
-  { path: 'storage', component: DirectoryComponent },
+  {
+    path: "storage",
+    loadChildren: () => import("./components/pages/directory/directory.module")
+      .then(m => m.DirectoryModule)
+  },
   { path: 'faculty', component: FacultyComponent },
   { path: 'student', component: StudentsComponent },
   { path: 'classes' ,component: ClassesComponent },

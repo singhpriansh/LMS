@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+::-webkit-scrollbar {
+    width: 8px;               /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: rgb(87, 0, 158);    /* color of the scroll thumb */
+}  
 
 html, body { height: 100%; }
 body {

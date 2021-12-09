@@ -1,14 +1,12 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-directory',
-  templateUrl: './directory.component.html',
-  styleUrls: ['./directory.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-root-drive',
+  templateUrl: './root-drive.component.html',
+  styleUrls: ['./root-drive.component.scss']
 })
-export class DirectoryComponent implements OnInit {
+export class RootDriveComponent implements OnInit {
   tiles!:number[];
-  path:string = "/ ";
 
   constructor() { }
 
