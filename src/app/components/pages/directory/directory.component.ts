@@ -30,12 +30,13 @@ export class DirectoryComponent implements OnInit,OnDestroy {
       this.path = "Trash";
     }
   }
-
+  
   ngOnInit(): void {
     this.setPath(this.router.url);
     this.router.events.subscribe((event: Event)=> {
       if(event instanceof NavigationEnd){
         this.setPath(event.url);
+        this.dir.setIcon(this.view);
       }
     })
   }

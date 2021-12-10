@@ -17,7 +17,11 @@ export class FoldersComponent implements OnInit, OnDestroy {
 
   constructor(private dir: DirectoryService,
     private router: Router) {
-  }
+      this.iconStatSub = this.dir.getIcons()
+      .subscribe(icon => {
+        this.iconview = icon;
+      });
+    }
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -39,10 +43,6 @@ export class FoldersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.onResize();
     this.location = this.router.url;
-    this.iconStatSub = this.dir.getIcons()
-    .subscribe(icon => {
-      this.iconview = icon;
-    });
   }
 
   ngOnDestroy(): void {
