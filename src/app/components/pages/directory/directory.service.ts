@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { DirectoryModule } from "./directory.module";
 
 // @Injectable({providedIn:DirectoryModule})
-export class IconService {
+export class DirectoryService {
   private iconListener = new Subject<string>();
+  private location = new Subject<string>();
 
   constructor(){}
 
@@ -14,5 +14,13 @@ export class IconService {
 
   getIcons() {
     return this.iconListener;
+  }
+
+  setloc(loc:string){
+    this.location.next(loc);
+  }
+
+  getloc(){
+    return this.location;
   }
 }

@@ -1,26 +1,51 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IconService } from '../directory-icon.service';
+import { DirectoryService } from '../directory.service';
 
 @Component({
   selector: 'app-folders',
   templateUrl: './folders.component.html',
   styleUrls: ['./folders.component.scss']
 })
-export class FoldersComponent implements OnInit, OnDestroy {
-  iconview!:string;
-  iconsSubs!: Subscription;
 
-  constructor(private icon: IconService) { }
+export class FoldersComponent implements OnInit, OnDestroy {
+  iconview:string="grid";
+  location!: string;
+  tiles!:number[];
+  private iconStatSub!: Subscription;
+
+  constructor(private dir: DirectoryService,
+    private router: Router) {
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if(window.innerWidth>1097){
+      if(window.innerWidth>1500){
+        this.tiles = [0,1,2,3];
+      }else{
+        this.tiles = [0,1,2];
+      }
+    }else{
+      if(window.innerWidth>670){
+        this.tiles = [0,1];
+      }else{
+        this.tiles = [0];
+      }  
+    }
+  }  
 
   ngOnInit(): void {
-    this.iconsSubs = this.icon.getIcons()
-      .subscribe(icon => {
-        this.iconview = icon;
-      });
+    this.onResize();
+    this.location = this.router.url;
+    this.iconStatSub = this.dir.getIcons()
+    .subscribe(icon => {
+      this.iconview = icon;
+    });
   }
 
   ngOnDestroy(): void {
-    this.iconsSubs.unsubscribe();
+    this.iconStatSub.unsubscribe();
   }
 }

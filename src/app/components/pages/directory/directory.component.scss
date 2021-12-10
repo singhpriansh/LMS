@@ -13,7 +13,7 @@ mat-toolbar {
 }
 
 mat-sidenav {
-  max-width: 220px;
+  max-width: 200px;
 }
 
 mat-nav-list {
@@ -29,6 +29,15 @@ a {
   width: 180px;
   height: 35px;
   text-align: left;
+}
+
+.upload {
+  color:rgb(133, 255, 144);
+}
+
+.mat-accent {
+  color: rgb(87, 0, 158);
+  background-color: rgba(100, 255, 113, 0.8);
 }
 
 .tool {

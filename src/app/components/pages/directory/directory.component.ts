@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { IconService } from './directory-icon.service';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Event, NavigationEnd, Router } from '@angular/router';
+import { DirectoryService } from './directory.service';
 
 @Component({
   selector: 'app-directory',
@@ -7,18 +8,38 @@ import { IconService } from './directory-icon.service';
   styleUrls: ['./directory.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DirectoryComponent implements OnInit {
+export class DirectoryComponent implements OnInit,OnDestroy {
   view:string = "grid";
-  path:string = "/ ";
+  location:string = "";
+  path!:string;
 
-  constructor(private icons: IconService) { }
+  constructor(private dir: DirectoryService,
+    private router: Router) { }
 
   onviewClick() {
     (this.view=='list')?this.view='grid':this.view='list';
-    this.icons.setIcon(this.view);
+    this.dir.setIcon(this.view);
+  }
+
+  setPath(value: string){
+    if(value == '/storage/drive'){
+      this.path = "Drive /";
+    }else if(value == '/storage/shared'){
+      this.path = "Shared /";
+    }else {
+      this.path = "Trash";
+    }
   }
 
   ngOnInit(): void {
+    this.setPath(this.router.url);
+    this.router.events.subscribe((event: Event)=> {
+      if(event instanceof NavigationEnd){
+        this.setPath(event.url);
+      }
+    })
   }
+
+  ngOnDestroy(): void {}
 
 }

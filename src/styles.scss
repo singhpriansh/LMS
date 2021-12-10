@@ -11,12 +11,12 @@
     background-color: rgb(87, 0, 158);    /* color of the scroll thumb */
 }  
 
-html, body { height: 100%; }
 body {
     background:rgb(255, 219, 206);
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 mat-dialog-container {
     background-color: rgb(255, 219, 206) !important;
     overflow: inherit !important;
