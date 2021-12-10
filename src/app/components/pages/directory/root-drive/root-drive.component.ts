@@ -1,14 +1,19 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { IconService } from '../directory-icon.service';
 
 @Component({
   selector: 'app-root-drive',
   templateUrl: './root-drive.component.html',
   styleUrls: ['./root-drive.component.scss']
 })
-export class RootDriveComponent implements OnInit {
+export class RootDriveComponent implements OnInit, OnDestroy{
+  iconview!:string;
   tiles!:number[];
+  private iconStatSub!: Subscription;
 
-  constructor() { }
+  constructor(private icon: IconService) {
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -29,6 +34,13 @@ export class RootDriveComponent implements OnInit {
 
   ngOnInit(): void {
     this.onResize();
+    this.iconStatSub = this.icon.getIcons()
+    .subscribe(icon => {
+      this.iconview = icon;
+    });
   }
 
+  ngOnDestroy(): void {
+    this.iconStatSub.unsubscribe();
+  }
 }

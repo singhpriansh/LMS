@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { LoginService } from './components/auth/services/login.service';
 
 @Component({
@@ -17,11 +18,12 @@ export class AppComponent implements OnInit,OnDestroy {
   ]
   links = this.links_given;
   titles = this.titles_given;
+  loginStatSub!: Subscription;
 
   constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {
-    this.loginService
+    this.loginStatSub = this.loginService
       .getAuthStatusListerner()
       .subscribe(isAuthenticated => {
         if(isAuthenticated){
@@ -34,6 +36,6 @@ export class AppComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.loginService.getAuthStatusListerner().unsubscribe();
+    this.loginStatSub.unsubscribe();
   }
 }

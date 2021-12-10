@@ -42,7 +42,6 @@
        formControlName="gender"
        placeholder="Your gender"
        >
-        <mat-option>--</mat-option>
         <mat-option *ngFor="let sex of gender" [value]="sex.value">
           {{sex.viewValue}}
         </mat-option>
@@ -70,7 +69,6 @@
       <mat-select
        formControlName="qualdegree"
        placeholder="Highest Qualification">
-        <mat-option>--</mat-option>
         <mat-option *ngFor="let qual of study" [value]="qual.value">
           {{qual.viewValue}}
         </mat-option>

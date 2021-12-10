@@ -30,3 +30,19 @@ a {
   height: 35px;
   text-align: left;
 }
+
+.tool {
+  display: flex;
+  margin:auto 30px auto auto;
+  @media only screen and (max-width: 1630px) {
+    margin:auto 50px auto auto;
+  }
+  @media only screen and (max-width: 800px) {
+    margin:auto 20px auto auto;
+  }
+}
+
+.tool mat-icon {
+  cursor: pointer;
+  margin: 5px;
+}
