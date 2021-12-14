@@ -32,13 +32,13 @@ export class FoldersComponent implements OnInit, OnDestroy {
         this.tiles = [0,1,2];
       }
     }else{
-      if(window.innerWidth>670){
-        this.tiles = [0,1];
-      }else{
+      if(window.innerWidth<671){
         this.tiles = [0];
+      }else{
+        this.tiles = [0,1];
       }  
     }
-  }  
+  }
 
   ngOnInit(): void {
     this.onResize();

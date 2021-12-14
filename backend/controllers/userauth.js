@@ -1,22 +1,22 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+// const User = require("../models/user");
+const database = require("./database").database;
 
 exports.CreateStudent = (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash => {
-    const user = new User({
+    database.collection('users').insertOne({
       user: "Student",
       name: req.body.name,
       picname:req.body.picname,
-      id: req.body.id,
-      dobirth: req.body.dobirth,
+      id: Number(req.body.id),
+      dobirth: new Date(req.body.dobirth),
       gender: req.body.gender,
       qualdegree: req.body.qualdegree,
-      cert_branch: req.body.branch,
-      do_join_admitn: req.body.doadmitn,
+      branch: req.body.branch,
+      dateofadmittion: new Date(req.body.doadmitn),
       password: hash,
-    });
-    user.save().then(result => {
+    }).then(result => {
       res.status(201).json({
         message: "New Student registered",
         result: result
@@ -27,24 +27,34 @@ exports.CreateStudent = (req, res, next) => {
         message: 'Invalid authentication credentials'
       });
     });
+  //   user.save().then(result => {
+  //     res.status(201).json({
+  //       message: "New Student registered",
+  //       result: result
+  //     });
+  //   }).catch(err => {
+  //     console.log(err)
+  //     res.status(500).json({
+  //       message: 'Invalid authentication credentials'
+  //     });
+  //   });
   });
 }
 
 exports.CreateFaculty = (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash => {
-    const user = new User({
+    database.collection('users').insertOne({
       user: "Faculty",
       name: req.body.name,
       picname: req.body.picname,
-      id: req.body.id,
-      dobirth: req.body.dobirth,
+      id: Number(req.body.id),
+      dobirth: new Date(req.body.dobirth),
       gender: req.body.gender,
       qualdegree: req.body.qualdegree,
-      cert_branch: req.body.certname,
-      do_join_admitn: req.body.dojoin,
+      certname: req.body.certname,
+      dojoin: new Date(req.body.dojoin),
       password: hash
-    });
-    user.save().then(result => {
+    }).then(result => {
       res.status(201).json({
         message: "New Faculty registered",
         result: result
@@ -60,7 +70,8 @@ exports.CreateFaculty = (req, res, next) => {
 
 exports.Login = (req,res,next) => {
   let fetcheduser;
-  User.findOne({ id: req.body.id }).then(user => {
+  database.collection('users').findOne({ id: req.body.id })
+  .then(user => {
     if(!user){
       return res.status(401).json({
         message: "Auth failed"
@@ -79,17 +90,7 @@ exports.Login = (req,res,next) => {
     }, 'complex_text');
     res.status(200).json({
       token: token,
-      user:{
-        user: fetcheduser.user,
-        name: fetcheduser.name,
-        picname: fetcheduser.picname,
-        id: fetcheduser.id,
-        dobirth: fetcheduser.dobirth,
-        gender: fetcheduser.gender,
-        qualdegree: fetcheduser.qualdegree,
-        cert_branch: fetcheduser.certname,
-        do_join_admitn: fetcheduser.dojoin,
-      }
+      user: fetcheduser
     });
   }).catch(err => {
     return res.status(401).json({

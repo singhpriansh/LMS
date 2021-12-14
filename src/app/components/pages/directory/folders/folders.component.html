@@ -1,5 +1,13 @@
 <div *ngIf="location != '/storage/trash'" class="recents">
-  <mat-card *ngFor="let no of tiles">recents</mat-card>
+  <mat-card *ngFor="let no of tiles">
+    <div class="cache">
+    </div>
+    <div class="info">
+      <div class="folder"></div>
+      <div class="list_file">Folder</div>
+      <div class="size">500kb</div>
+    </div>
+  </mat-card>
   <mat-divider></mat-divider>
   <br>
 </div>
@@ -26,20 +34,24 @@
     <ul class="folder"></ul>
     <div class="list_file">Folder</div>
     <div class="size">500kb</div>
+    <div class="date">10 Jan, 2021</div>
   </mat-card>
   <mat-card>
     <ul class="doc"></ul>
     <div class="list_file">Doc</div>
     <div class="size">500kb</div>
+    <div class="date">20 Jan, 2021</div>
   </mat-card>
   <mat-card>
     <ul class="pdf"></ul>
     <div class="list_file">Pdf file</div>
     <div class="size">500kb</div>
+    <div class="date">14 Jan, 2021</div>
   </mat-card>
   <mat-card>
     <ul class="media"></ul>
     <div class="list_file">Media file</div>
     <div class="size">500kb</div>
+    <div class="date">13 Jan, 2021</div>
   </mat-card>
 </div>
