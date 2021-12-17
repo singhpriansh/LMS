@@ -4,25 +4,22 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { AuthData } from "../../models/AuthData.model";
-import { User } from "../../models/Usermodel";
+import { User } from "../../models/User.model";
 
 const BACK_URL =environment.apiUrls;
 
 @Injectable({providedIn: 'root'})
 export class LoginService {
-  private token: string='';
+  private desk!: string;
   private userId: string='';
-  private desk: string='';
   private authStatusListener = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient,
+    private router: Router,
+    ) {}
 
-  getToken() {
-    return this.token;
-  }
-
-  getUserID(){
-    return this.userId;
+  setdesk(str:string){
+    this.desk = str;
   }
 
   getdesk(){
@@ -40,33 +37,38 @@ export class LoginService {
     };
     this.http.post<{token: string, user: User}>(BACK_URL + "login",authdata)
       .subscribe(response => {
-        const token = response.token;
-        this.token = token;
-        if(token != ''){
-          this.userId = response.user.id.toString();
-          this.saveAuthData(token, this.userId);
-          if(response.user.user === "Faculty"){
-            this.desk = '/faculty';
-          }else{
-            this.desk = '/student';
-          }
-          this.authStatusListener.next(true);
-          this.router.navigate([this.desk]);
-        }
+        this.login(response);
       }, error => {
         this.authStatusListener.next(false);
       })
   }
 
+  login(response:{token: string, user: any}): boolean{
+    const token = response.token;
+    if(token != ''){
+      this.userId = response.user._id.toString();
+      this.saveAuthData(token, this.userId);
+      if(response.user.user === "Faculty"){
+        this.desk = '/faculty';
+      }else{
+        this.desk = '/student';
+      }
+      this.setdesk(this.desk);
+      this.router.navigate([this.desk]);
+      this.getAuthStatusListerner().next(true);
+      return true;
+    }
+    return false;
+  }
+
   logOutUser() {
-    this.token = '';
     this.userId = '';
     this.authStatusListener.next(false);
     this.clearAuthData();
     this.router.navigate(['/']);
   }
 
-  private saveAuthData(token: string, userId: string) {
+  public saveAuthData(token: string, userId: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('userId', userId);
   }
@@ -77,7 +79,7 @@ export class LoginService {
   }
 
   private getAuthData() {
-    if(!this.token) {
+    if(localStorage.getItem('token')=='') {
       return;
     }
     return {

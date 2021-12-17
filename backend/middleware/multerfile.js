@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
       error = null;
       if(isValid == 'pdf'){
         req.body.certname = file.originalname;
-        store = "backend/document";
+        store = "backend/documents";
       } else {
         req.body.picname = file.originalname;
         store = "backend/images";

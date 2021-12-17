@@ -31,7 +31,8 @@ export class AppComponent implements OnInit,OnDestroy {
           this.titles = ["Desk"].concat(this.titles);
         }else{
           this.links = this.links_given;
-          this.titles = this.titles_given;}
+          this.titles = this.titles_given;
+        }
       })
   }
 

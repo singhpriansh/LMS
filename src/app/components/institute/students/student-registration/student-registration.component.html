@@ -120,7 +120,7 @@
         formControlName="password"
         placeholder="Enter a password">
         <mat-icon class="passicon" matSuffix (click)="hide1 = !hide1">
-        {{hide1 ? 'visibility_off' : 'visibility_off'}}</mat-icon>
+        {{hide1 ? 'visibility_off' : 'visibility_on'}}</mat-icon>
         <mat-error>
           Enter a strong password.
         </mat-error>
@@ -132,7 +132,7 @@
         formControlName="again_password"
         placeholder="Enter password again">
         <mat-icon class="passicon" matSuffix (click)="hide2 = !hide2">
-        {{hide2 ? 'visibility_off' : 'visibility_off'}}</mat-icon>
+        {{hide2 ? 'visibility_off' : 'visibility_on'}}</mat-icon>
         <mat-error>
           Ensure same password
         </mat-error>

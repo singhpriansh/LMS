@@ -1,4 +1,7 @@
+import { ObjectId } from "bson";
+
 export interface User {
+  _id: ObjectId;
   user: String;
   name: String;
   picname: String;
@@ -6,6 +9,8 @@ export interface User {
   dobirth: Date;
   gender: String;
   qualdegree: String;
-  cert_branch: String;
-  do_join_admitn: Date;
+  branch: String;
+  dateofadmittion: Date;
+  certname: String;
+  dojoin: Date;
 }
