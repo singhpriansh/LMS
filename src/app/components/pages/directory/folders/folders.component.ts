@@ -15,6 +15,7 @@ export class FoldersComponent implements OnInit, OnDestroy {
   location!: string;
   tiles!:number[];
   private iconStatSub!: Subscription;
+  private locSubs!: Subscription;
 
   constructor(private dir: DirectoryService,
     private storserv: StorageService,
@@ -22,6 +23,10 @@ export class FoldersComponent implements OnInit, OnDestroy {
       this.iconStatSub = this.dir.getIcons()
       .subscribe(icon => {
         this.iconview = icon;
+      });
+      this.locSubs = this.dir.getloc()
+      .subscribe(response => {
+        this.storserv.browse({loc:response.loc,path:response.path});
       });
     }
 
@@ -42,13 +47,15 @@ export class FoldersComponent implements OnInit, OnDestroy {
     }
   }
 
+  onfolderclick() {}
+
   ngOnInit(): void {
     this.onResize();
     this.location = this.router.url;
-    this.storserv.browse('/');
   }
 
   ngOnDestroy(): void {
     this.iconStatSub.unsubscribe();
+    this.locSubs.unsubscribe();
   }
 }

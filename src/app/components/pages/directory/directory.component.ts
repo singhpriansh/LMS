@@ -10,6 +10,7 @@ import { DirectoryService } from './directory.service';
 })
 export class DirectoryComponent implements OnInit,OnDestroy {
   view:string = "grid";
+  back:boolean = false;
   location:string = "";
   path!:string;
 
@@ -22,14 +23,20 @@ export class DirectoryComponent implements OnInit,OnDestroy {
   }
 
   setPath(value: string){
+    this.back = false;
     if(value == '/storage/drive'){
+      this.dir.setloc('Drive','/');
       this.path = "Drive /";
     }else if(value == '/storage/shared'){
+      this.dir.setloc('Shared','/');
       this.path = "Shared /";
     }else {
+      this.dir.setloc('Trash','');
       this.path = "Trash";
     }
   }
+
+  onbackClick() {}
   
   ngOnInit(): void {
     this.setPath(this.router.url);

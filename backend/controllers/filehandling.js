@@ -7,7 +7,7 @@ exports.Initialise_dir = (id) => {
   this.Createdrive(id);
   this.Createfolder(drive+id,"/root");
   this.Createfolder(drive+id,"/trash");
-  this.Createfile(drive+id,"/shared.txt");
+  fs.closeSync(fs.openSync(drive+id+"/shared.txt","w"));
 }
 
 exports.Movefiles_to_id = (type,file,id) => {
@@ -60,4 +60,50 @@ exports.Createfolder = (basepath,name) => {
 
 exports.Createfile = (basepath,file) => {
   fs.closeSync(fs.openSync(basepath+file,"w"))
+}
+
+exports.Filetype = (file) => {
+  console.log(file);
+  const ext = file.split(".");
+  console.log(ext[ext.length-1]);
+}
+
+exports.Viewfolder = (req,res) => {
+  const id = req.userData.id;
+  const path = req.body.path;
+  let loc;
+  if(req.body.loc == 'Shared'){
+    console.log("Cannot be processed now");
+    return res.status(200).json({
+      message:"No Folders here"
+    })
+  }else{
+    if(req.body.loc == 'Drive'){
+      loc = '/root';
+    }else if(req.body.loc == 'Trash'){
+      loc = '/trash';
+    }else{
+      res.send(404).json({
+        message: "Resource not found"
+      })
+    }
+    const totpath = drive+id+loc+path;
+    console.log("Path:",totpath);
+    const files = {
+      files: [],
+      folders: []
+    };
+    fs.readdirSync(totpath).forEach(
+      file => {
+        if(fs.statSync(totpath + "/" + file).isDirectory()){
+          files.folders.push(file);
+        }else{
+          files.files.push(file);
+          this.Filetype(file)
+        }
+    });
+    return res.status(200).json({
+      files: files
+    })
+  }
 }

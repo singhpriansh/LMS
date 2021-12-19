@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 // const User = require("../models/user");
 const database = require("./database").database;
 const drive = require("./filehandling");
-const fs = require("fs");
 
 exports.CreateStudent = (req, res, next) => {
   database.collection('users').findOne({ id: Number(req.body.id) })
@@ -97,7 +96,7 @@ exports.Login = (req,res,next) => {
     const token = jwt.sign({
       id: fetcheduser._id,
     }, 'complex_text');
-    res.status(200).json({
+    return res.status(200).json({
       token: token,
       user: {
         id: fetcheduser.id,

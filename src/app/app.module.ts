@@ -35,6 +35,7 @@ import { CalendarComponent } from './components/feature/calendar/calendar.compon
 import { MeetingComponent } from './components/feature/meeting/meeting.component';
 import { VideomeetComponent } from './components/pages/videomeet/videomeet.component';
 import { GraphComponent } from './components/feature/graph/graph.component';
+
 import { ErrorInterceptor } from './components/auth/interceptors/error-interceptor';
 import { TokenInterceptor } from './components/auth/interceptors/token-interceptor';
 
@@ -76,7 +77,7 @@ import { TokenInterceptor } from './components/auth/interceptors/token-intercept
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
     // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { background-color : aqua }}
   ],
   bootstrap: [AppComponent]

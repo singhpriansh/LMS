@@ -44,6 +44,11 @@ a {
   width: 100%;
 }
 
+.back {
+  display: flex;
+  margin:auto 20px auto 10px;
+}
+
 .tool {
   display: flex;
   margin:auto 30px auto auto;
@@ -55,7 +60,7 @@ a {
   }
 }
 
-.tool mat-icon {
+.tool mat-icon,
+.back mat-icon {
   cursor: pointer;
-  margin: 5px;
 }

@@ -4,7 +4,7 @@ import { Subject } from "rxjs";
 // @Injectable({providedIn:DirectoryModule})
 export class DirectoryService {
   private iconListener = new Subject<string>();
-  private location = new Subject<string>();
+  private location = new Subject<{loc:string,path:string}>();
 
   constructor(){}
 
@@ -16,8 +16,8 @@ export class DirectoryService {
     return this.iconListener;
   }
 
-  setloc(loc:string){
-    this.location.next(loc);
+  setloc(loc:string,path:string){
+    this.location.next({loc:loc,path:path});
   }
 
   getloc(){

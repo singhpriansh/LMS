@@ -33,6 +33,9 @@
   <mat-sidenav-content>
     <div class="screen">
       <mat-toolbar color="accent">
+        <div class="back">
+          <mat-icon (click)="onbackClick()" *ngIf="back">arrow_back</mat-icon>
+        </div>
         {{path}}
         <div class="tool">
           <mat-icon (click)="onviewClick()" *ngIf="view == 'list'">view_list</mat-icon>
