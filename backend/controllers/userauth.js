@@ -5,8 +5,6 @@ const database = require("./database").database;
 const drive = require("./filehandling");
 const fs = require("fs");
 
-
-
 exports.CreateStudent = (req, res, next) => {
   database.collection('users').findOne({ id: Number(req.body.id) })
   .then(user => {
@@ -27,8 +25,8 @@ exports.CreateStudent = (req, res, next) => {
           password: hash,
         }).then(result => {
           id = result.insertedId.toString();
-          drive.Createdrive(id);
-          drive.Movefiles_to_id("images",req.body.picname,id);
+          drive.Initialise_dir(id);
+          drive.Movefiles_to_id("images/",req.body.picname,id);
         },
         next()
         ).catch(err => {
@@ -63,9 +61,9 @@ exports.CreateFaculty = (req, res, next) => {
           password: hash
         }).then(result => {
           id = result.insertedId.toString();
-          drive.Createdrive(id);
-          drive.Movefiles_to_id("images",req.body.picname,id);
-          drive.Movefiles_to_id("documents",req.body.certname,id);
+          drive.Initialise_dir(id);
+          drive.Movefiles_to_id("images/",req.body.picname,id);
+          drive.Movefiles_to_id("documents/",req.body.certname,id);
         },
         next()
         ).catch(err => {
@@ -97,11 +95,23 @@ exports.Login = (req,res,next) => {
       });
     }
     const token = jwt.sign({
-      id: fetcheduser.id,
+      id: fetcheduser._id,
     }, 'complex_text');
     res.status(200).json({
       token: token,
-      user: fetcheduser
+      user: {
+        id: fetcheduser.id,
+        user: fetcheduser.user,
+        name: fetcheduser.name,
+        picname: fetcheduser.picname,
+        dobirth: fetcheduser.dobirth,
+        gender: fetcheduser.gender,
+        qualdegree: fetcheduser.qualdegree,
+        branch: fetcheduser.branch,
+        dateofadmittion: fetcheduser.dateofadmittion,
+        certname: fetcheduser.certname,
+        dojoin: fetcheduser.dojoin      
+      }
     });
   }).catch(err => {
     return res.status(401).json({

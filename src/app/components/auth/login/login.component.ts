@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       })
     })
   }
+
   passwordValidator(control: AbstractControl): ValidationErrors | null {
     var str = control.value;
     if (str){
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
       return {'invalid': {value: str}};
     }
   }
+
   OnLogin(): void {
     if(this.form.invalid){
       return;

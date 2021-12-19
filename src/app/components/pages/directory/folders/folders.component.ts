@@ -1,6 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { StorageService } from 'src/app/components/auth/services/storage.service';
 import { DirectoryService } from '../directory.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class FoldersComponent implements OnInit, OnDestroy {
   private iconStatSub!: Subscription;
 
   constructor(private dir: DirectoryService,
+    private storserv: StorageService,
     private router: Router) {
       this.iconStatSub = this.dir.getIcons()
       .subscribe(icon => {
@@ -43,6 +45,7 @@ export class FoldersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.onResize();
     this.location = this.router.url;
+    this.storserv.browse('/');
   }
 
   ngOnDestroy(): void {

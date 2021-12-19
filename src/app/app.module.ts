@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
@@ -35,6 +35,8 @@ import { CalendarComponent } from './components/feature/calendar/calendar.compon
 import { MeetingComponent } from './components/feature/meeting/meeting.component';
 import { VideomeetComponent } from './components/pages/videomeet/videomeet.component';
 import { GraphComponent } from './components/feature/graph/graph.component';
+import { ErrorInterceptor } from './components/auth/interceptors/error-interceptor';
+import { TokenInterceptor } from './components/auth/interceptors/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { GraphComponent } from './components/feature/graph/graph.component';
     MatNativeDateModule 
   ],
   providers: [
-    MatDatepickerModule,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
     // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { background-color : aqua }}
   ],
   bootstrap: [AppComponent]

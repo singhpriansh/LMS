@@ -46,7 +46,7 @@ export class LoginService {
   login(response:{token: string, user: any}): boolean{
     const token = response.token;
     if(token != ''){
-      this.userId = response.user._id.toString();
+      this.userId = response.user._id;
       this.saveAuthData(token, this.userId);
       if(response.user.user === "Faculty"){
         this.desk = '/faculty';
@@ -78,7 +78,7 @@ export class LoginService {
     localStorage.removeItem('userId');
   }
 
-  private getAuthData() {
+  getAuthData() {
     if(localStorage.getItem('token')=='') {
       return;
     }
