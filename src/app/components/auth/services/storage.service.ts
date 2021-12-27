@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { location } from "../../models/Storage.model";
+import { content } from "../../models/Storage.retrieved.model";
 
 const BACK_URL =environment.apiUrls;
 
@@ -10,11 +11,13 @@ export class StorageService {
 
   constructor(private http: HttpClient){}
 
-  browse(location:location){
-    // const
-    this.http.post<{response:any}>(BACK_URL + "storage",location)
-      .subscribe(response => {
-        console.log(response)
-      });
+  upload(data: FormData){
+    return this.http.post<{ message:string }>
+    (BACK_URL + "storage/upload",data)
+  }
+
+  browse(location: location){
+    return this.http.post<{ message:string, content:content }>
+    (BACK_URL + "storage/",location)
   }
 }

@@ -10,20 +10,26 @@ const MIME_TYPE_MAP = {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const isValid = MIME_TYPE_MAP[file.mimetype];
-    let error = new Error("Invalid mime type");
-    if(isValid){
-      file.originalname = Date.now()+"_"+ file.originalname.toLowerCase().split(' ').join('_');
-      error = null;
+    let store = "backend/drive/" + req.userData.id;
+    console.log(req.body);
+    if(req.body.loc == undefined){
+      const isValid = MIME_TYPE_MAP[file.mimetype];
       if(isValid == 'pdf'){
-        req.body.certname = file.originalname;
-        store = "backend/documents";
+        store = store + "/root/documents";
       } else {
-        req.body.picname = file.originalname;
-        store = "backend/images";
+        store = store + "/root/images";
+      }
+    } else {
+      if(req.body.loc == 'Drive'){
+        store = store + "/root" + req.body.path;
+      }else if(req.body.loc == 'Trash'){
+        store = store + "/trash" + req.body.path;
+      }else{
+        store = store + "/shared" + req.body.path;
       }
     }
-    cb(error, store)
+    console.log(store)
+    cb(null, store)
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);

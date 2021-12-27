@@ -17,7 +17,7 @@
     </mat-form-field>
 
     <mat-form-field
-      (click)="fileInput.click()">
+      (click)="imageInput.click()">
       <mat-label>Upload your pic</mat-label>
       <input matInput 
         readonly
@@ -31,7 +31,7 @@
         hidden
         accept=".png,.jpg,.jpeg,.gif"
         (change)="onImagePicked($event)"
-        #fileInput/>
+        #imageInput/>
       <mat-error>
         Upload Image file less than 100kb
       </mat-error>
@@ -79,7 +79,7 @@
     </mat-form-field>
 
     <mat-form-field
-      (click)="imageInput.click()">
+      (click)="fileInput.click()">
       <mat-label>Upload qualification certificate</mat-label>
       <input matInput readonly
         formControlName="certname">
@@ -93,7 +93,7 @@
         hidden
         accept="application/pdf"
         (change)="onFileSelected($event)"
-        #imageInput/>
+        #fileInput/>
       <mat-error>
         Upload PDF less than 200kb
       </mat-error>

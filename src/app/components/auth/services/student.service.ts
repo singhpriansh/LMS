@@ -2,8 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { StudentAuthData } from "../../models/StudentAuthData.model";
 import { StudentData } from "../../models/StudentData.model";
 import { LoginService } from "./login.service";
+import { StorageService } from "./storage.service";
 
 const BACK_URL = environment.apiUrls;
 
@@ -12,7 +14,7 @@ export class StudentService {
 
   constructor(private http: HttpClient,
     private loginService: LoginService,
-    private router: Router) {}
+    private drive: StorageService) {}
   
   createStudentUser(
     name: string,
@@ -25,19 +27,26 @@ export class StudentService {
     branch: string,
     doa: Date,
     password: string){
-      const authdata = new FormData();
-      authdata.append("name",name);
-      authdata.append("file",pic,picname);
-      authdata.append("id",id.toString());
-      authdata.append("dobirth",dob.toString());
-      authdata.append("gender",gender);
-      authdata.append("qualdegree",qualdegree);
-      authdata.append("branch",branch);
-      authdata.append("doadmitn",doa.toString());
-      authdata.append("password",password);
-      this.http.post<{token:string, user:StudentData}>(BACK_URL + "student/reg", authdata)
+      picname = picname.toLowerCase().split(' ').join('_');
+      const authdata: StudentAuthData = {
+        name:name,
+        picname:picname,
+        id:id,
+        dobirth:dob,
+        gender:gender,
+        qualdegree:qualdegree,
+        branch:branch,
+        doadmitn:doa,
+        password:password
+      };
+      this.http.post<{token:string, user:StudentData, message: String}>
+      (BACK_URL + "student/reg", authdata)
         .subscribe(response => {
-          this.loginService.login(response)
+          if(this.loginService.login(response)){
+            const files = new FormData();
+            files.append("file",pic,picname);
+            this.drive.upload(files).subscribe();
+          }
         }, error => {
           this.loginService.getAuthStatusListerner().next(false);
           // this.authStatusListener.next(false);

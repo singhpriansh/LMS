@@ -18,7 +18,7 @@
     </mat-form-field>
 
     <mat-form-field
-    (click)="fileInput.click()">
+    (click)="imageInput.click()">
       <mat-label>Upload your pic</mat-label>
       <input matInput 
         readonly
@@ -32,7 +32,7 @@
         hidden
         accept=".png,.jpg,.jpeg,.gif"
         (change)="onImagePicked($event)"
-        #fileInput/>
+        #imageInput/>
       <mat-error>
         Upload Image file less than 100kb
       </mat-error>

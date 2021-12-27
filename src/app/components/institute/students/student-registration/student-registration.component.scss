@@ -27,8 +27,21 @@ mat-spinner{
 }
 
 .picture img{
-    max-width: 20%;
-    max-height: 300px;
+    width: 20%;
+    @media screen and (max-width: 950px) {
+        width: 18%;
+    }
+    @media screen and (max-width: 810px) {
+        width: 16%;
+    }
+    @media screen and (max-width: 710px) {
+        width: 35%;
+        margin-right: 60px;
+    }
+    @media screen and (max-width: 650px) {
+        width: 45%;
+        margin-right: 20px;
+    }
     padding: 10px;
     float: right;
 }

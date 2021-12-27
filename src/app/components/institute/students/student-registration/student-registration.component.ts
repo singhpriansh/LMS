@@ -127,8 +127,8 @@ export class StudentRegistrationComponent implements OnInit {
     return {'forbidden': {value: control.value}};
   }
 
-  onImagePicked(event: any){
-    const img = event.target.files[0];
+  onImagePicked(event: Event){
+    const img = (event.target as HTMLInputElement).files?.item(0);
     if(img && img.size < 180000){
       this.form.value.pic = img;
       this.form.value.picname = img.name;

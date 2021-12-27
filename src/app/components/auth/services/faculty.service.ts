@@ -2,8 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { FacultyAuthData } from "../../models/FacultyAuthData.model";
 import { FacultyData } from "../../models/FacultyData.model";
 import { LoginService } from "./login.service";
+import { StorageService } from "./storage.service";
 
 const BACK_URL =environment.apiUrls;
 
@@ -12,7 +14,7 @@ export class FacultyService {
 
   constructor(private http: HttpClient,
     private loginService: LoginService,
-    private router: Router) {}
+    private drive: StorageService) {}
 
     createFacultyUser(
     name: string,
@@ -26,19 +28,29 @@ export class FacultyService {
     certname: string,
     doj: Date,
     password: string){
-      const authdata = new FormData();
-      authdata.append("name",name);
-      authdata.append("file",pic,picname);
-      authdata.append("id",id.toString());
-      authdata.append("dobirth",dob.toString());
-      authdata.append("gender",gender);
-      authdata.append("qualdegree",qualdegree);
-      authdata.append("file",qual_cert,certname);
-      authdata.append("dojoin",doj.toString());
-      authdata.append("password",password);
-      this.http.post<{token:string, user:FacultyData}>(BACK_URL + "faculty/reg", authdata)
+      picname = picname.toLowerCase().split(' ').join('_');
+      certname = certname.toLowerCase().split(' ').join('_');
+      const authdata :FacultyAuthData ={
+        name:name,
+        picname:picname,
+        id:id,
+        dobirth:dob,
+        gender:gender,
+        qualdegree:qualdegree,
+        certname: certname,
+        dojoin:doj,
+        password:password
+      };
+      this.http.post<{token:string, user:FacultyData, message: String}>
+      (BACK_URL + "faculty/reg", authdata)
         .subscribe(response => {
-          this.loginService.login(response);
+          if(this.loginService.login(response)){
+            const files = new FormData();
+            files.append("file",pic,picname);
+            files.append("file",qual_cert,certname);
+            this.drive.upload(files)
+            .subscribe();
+          }
         }, error => {
           this.loginService.getAuthStatusListerner().next(false);
           // this.authStatusListener.next(false);

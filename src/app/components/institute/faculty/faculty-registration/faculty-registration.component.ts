@@ -137,8 +137,8 @@ export class FacultyRegistrationComponent implements OnInit {
   //   return of({'invalid' : {value: control.setValue(0)}});
   // }
 
-  onImagePicked(event: any){
-    const img = event.target.files[0];
+  onImagePicked(event: Event){
+    const img = (event.target as HTMLInputElement).files?.item(0);
     if(img && img.size < 180000){
       this.form.patchValue({pic: img});
       this.form.get("pic")?.updateValueAndValidity();
@@ -152,8 +152,8 @@ export class FacultyRegistrationComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
+  onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.item(0);
     if(file && file.size < 360000){
       this.form.patchValue({qual_cert: file});
       this.form.get("qual_cert")?.updateValueAndValidity();

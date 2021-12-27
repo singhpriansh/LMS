@@ -4,7 +4,14 @@
       <h2>Storage</h2>
     </mat-toolbar>
     <mat-nav-list>
+      <input
+        type="file"
+        hidden
+        accept="*"
+        (change)="fileupload($event)"
+        #fileInput/>
       <a mat-button
+        (click)="fileInput.click()"
         class="upload">
         <mat-icon>cloud_upload</mat-icon>
         Upload</a>

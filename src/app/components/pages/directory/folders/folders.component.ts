@@ -2,6 +2,7 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StorageService } from 'src/app/components/auth/services/storage.service';
+import { content } from 'src/app/components/models/Storage.retrieved.model';
 import { DirectoryService } from '../directory.service';
 
 @Component({
@@ -12,8 +13,17 @@ import { DirectoryService } from '../directory.service';
 
 export class FoldersComponent implements OnInit, OnDestroy {
   iconview:string="grid";
-  location!: string;
+  url!: string;
+  location!: {
+    id: string|null,
+    loc: string,
+    path: string
+  };
   tiles!:number[];
+  content:content={
+    files: [],
+    folders: []
+  };
   private iconStatSub!: Subscription;
   private locSubs!: Subscription;
 
@@ -26,7 +36,15 @@ export class FoldersComponent implements OnInit, OnDestroy {
       });
       this.locSubs = this.dir.getloc()
       .subscribe(response => {
-        this.storserv.browse({loc:response.loc,path:response.path});
+        this.location = {
+          id: localStorage.getItem("id"),
+          loc:response.loc,
+          path:response.path
+        };
+        this.storserv.browse(this.location)
+        .subscribe(response => {
+          this.content = response.content
+        })
       });
     }
 
@@ -47,11 +65,20 @@ export class FoldersComponent implements OnInit, OnDestroy {
     }
   }
 
-  onfolderclick() {}
+  toreadabledate(dt:string):string {
+    let da = new Date(dt).toString();
+    let ar = da.split(' ');
+    return ar[0]+" "+ar[1]+" "+ar[2]+" "+ar[3];
+  }
+
+  onfolderclick(file:string) {
+    this.location.path = this.location.path + file+ "/";
+    this.dir.setloc(this.location.loc,this.location.path);
+  }
 
   ngOnInit(): void {
     this.onResize();
-    this.location = this.router.url;
+    this.url = this.router.url;
   }
 
   ngOnDestroy(): void {

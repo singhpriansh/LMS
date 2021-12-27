@@ -15,8 +15,7 @@ export class LoginService {
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient,
-    private router: Router,
-    ) {}
+    private router: Router) {}
 
   setdesk(str:string){
     this.desk = str;

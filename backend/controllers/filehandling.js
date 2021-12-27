@@ -1,20 +1,25 @@
 const fs = require("fs");
 const path = require('path');
 
+const EXT_FILE = require('../models/ext_map');
+
 const drive = "backend/drive/";
 
 exports.Initialise_dir = (id) => {
   this.Createdrive(id);
-  this.Createfolder(drive+id,"/root");
+  this.Createfolder(drive+id,"/root")
   this.Createfolder(drive+id,"/trash");
   fs.closeSync(fs.openSync(drive+id+"/shared.txt","w"));
+  this.Createfolder(drive+id+"/root","/images");
+  this.Createfolder(drive+id+"/root","/documents");
+  this.Createfolder(drive+id+"/root","/media");
 }
 
 exports.Movefiles_to_id = (type,file,id) => {
   const from = "backend/"+type+"/"+file;
   const to = drive+id+"/root/"+file;
   console.log(from,to);
-  fs.rename(from,to, err => {
+  fs.rename(from, to, err => {
     if(err){
       console.log("Error occured moving file to drive");
     }
@@ -23,7 +28,7 @@ exports.Movefiles_to_id = (type,file,id) => {
 
 exports.Deletefiles = (files,res) => {
   files.forEach(file => {
-    fs.unlink(file,err => {
+    fs.unlink(file, err => {
       if(err){
         console.log("Error occured removing file");
       }else{
@@ -37,7 +42,7 @@ exports.Deletefiles = (files,res) => {
 }
 
 exports.Createdrive = (id) => {
-  fs.mkdir(path.join(drive, id.toString()),
+  fs.mkdir(path.join(drive, id),
   { recursive: true }, err => {
     if(err){
       console.log('Error creating directory')
@@ -48,12 +53,10 @@ exports.Createdrive = (id) => {
 }
 
 exports.Createfolder = (basepath,name) => {
-  fs.mkdir(path.join(basepath,name),
-  err => {
+  return fs.mkdir(path.join(basepath,name),
+  { recursive: true }, err => {
     if(err){
-      console.log('Error creating folder')
-    }else{
-      console.log('Folder created successfully!');
+      console.log('Error creating folder at',basepath,err)
     }
   });
 }
@@ -62,20 +65,24 @@ exports.Createfile = (basepath,file) => {
   fs.closeSync(fs.openSync(basepath+file,"w"))
 }
 
-exports.Filetype = (file) => {
-  console.log(file);
-  const ext = file.split(".");
-  console.log(ext[ext.length-1]);
+exports.Filetype = (filename) => {
+  const ext = filename.split(".");
+  return EXT_FILE.MAP[ext[ext.length-1]];
 }
 
 exports.Viewfolder = (req,res) => {
   const id = req.userData.id;
   const path = req.body.path;
+  const content = {
+    files: [],
+    folders: []
+  };
   let loc;
   if(req.body.loc == 'Shared'){
-    console.log("Cannot be processed now");
+    // console.log("Cannot be processed now");
     return res.status(200).json({
-      message:"No Folders here"
+      message:"No Folders here",
+      content: content
     })
   }else{
     if(req.body.loc == 'Drive'){
@@ -83,27 +90,24 @@ exports.Viewfolder = (req,res) => {
     }else if(req.body.loc == 'Trash'){
       loc = '/trash';
     }else{
-      res.send(404).json({
+      return res.status(404).json({
         message: "Resource not found"
       })
     }
     const totpath = drive+id+loc+path;
-    console.log("Path:",totpath);
-    const files = {
-      files: [],
-      folders: []
-    };
     fs.readdirSync(totpath).forEach(
       file => {
-        if(fs.statSync(totpath + "/" + file).isDirectory()){
-          files.folders.push(file);
-        }else{
-          files.files.push(file);
-          this.Filetype(file)
+        file = Object.assign({name:file},fs.statSync(totpath + "/" + file));
+        if(fs.statSync(totpath + "/" + file.name).isDirectory()){
+          content.folders.push(file);
+        } else {
+          file = Object.assign(file,{type:this.Filetype(totpath + "/" + file.name)})
+          content.files.push(file);
         }
     });
     return res.status(200).json({
-      files: files
+      message: "content retrieved",
+      content: content
     })
   }
 }
