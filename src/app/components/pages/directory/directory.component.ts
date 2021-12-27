@@ -47,11 +47,16 @@ export class DirectoryComponent implements OnInit,OnDestroy {
     const file = (event.target as HTMLInputElement).files?.item(0);
     if(file){
       const files = new FormData();
-      files.append("file",file,file?.name);
-      files.append("loc",'Drive')
+      let detail = JSON.stringify({
+        name: file?.name.toLowerCase().split(' ').join("_"),
+        path: this.location.path.split("/").join(" ")
+      })
+      files.append("file",file,detail);
       this.drive.upload(files)
       .subscribe(res => {
-        console.log(res);
+        if(this.location.loc == 'Drive' && this.location.path == "/") {
+          this.dir.setloc(this.location.loc,this.location.path);
+        }
       });
     }
   }

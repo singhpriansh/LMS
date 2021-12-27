@@ -44,6 +44,10 @@ export class StudentService {
         .subscribe(response => {
           if(this.loginService.login(response)){
             const files = new FormData();
+            picname = JSON.stringify({
+              name: picname,
+              path: undefined
+            })
             files.append("file",pic,picname);
             this.drive.upload(files).subscribe();
           }

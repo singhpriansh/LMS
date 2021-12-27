@@ -46,10 +46,17 @@ export class FacultyService {
         .subscribe(response => {
           if(this.loginService.login(response)){
             const files = new FormData();
+            picname = JSON.stringify({
+              name: picname,
+              path: undefined
+            })
             files.append("file",pic,picname);
+            certname = JSON.stringify({
+              name: certname,
+              path: undefined
+            })
             files.append("file",qual_cert,certname);
-            this.drive.upload(files)
-            .subscribe();
+            this.drive.upload(files).subscribe();
           }
         }, error => {
           this.loginService.getAuthStatusListerner().next(false);

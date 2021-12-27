@@ -11,8 +11,11 @@ const MIME_TYPE_MAP = {
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let store = "backend/drive/" + req.userData.id;
-    console.log(req.body);
-    if(req.body.loc == undefined){
+    file.originalname = file.originalname
+      .split(`%22`).join(`"`)
+      .split(' ').join('/')
+    let detail = JSON.parse(file.originalname)
+    if(detail.path == undefined){
       const isValid = MIME_TYPE_MAP[file.mimetype];
       if(isValid == 'pdf'){
         store = store + "/root/documents";
@@ -20,19 +23,14 @@ const storage = multer.diskStorage({
         store = store + "/root/images";
       }
     } else {
-      if(req.body.loc == 'Drive'){
-        store = store + "/root" + req.body.path;
-      }else if(req.body.loc == 'Trash'){
-        store = store + "/trash" + req.body.path;
-      }else{
-        store = store + "/shared" + req.body.path;
-      }
+      store = store + "/root" + detail.path;
     }
     console.log(store)
     cb(null, store)
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    detail = JSON.parse(file.originalname)
+    cb(null, detail.name);
   }
 });
 

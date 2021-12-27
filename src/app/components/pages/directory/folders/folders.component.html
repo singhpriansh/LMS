@@ -1,4 +1,4 @@
-<div *ngIf="this.url != '/storage/trash'" class="recents">
+<div *ngIf="this.url != '/storage/trash' && this.location.path == '/'" class="recents">
   <mat-card *ngFor="let no of tiles">
     <div class="cache">
     </div>
