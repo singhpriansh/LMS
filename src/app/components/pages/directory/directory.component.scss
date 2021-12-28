@@ -32,7 +32,19 @@ a {
 }
 
 .upload {
-  color:rgb(133, 255, 144);
+  color:rgb(82, 0, 158);
+  border:2px solid rgb(133, 255, 144);
+  border-radius: 20px;
+  background-color:rgba(133, 255, 143, 0.3);
+}
+
+.mat-flat-button{
+  background-color:rgba(133, 255, 143, 0.6);
+  border-radius: 20px !important;
+}
+
+.loc,.upload {
+  display: flex;
 }
 
 .mat-accent {

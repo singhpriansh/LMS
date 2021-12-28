@@ -6,11 +6,13 @@ import { DirectoryService } from "./directory.service";
 import { DirectoryRoutingModule } from "./directory-routing.module";
 import { DirectoryComponent } from "./directory.component";
 import { FoldersComponent } from "./folders/folders.component";
+import { MenuComponent } from "./menu/menu.component";
 
 @NgModule ({
   declarations: [
     FoldersComponent,
-    DirectoryComponent
+    DirectoryComponent,
+    MenuComponent
   ],
   imports: [
     AngularMaterialModule,

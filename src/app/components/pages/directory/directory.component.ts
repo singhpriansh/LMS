@@ -95,6 +95,14 @@ export class DirectoryComponent implements OnInit,OnDestroy {
     })
   }
 
+  onRightClick(e: MouseEvent){
+    e.preventDefault();
+  }
+
+  onclick() {
+    this.dir.hide_menu();
+  }
+
   ngOnDestroy(): void {
     this.locSubs.unsubscribe();
   }

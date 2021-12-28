@@ -5,6 +5,7 @@ import { Subject } from "rxjs";
 export class DirectoryService {
   private iconListener = new Subject<string>();
   private location = new Subject<{loc:string,path:string}>();
+  private hidemenu = new Subject<boolean>();
 
   constructor(){}
 
@@ -22,5 +23,13 @@ export class DirectoryService {
 
   getloc(){
     return this.location;
+  }
+
+  hide_menu(){
+    this.hidemenu.next(true);
+  }
+
+  get_menu_not(){
+    return this.hidemenu;
   }
 }

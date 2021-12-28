@@ -99,6 +99,7 @@ exports.Viewfolder = (req,res) => {
       file => {
         file = Object.assign({name:file},fs.statSync(totpath + "/" + file));
         if(fs.statSync(totpath + "/" + file.name).isDirectory()){
+          file = Object.assign(file,{type:"folder"});
           content.folders.push(file);
         } else {
           file = Object.assign(file,{type:this.Filetype(totpath + "/" + file.name)})

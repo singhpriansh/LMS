@@ -1,40 +1,45 @@
-<mat-sidenav-container>
+<mat-sidenav-container (contextmenu)="onRightClick($event)" (click)="onclick()">
   <mat-sidenav mode="side" #sidenav opened>
     <mat-toolbar color="accent">
       <h2>Storage</h2>
     </mat-toolbar>
     <mat-nav-list>
-      <input
-        type="file"
-        hidden
-        accept="*"
-        (change)="fileupload($event)"
-        #fileInput/>
-      <a mat-button
-        (click)="fileInput.click()"
-        class="upload">
-        <mat-icon>cloud_upload</mat-icon>
-        Upload</a>
+      <div class="upload">
+        <input
+          type="file"
+          hidden
+          accept="*"
+          (change)="fileupload($event)"
+          #fileInput/>
+        <a mat-flat-button 
+          (click)="fileInput.click()">
+          <mat-icon>cloud_upload</mat-icon>
+          Upload</a>
+      </div>
       <br>
-      <a mat-button
-        routerLink="drive"
-        routerLinkActive="mat-accent"
-        color="primary">
-        <mat-icon>call_to_action</mat-icon>
-        My Drive</a>
-      <br>
-      <a mat-button
-        routerLink="shared"
-        routerLinkActive="mat-accent"
-        color="primary">
-        <mat-icon>folder_shared</mat-icon>
-        Shared</a>
-      <br>
-      <a mat-button
-        routerLink="trash"
-        routerLinkActive="mat-accent">
-        <mat-icon>restore_from_trash</mat-icon>
-        Trash</a>
+      <div class="loc">
+        <a mat-button
+          routerLink="drive"
+          routerLinkActive="mat-accent"
+          color="primary">
+          <mat-icon>call_to_action</mat-icon>
+          My Drive</a>
+      </div>
+      <div class="loc">
+        <a mat-button
+          routerLink="shared"
+          routerLinkActive="mat-accent"
+          color="primary">
+          <mat-icon>folder_shared</mat-icon>
+          Shared</a>
+      </div>
+      <div class="loc">
+        <a mat-button
+          routerLink="trash"
+          routerLinkActive="mat-accent">
+          <mat-icon>restore_from_trash</mat-icon>
+          Trash</a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
