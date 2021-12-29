@@ -35,12 +35,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
-    next();
-});
+// app.use((req, res, next) => {
+//     next();
+// });
 
-app.use("/images", express.static(path.join("backend/images")));
-app.use("/document", express.static(path.join("backend/document")));
+// app.use("/images", express.static(path.join("backend/images")));
+// app.use("/document", express.static(path.join("backend/document")));
 app.use("/api", apiroute);
 
 module.exports = app;

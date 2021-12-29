@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RightClickService } from 'src/app/components/auth/services/click.service';
 import { StorageService } from 'src/app/components/auth/services/storage.service';
-import { content, location, menudata } from 'src/app/components/models/Storage.model';
+import { content, location } from 'src/app/components/models/Storage.model';
 import { DirectoryService } from '../directory.service';
 
 @Component({
@@ -32,7 +32,6 @@ export class FoldersComponent implements OnInit, OnDestroy {
       this.locSubs = this.dir.getloc()
       .subscribe(response => {
         this.location = {
-          id: localStorage.getItem("id"),
           loc:response.loc,
           path:response.path
         };
@@ -56,7 +55,7 @@ export class FoldersComponent implements OnInit, OnDestroy {
         this.tiles = [0];
       }else{
         this.tiles = [0,1];
-      }  
+      }
     }
   }
 

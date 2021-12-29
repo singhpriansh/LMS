@@ -2,7 +2,9 @@ import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@ang
 import { Subscription } from 'rxjs';
 import { RightClickService } from 'src/app/components/auth/services/click.service';
 import { StorageService } from 'src/app/components/auth/services/storage.service';
+import { menudata } from 'src/app/components/models/Storage.model';
 import { DirectoryService } from '../directory.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +13,12 @@ import { DirectoryService } from '../directory.service';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
+  menudata!: menudata;
+
+  folder:string='';
+
   private menuSubs!: Subscription;
-  private menudata!: Subscription;
+  private menudataSubs!: Subscription;
   @ViewChild('contextMenu') contextMenu!: ElementRef;
 
   constructor(private dir: DirectoryService,
@@ -27,24 +33,33 @@ export class MenuComponent implements OnInit, OnDestroy {
         this.hideMenu();
       }
     });
-    this.menudata = this.rc.get()
+    this.menudataSubs = this.rc.get()
     .subscribe(data => {
-      if(this.contextMenu.nativeElement.style.display== "block"){
-        this.hideMenu();
-      }else{
-        this.contextMenu.nativeElement.style.display = "block";
-        this.contextMenu.nativeElement.style.left = data.e.pageX-190 + "px";
-        this.contextMenu.nativeElement.style.top = data.e.pageY-80 + "px";
-      }
+      this.menudata = data;
+      this.folder = data.object.type;
+      this.contextMenu.nativeElement.style.left = data.e.pageX-190 + "px";
+      this.contextMenu.nativeElement.style.top = data.e.pageY-80 + "px";
+      this.contextMenu.nativeElement.style.display = "block";
     });
   }
 
   hideMenu(){
     this.contextMenu.nativeElement.style.display = "none";
   }
+
+  download(){
+    this.storserv.download(this.menudata.location,this.menudata.object.name)
+    .subscribe(file => {
+      saveAs(file,this.menudata.object.name);
+    });
+  }
   
+  delete() {
+    console.log("item to be deleted")
+  }
+
   ngOnDestroy(): void {
     this.menuSubs.unsubscribe();
-    this.menudata.unsubscribe();
+    this.menudataSubs.unsubscribe();
   }
 }

@@ -1,14 +1,42 @@
 <div #contextMenu class="context-menu">
   <div class="menu">
-    <li ><a ><i aria-hidden="true"><mat-icon>rounded_corner</mat-icon></i> Cut</a></li>
-    <li ><a ><i aria-hidden="true"><mat-icon>file_copy</mat-icon></i> Copy</a></li>
-    <li ><a ><i aria-hidden="true"><mat-icon>all_out</mat-icon></i> Paste</a></li>
+    <li >
+      <a ><i aria-hidden="true">
+        <mat-icon>content_cut</mat-icon></i> Cut
+      </a>
+    </li>
+    <li >
+      <a ><i aria-hidden="true">
+        <mat-icon>content_copy</mat-icon></i> Copy
+      </a>
+    </li>
+    <li >
+      <a ><i aria-hidden="true">
+        <mat-icon>content_paste</mat-icon></i> Paste
+      </a>
+    </li>
     <mat-divider></mat-divider>
-    <li ><a ><i aria-hidden="true"><mat-icon>edit</mat-icon></i> Rename</a></li>
+    <li >
+      <a ><i aria-hidden="true">
+        <mat-icon>drive_file_rename_outline</mat-icon></i> Rename
+      </a>
+    </li>
     <mat-divider></mat-divider>
-    <li ><a ><i aria-hidden="true"><mat-icon>cloud_download</mat-icon></i> Download</a></li>
-    <li ><a ><i aria-hidden="true"><mat-icon>device_hub</mat-icon></i> Share</a></li>
+    <li *ngIf="folder != 'folder'" (click)="download()">
+      <a ><i aria-hidden="true">
+        <mat-icon>file_download</mat-icon></i> Download
+      </a>
+    </li>
+    <li class="share">
+      <a ><i aria-hidden="true">
+        <mat-icon>share</mat-icon></i> Share
+      </a>
+    </li>
     <mat-divider></mat-divider>
-    <li ><a ><i aria-hidden="true"><mat-icon>delete</mat-icon></i> Delete</a></li>
+    <li class="trash" (click)="delete()">
+      <a ><i aria-hidden="true">
+        <mat-icon>delete</mat-icon></i> Delete
+      </a>
+    </li>
   </div>
 </div>

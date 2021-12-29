@@ -1,10 +1,11 @@
 
 .context-menu {
-  // display: none;
+  display: none;
   position: absolute;
 }
 
 mat-icon {
+  font-size: 20px;
   padding-top: 5px;
 }
 
@@ -31,7 +32,6 @@ mat-icon {
 }
 
 .menu li a {
-  font: inherit;
   border: 0;
   padding: 1px 5px 1px 5px;
   display: flex;
@@ -53,9 +53,13 @@ mat-icon {
 }
 
 .menu li a i {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .menu li.trash a:hover {
   color: rgb(255, 100, 100);
+}
+
+.menu li.share a:hover {
+  color: rgb(255, 239, 92);
 }
