@@ -1,8 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { location } from "../../models/Storage.model";
-import { content } from "../../models/Storage.retrieved.model";
+import { content, location } from "../../models/Storage.model";
 
 const BACK_URL =environment.apiUrls;
 

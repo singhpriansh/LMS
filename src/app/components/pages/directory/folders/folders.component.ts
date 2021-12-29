@@ -1,8 +1,9 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { RightClickService } from 'src/app/components/auth/services/click.service';
 import { StorageService } from 'src/app/components/auth/services/storage.service';
-import { content } from 'src/app/components/models/Storage.retrieved.model';
+import { content, location, menudata } from 'src/app/components/models/Storage.model';
 import { DirectoryService } from '../directory.service';
 
 @Component({
@@ -14,25 +15,19 @@ import { DirectoryService } from '../directory.service';
 export class FoldersComponent implements OnInit, OnDestroy {
   iconview:string="grid";
   url!: string;
-  location!: {
-    id: string|null,
-    loc: string,
-    path: string
-  };
+  location!: location;
   tiles!:number[];
   content:content={
     files: [],
     folders: []
   };
 
-  @ViewChild('contextMenu') contextMenu!: ElementRef;
-
   private iconStatSub!: Subscription;
   private locSubs!: Subscription;
-  private menuSubs!: Subscription;
 
   constructor(private dir: DirectoryService,
     private storserv: StorageService,
+    private rc: RightClickService,
     private router: Router) {
       this.locSubs = this.dir.getloc()
       .subscribe(response => {
@@ -90,37 +85,21 @@ export class FoldersComponent implements OnInit, OnDestroy {
     this.iconStatSub = this.dir.getIcons()
     .subscribe(icon => {
       this.iconview = icon;
-      this.hideMenu();
     });
-    this.menuSubs = this.dir.get_menu_not()
-    .subscribe(value => {
-      if(value){
-        this.hideMenu();
-      }
-    })
     this.onResize();
     this.url = this.router.url;
   }
 
-  hideMenu() {
-    this.contextMenu.nativeElement.style.display = "none";
-  }
-
   onRightClick(e:MouseEvent,item:object) {
-    console.log(item);
-    e.preventDefault();
-    if(this.contextMenu.nativeElement.style.display== "block"){
-      this.hideMenu();
-    }else{
-      this.contextMenu.nativeElement.style.display = "block";
-      this.contextMenu.nativeElement.style.left = e.pageX-200 + "px";
-      this.contextMenu.nativeElement.style.top = e.pageY-90 + "px";
-    }
+    this.rc.setdata({
+      e:e,
+      object:item,
+      location:this.location
+    });
   }
 
   ngOnDestroy(): void {
     this.iconStatSub.unsubscribe();
     this.locSubs.unsubscribe();
-    this.menuSubs.unsubscribe();
   }
 }

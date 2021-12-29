@@ -1,23 +1,45 @@
 
+.context-menu {
+  // display: none;
+  position: absolute;
+}
+
+mat-icon {
+  padding-top: 5px;
+}
+
 .menu {
   list-style: none;
   display: flex;
+  width: 150px;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   box-shadow: 0 10px 20px rgb(64 64 64 / 5%);
   padding: 10px 0;
+  mat-divider {
+    align-self: center;
+    width: 90%;
+    height: 0.5px;
+    background-color: rgba(255, 255, 255, 0.171);
+  }
+}
+
+.menu li {
+  align-self: center;
+  width: 90%;
 }
 
 .menu li a {
   font: inherit;
   border: 0;
-  padding: 7px 30px 7px 15px;
+  padding: 1px 5px 1px 5px;
   display: flex;
   align-items: center;
   position: relative;
   text-decoration: unset;
   color: white;
+  cursor: pointer;
   transition: 0.1s linear;
   -webkit-transition: 0.1s linear;
   -moz-transition: 0.1s linear;

@@ -1,6 +1,7 @@
 <div *ngIf="this.url != '/storage/trash' && this.location.path == '/'"
   class="recents">
   <mat-card *ngFor="let no of tiles">
+    <!-- (contextmenu)="onRightClick($event,{no:no})"> -->
     <div class="cache">
     </div>
     <div class="info">
@@ -37,7 +38,7 @@
       <mat-card (click)="onfolderclick(folder.name)"
         (contextmenu)="onRightClick($event,folder)">
         <ul class="folder"></ul>
-        <div class="list_file">{{ folder.name }}</div>
+        <div class="file">{{ folder.name }}</div>
         <div class="size"></div>
         <div class="date">{{ toreadabledate(folder.mtime) }}</div>
       </mat-card>
@@ -45,13 +46,11 @@
     <mat-list-item *ngFor="let file of this.content.files">
       <mat-card (contextmenu)="onRightClick($event,file)">
         <ul class="{{file.type}}"></ul>
-        <div class="list_file">{{ file.name }}</div>
+        <div class="file">{{ file.name }}</div>
         <div class="size">{{ readablesize(file.size) }}</div>
         <div class="date">{{ toreadabledate(file.mtime) }}</div>
       </mat-card>
     </mat-list-item>
    </mat-list>
 </div>
-<div #contextMenu class="context-menu" style="display: none">
-  <app-menu></app-menu>
-</div>
+<app-menu></app-menu>

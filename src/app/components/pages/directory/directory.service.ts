@@ -11,6 +11,7 @@ export class DirectoryService {
 
   setIcon(icon:string){
     this.iconListener.next(icon);
+    this.hidemenu.next(true);
   }
 
   getIcons() {
@@ -19,6 +20,7 @@ export class DirectoryService {
 
   setloc(loc:string,path:string){
     this.location.next({loc:loc,path:path});
+    this.hidemenu.next(true);
   }
 
   getloc(){

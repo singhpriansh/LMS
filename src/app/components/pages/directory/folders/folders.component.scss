@@ -73,6 +73,8 @@ div.info {
   width: 80px;
   .name {
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -92,23 +94,34 @@ div.info {
   margin-right:20px;
 }
 
-.date {
-  float:right;
-  margin-top: 5px;
-  margin-right: 50px;
-}
 
 .list mat-card {
   flex:auto;
-  height: 2rem;
+  height: 1.9rem;
   margin: 0.5rem;
   padding: 5px;
   width: 95%;
   @media only screen and (max-width: 1024px) {
     width: 90%;
   }
+  .file {
+    float: left;
+    text-align: left;
+    height: 1.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin:5px;
+    padding: 0;
+    width:calc(100% - 300px);
+    @media only screen and (max-width: 750px) {
+      width:calc(100% - 140px);
+    }
+  }
   .date {
-    @media only screen and (max-width: 670px) {
+    float:right;
+    margin-top: 5px;
+    margin-right: 50px;
+    @media only screen and (max-width: 750px) {
       display: none;
     }
   }
@@ -164,7 +177,7 @@ ul.IMAGES ,
 ul.DOCUMENT ,
 ul.PDF {
   height: 30px;
-  margin: 2px;
+  margin-left: 5px;
   float: left;
 }
 
@@ -184,8 +197,4 @@ ul.PDF {
   width: 30px;
   height: 25px;
   float: left;
-}
-
-.context-menu { 
-  position: absolute; 
 }
