@@ -55,7 +55,11 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
   
   delete() {
-    console.log("item to be deleted")
+    this.storserv.delete(this.menudata.location,this.menudata.object.name)
+    .subscribe(file => {
+      console.log(file);
+      this.dir.setloc(this.menudata.location.loc,this.menudata.location.path);
+    });
   }
 
   ngOnDestroy(): void {

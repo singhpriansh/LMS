@@ -19,6 +19,7 @@ export class DirectoryService {
   }
 
   setloc(loc:string,path:string){
+    console.log("location set")
     this.location.next({loc:loc,path:path});
     this.hidemenu.next(true);
   }

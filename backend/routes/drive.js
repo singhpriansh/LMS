@@ -14,7 +14,7 @@ router.post("",auth_check,drive.Viewfolder);
 
 router.post("/download",auth_check,dl.Download);
 
-// router.post("/rename",auth_check,drive.Rename);
+router.post("/move",auth_check,drive.Move);
 
 router.put("/upload",auth_check,multer,(req,res) => {
   return res.status(201).json({

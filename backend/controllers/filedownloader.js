@@ -4,7 +4,7 @@ const drive = "backend/drive/";
 
 exports.Download = (req,res,next) => {
   let loc = "";
-  if(req.body.loc == 'Drive'){
+  if(req.body.loc == '/root'){
     loc = drive+ req.userData.id +'/root'+ req.body.path + req.body.item;
   }else if(req.body.loc == 'Shared'){
     loc = '/shared';

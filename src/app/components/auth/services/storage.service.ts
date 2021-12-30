@@ -27,4 +27,17 @@ export class StorageService {
       responseType : 'blob'
     })
   }
+
+  delete(location:location,item:string){
+    location = Object.assign(location,{item:item});
+    const object = {
+      from: location,
+      to: {
+        loc: '/trash',
+        path:'/',
+        item:item
+      }
+    }
+    return this.http.post(BACK_URL + "storage/move",object);
+  }
 }

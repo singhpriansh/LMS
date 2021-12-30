@@ -36,8 +36,8 @@ exports.Deletefiles = (files,res) => {
       }
     })
   });
-  return res.status(409).json({
-    message: "User with id exist"
+  return res.status(201).json({
+    message: "Files deleted"
   });
 }
 
@@ -46,7 +46,7 @@ exports.Createdrive = (id) => {
   { recursive: true }, err => {
     if(err){
       console.log('Error creating directory')
-    }else{
+    } else { 
       console.log('Directory created for :',id);
     }
   });
@@ -71,30 +71,23 @@ exports.Filetype = (filename) => {
 }
 
 exports.Viewfolder = (req,res) => {
-  const id = req.userData.id;
-  const path = req.body.path;
   const content = {
     files: [],
     folders: []
   };
-  let loc;
-  if(req.body.loc == 'Shared'){
+  if(req.body.loc == '/shared'){
     // console.log("Cannot be processed now");
     return res.status(200).json({
       message:"No Folders here",
       content: content
     })
   }else{
-    if(req.body.loc == 'Drive'){
-      loc = '/root';
-    }else if(req.body.loc == 'Trash'){
-      loc = '/trash';
-    }else{
+    if(req.body.loc != '/root' && req.body.loc != '/trash'){
       return res.status(404).json({
         message: "Resource not found"
       })
     }
-    const totpath = drive+id+loc+path;
+    const totpath = drive + req.userData.id + req.body.loc + req.body.path;
     fs.readdirSync(totpath).forEach(
       file => {
         file = Object.assign({name:file},fs.statSync(totpath + "/" + file));
@@ -111,4 +104,29 @@ exports.Viewfolder = (req,res) => {
       content: content
     })
   }
+}
+
+exports.Move = (req,res) => {
+  if(req.body.from.loc == '/shared'){
+    return res.status(200).json({
+      message: "Cannot be shared now"
+    })
+  }
+  if(req.body.to.loc == '/shared'){
+    return res.status(200).json({
+      message: "Cannot be move to drive"
+    })
+  }
+  const initial = drive + req.userData.id 
+    + req.body.from.loc + req.body.from.path + req.body.from.item;
+  const toloc = drive + req.userData.id 
+  + req.body.to.loc + req.body.to.path + req.body.to.item;
+  fs.rename(initial, toloc, err => {
+    if(err){
+      console.log("Error occured moving file to drive");
+    }
+  })
+  return res.status(200).json({
+    message:"File moved"
+  })
 }

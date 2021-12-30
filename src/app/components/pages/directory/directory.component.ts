@@ -26,6 +26,13 @@ export class DirectoryComponent implements OnInit,OnDestroy {
       this.locSubs = this.dir.getloc()
       .subscribe(res => {
         this.location = res;
+        if(res.loc == '/root'){
+          this.path = "Drive";
+        }else if(res.loc == '/shared'){
+          this.path = "Shared";
+        }else {
+          this.path = "Trash";
+        }
         let totpath = res.path.split('/');
         for(let i=0;i<totpath.length-1;i++){
           if(totpath[i]==''){
@@ -54,7 +61,7 @@ export class DirectoryComponent implements OnInit,OnDestroy {
       files.append("file",file,detail);
       this.drive.upload(files)
       .subscribe(res => {
-        if(this.location.loc == 'Drive' && this.location.path == "/") {
+        if(this.location.loc == '/root' && this.location.path == "/") {
           this.dir.setloc(this.location.loc,this.location.path);
         }
       });
@@ -64,13 +71,13 @@ export class DirectoryComponent implements OnInit,OnDestroy {
   setPath(value: string){
     this.back = false;
     if(value == '/storage/drive'){
-      this.dir.setloc('Drive','/');
+      this.dir.setloc('/root','/');
       this.path = "Drive";
     }else if(value == '/storage/shared'){
-      this.dir.setloc('Shared','/');
+      this.dir.setloc('/shared','/');
       this.path = "Shared";
     }else {
-      this.dir.setloc('Trash','');
+      this.dir.setloc('/trash','');
       this.path = "Trash";
     }
   }
@@ -82,7 +89,6 @@ export class DirectoryComponent implements OnInit,OnDestroy {
       this.location.path += totpath[i];
     }
     this.dir.setloc(this.location.loc,this.location.path);
-    this.setPath(this.router.url);
   }
   
   ngOnInit(): void {
