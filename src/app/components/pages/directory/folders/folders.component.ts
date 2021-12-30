@@ -90,11 +90,17 @@ export class FoldersComponent implements OnInit, OnDestroy {
   }
 
   onRightClick(e:MouseEvent,item:object) {
-    this.rc.setdata({
-      e:e,
-      object:item,
-      location:this.location
-    });
+    e.preventDefault();
+    if(Object.keys(item).length === 0 && item.constructor === Object){
+      this.dir.hide_menu();
+    }else{
+      console.log(item);
+      this.rc.setdata({
+        e:e,
+        object:item,
+        location:this.location
+      });
+    }
   }
 
   ngOnDestroy(): void {

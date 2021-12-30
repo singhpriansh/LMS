@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { content, location } from "../../models/Storage.model";
@@ -28,14 +28,35 @@ export class StorageService {
     })
   }
 
-  delete(location:location,item:string){
-    location = Object.assign(location,{item:item});
+  move(initloc:location,finloc:location,item:string){
+    initloc = Object.assign(initloc,{ item:item });
+    finloc = Object.assign(finloc,{ item:item });
     const object = {
-      from: location,
-      to: {
-        loc: '/trash',
-        path:'/',
-        item:item
+      from:initloc,
+      to: finloc
+    }
+    return this.http.post(BACK_URL + "storage/move",object);
+  }
+
+  delete(location:location,item:string){
+    let object;
+    if(location.loc == '/trash'){
+      location = Object.assign(location,{item:item});
+      object = {
+        from: location,
+        to: {
+          loc: 'delete',
+        }
+      }
+    }else{
+      location = Object.assign(location,{item:item});
+      object = {
+        from: location,
+        to: {
+          loc: '/trash',
+          path:'/',
+          item:item
+        }
       }
     }
     return this.http.post(BACK_URL + "storage/move",object);

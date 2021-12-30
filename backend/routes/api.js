@@ -6,7 +6,7 @@ const student = require("./student");
 const login = require("./login");
 const logout = require("./logout");
 const syllabus = require("./syllabus");
-const drive = require("./drive")
+const drive = require("./drive");
 
 router.use('/faculty',faculty);
 router.use('/student',student);

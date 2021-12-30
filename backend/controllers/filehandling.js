@@ -15,15 +15,25 @@ exports.Initialise_dir = (id) => {
   this.Createfolder(drive+id+"/root","/media");
 }
 
-exports.Movefiles_to_id = (type,file,id) => {
-  const from = "backend/"+type+"/"+file;
-  const to = drive+id+"/root/"+file;
-  console.log(from,to);
+exports.Movefiles = (from,to) => {
   fs.rename(from, to, err => {
     if(err){
       console.log("Error occured moving file to drive");
     }
   })
+}
+
+exports.Deletefile = (file,res) => {
+  fs.unlink(file, err => {
+    if(err){
+      console.log("Error occured removing file",err);
+    }else{
+      console.log(file+ " deleted");
+    }
+  });
+  return res.status(201).json({
+    message: "File deleted"
+  });
 }
 
 exports.Deletefiles = (files,res) => {
@@ -107,6 +117,12 @@ exports.Viewfolder = (req,res) => {
 }
 
 exports.Move = (req,res) => {
+  if(req.body.from.loc == req.body.to.loc &&
+     req.body.from.path == req.body.to.path){
+    return res.status(200).json({
+      message : "Action cannot be done"
+    })
+  }
   if(req.body.from.loc == '/shared'){
     return res.status(200).json({
       message: "Cannot be shared now"
@@ -116,16 +132,16 @@ exports.Move = (req,res) => {
     return res.status(200).json({
       message: "Cannot be move to drive"
     })
+  }else if(req.body.to.loc == 'delete'){
+    const initial = drive + req.userData.id + req.body.from.loc
+    + req.body.from.path + req.body.from.item;
+    return this.Deletefile(initial,res)
   }
-  const initial = drive + req.userData.id 
-    + req.body.from.loc + req.body.from.path + req.body.from.item;
-  const toloc = drive + req.userData.id 
-  + req.body.to.loc + req.body.to.path + req.body.to.item;
-  fs.rename(initial, toloc, err => {
-    if(err){
-      console.log("Error occured moving file to drive");
-    }
-  })
+  const initial = drive + req.userData.id + req.body.from.loc
+   + req.body.from.path + req.body.from.item;
+  const toloc = drive + req.userData.id + req.body.to.loc
+   + req.body.to.path + req.body.to.item;
+  this.Movefiles(initial, toloc);
   return res.status(200).json({
     message:"File moved"
   })

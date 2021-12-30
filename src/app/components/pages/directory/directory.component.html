@@ -1,5 +1,5 @@
-<mat-sidenav-container (contextmenu)="onRightClick($event)" (click)="onclick()">
-  <mat-sidenav mode="side" #sidenav opened>
+<mat-sidenav-container (click)="onclick()">
+  <mat-sidenav (contextmenu)="onRightClickSupress($event)"  mode="side" #sidenav opened>
     <mat-toolbar color="accent">
       <h2>Storage</h2>
     </mat-toolbar>
@@ -44,7 +44,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="screen">
-      <mat-toolbar color="accent">
+      <mat-toolbar color="accent" (contextmenu)="onRightClickSupress($event)">
         <div class="back">
           <mat-icon (click)="onbackClick()" *ngIf="back">arrow_back</mat-icon>
         </div>

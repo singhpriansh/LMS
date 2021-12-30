@@ -77,7 +77,7 @@ export class DirectoryComponent implements OnInit,OnDestroy {
       this.dir.setloc('/shared','/');
       this.path = "Shared";
     }else {
-      this.dir.setloc('/trash','');
+      this.dir.setloc('/trash','/');
       this.path = "Trash";
     }
   }
@@ -101,10 +101,11 @@ export class DirectoryComponent implements OnInit,OnDestroy {
     })
   }
 
-  onRightClick(e: MouseEvent){
+  onRightClickSupress(e: MouseEvent) {
     e.preventDefault();
+    this.dir.hide_menu();
   }
-
+  
   onclick() {
     this.dir.hide_menu();
   }

@@ -43,15 +43,24 @@ export class MenuComponent implements OnInit, OnDestroy {
     });
   }
 
-  hideMenu(){
+  hideMenu() {
     this.contextMenu.nativeElement.style.display = "none";
   }
 
-  download(){
+  download() {
     this.storserv.download(this.menudata.location,this.menudata.object.name)
     .subscribe(file => {
       saveAs(file,this.menudata.object.name);
     });
+  }
+
+  cut() {
+    this.dir.setfile(this.menudata.location,this.menudata.object.name);
+  }
+
+  paste() {
+    console.log(this.dir.getmarkedfile());
+    console.log(this.menudata.location,this.menudata.object.name);
   }
   
   delete() {

@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
+import { location } from "../../models/Storage.model";
 
 // @Injectable({providedIn:DirectoryModule})
 export class DirectoryService {
   private iconListener = new Subject<string>();
-  private location = new Subject<{loc:string,path:string}>();
+  private location = new Subject<location>();
   private hidemenu = new Subject<boolean>();
+  private file!: {location:location,object:string};
 
   constructor(){}
 
@@ -16,6 +18,14 @@ export class DirectoryService {
 
   getIcons() {
     return this.iconListener;
+  }
+
+  setfile(location:location,object:string){
+    this.file={location,object};
+  }
+
+  getmarkedfile(){
+    return this.file;
   }
 
   setloc(loc:string,path:string){

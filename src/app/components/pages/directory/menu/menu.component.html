@@ -1,6 +1,6 @@
 <div #contextMenu class="context-menu">
   <div class="menu">
-    <li >
+    <li (click)="cut()">
       <a ><i aria-hidden="true">
         <mat-icon>content_cut</mat-icon></i> Cut
       </a>
@@ -10,7 +10,7 @@
         <mat-icon>content_copy</mat-icon></i> Copy
       </a>
     </li>
-    <li >
+    <li (click)="paste()">
       <a ><i aria-hidden="true">
         <mat-icon>content_paste</mat-icon></i> Paste
       </a>
