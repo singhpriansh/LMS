@@ -100,7 +100,6 @@ export class DirectoryComponent implements OnInit,OnDestroy {
 
   onRightClickSupress(e: MouseEvent) {
     e.preventDefault();
-    this.dir.hide_menu();
   }
   
   onclick() {

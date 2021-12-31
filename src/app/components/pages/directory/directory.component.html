@@ -1,5 +1,5 @@
-<mat-sidenav-container (click)="onclick()">
-  <mat-sidenav (contextmenu)="onRightClickSupress($event)"  mode="side" #sidenav opened>
+<mat-sidenav-container (contextmenu)="onRightClickSupress($event)" (click)="onclick()">
+  <mat-sidenav mode="side" #sidenav opened>
     <mat-toolbar color="accent">
       <h2>Storage</h2>
     </mat-toolbar>
@@ -48,7 +48,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="screen">
-      <mat-toolbar color="accent" (contextmenu)="onRightClickSupress($event)">
+      <mat-toolbar color="accent">
         <div class="back">
           <button mat-flat-button *ngIf="back" (click)="onbackClick()">
             <mat-icon>arrow_back</mat-icon>
@@ -57,8 +57,12 @@
         </div>
         <div class="path">{{path}}</div>
         <div class="tool">
-          <mat-icon (click)="onviewClick()" *ngIf="view == 'grid'">view_list</mat-icon>
-          <mat-icon (click)="onviewClick()" *ngIf="view == 'list'">view_comfy</mat-icon>
+          <button mat-flat-button *ngIf="view == 'grid'" (click)="onviewClick()">
+            <mat-icon>view_list</mat-icon>
+          </button>
+          <button mat-flat-button *ngIf="view == 'list'" (click)="onviewClick()">
+            <mat-icon>view_comfy</mat-icon>
+          </button>
         </div>
       </mat-toolbar>
       <mat-divider></mat-divider>

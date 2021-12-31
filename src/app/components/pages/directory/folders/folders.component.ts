@@ -99,7 +99,6 @@ export class FoldersComponent implements OnInit, OnDestroy {
   }
 
   onRightClick(e:MouseEvent,item:object) {
-    e.preventDefault();
     if(Object.keys(item).length === 0 && item.constructor === Object){
       if(this.dirmenu){
         this.rc.setdata({

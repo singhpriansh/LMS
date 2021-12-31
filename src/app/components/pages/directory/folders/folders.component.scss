@@ -21,12 +21,12 @@ mat-card {
   position: absolute;
   width: 100%;
   // border: 2px solid black;
-  height: calc(100% - 55px);
+  height: calc(100% - 47px);
   overflow: auto;
 }
 
 .one_screen {
-  height: calc(100% - 250px);
+  height: calc(100% - 253px);
 }
 
 div.info {
@@ -51,11 +51,20 @@ div.info {
   @media only screen and (max-width: 1097px) {
     width: 40%;
   }
-  @media only screen and (max-width: 1024px) {
-    width: 36%;
+  @media only screen and (max-width: 1020px) {
+    width: 38%;
   }
-  @media only screen and (max-width: 800px) {
-    width: 34%;
+  @media only screen and (max-width: 900px) {
+    width: 37%;
+  }
+  @media only screen and (max-width: 850px) {
+    width: 35%;
+  }
+  @media only screen and (max-width: 760px) {
+    width: 33%;
+  }
+  @media only screen and (max-width: 700px) {
+    width: 32%;
   }
   @media only screen and (max-width: 670px) {
     width: 75%;
@@ -108,7 +117,6 @@ div.info {
   margin-right:20px;
 }
 
-
 .list mat-card {
   flex:auto;
   height: 1.9rem;
@@ -139,6 +147,10 @@ div.info {
       display: none;
     }
   }
+}
+
+.empty {
+  margin: 0 3rem 0 2rem;
 }
 
 .folder {
@@ -200,7 +212,6 @@ ul.PDF {
   height: 100px;
   background-repeat: no-repeat;
 }
-
 
 .info .folder,
 .info .DOC,

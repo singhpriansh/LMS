@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@ang
 import { Subscription } from 'rxjs';
 import { RightClickService } from 'src/app/components/auth/services/click.service';
 import { StorageService } from 'src/app/components/auth/services/storage.service';
-import { menudata } from 'src/app/components/models/Storage.model';
+import { default_filclip, fileclip, menudata } from 'src/app/components/models/Storage.model';
 import { DirectoryService } from '../directory.service';
 import { saveAs } from 'file-saver';
 
@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   menudata!: menudata;
 
   type:string='';
+  markedfile:fileclip = default_filclip;
 
   private menuSubs!: Subscription;
   private menudataSubs!: Subscription;
@@ -35,6 +36,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     });
     this.menudataSubs = this.rc.get()
     .subscribe(data => {
+      this.markedfile = this.dir.getmarkedfile();
       this.menudata = data;
       this.contextMenu.nativeElement.style.display = "block";
       if(window.innerWidth-data.e.pageX < 210){
@@ -65,18 +67,24 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   cut() {
-    console.log(this.menudata.object)
-    // this.dir.setfile(this.menudata.location,this.menudata.object.name);
+    this.dir.setfile({
+      cliptype:'cut',
+      location:this.menudata.location,
+      object:this.menudata.object
+    });
   }
 
   copy() {
-    console.log(this.menudata.object)
-    // this.dir.setfile(this.menudata.location,this.menudata.object.name);
+    this.dir.setfile({
+      cliptype:'copy',
+      location:this.menudata.location,
+      object:this.menudata.object
+    });
   }
 
   paste() {
-    console.log(this.dir.getmarkedfile());
-    console.log(this.menudata.location,this.menudata.object.name);
+    console.log(this.markedfile);
+    console.log(this.menudata);
   }
   
   delete() {

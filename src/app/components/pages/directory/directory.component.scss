@@ -75,18 +75,12 @@ a {
   display: flex;
   padding-left: 10px;
   margin:auto 30px auto auto;
-  @media only screen and (max-width: 1630px) {
-    margin:auto 50px auto auto;
-  }
   @media only screen and (max-width: 800px) {
     margin:auto 20px auto auto;
   }
 }
 
-.tool mat-icon {
-  cursor: pointer;
-}
-
+.tool button,
 .back button {
   color:rgb(82, 0, 158);
   cursor: pointer;

@@ -13,11 +13,9 @@
 </div>
 <mat-divider></mat-divider>
 <div class="div {{one_screen}}" (contextmenu)="onRightClick($event,{})">
-  <div class="list" *ngIf="this.content.files.length==0 && this.content.folders.length==0">
-    <div class="list">
-      <br>
-      <mat-card>The location is empty</mat-card>
-    </div>
+  <div class="empty" *ngIf="this.content.files.length==0 && this.content.folders.length==0">
+    <br>
+    <mat-card>The location is empty</mat-card>
   </div>
   <div *ngIf="iconview == 'grid'" class="items">
     <mat-card *ngFor="let folder of this.content.folders"

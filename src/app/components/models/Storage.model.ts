@@ -13,3 +13,18 @@ export interface menudata {
   object: any;
   location: location;
 }
+
+export interface fileclip {
+  cliptype:string;
+  location:location;
+  object:string;
+}
+
+export const default_filclip:fileclip = {
+  cliptype:'',
+  location: {
+    loc: '',
+    path: ''
+  },
+  object:''
+};
