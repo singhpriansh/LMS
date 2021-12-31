@@ -1,5 +1,5 @@
 mat-sidenav-container {
-  height: 100%;
+  height: calc(100% - 50px);
 }
 
 mat-sidenav-container,
@@ -10,6 +10,7 @@ mat-toolbar {
 
 mat-toolbar {
   height: 45px;
+  cursor:default;
 }
 
 mat-sidenav {
@@ -42,7 +43,7 @@ a {
   background-color:rgba(133, 255, 143, 0.3);
 }
 
-.mat-flat-button{
+.mat-flat-button {
   background-color:rgba(133, 255, 143, 0.6);
   border-radius: 20px !important;
 }
@@ -61,12 +62,18 @@ a {
 }
 
 .back {
+  margin-right: 10px;
   display: flex;
-  margin:auto 20px auto 10px;
+}
+
+.path {
+  width: 100%;
+  overflow: auto;
 }
 
 .tool {
   display: flex;
+  padding-left: 10px;
   margin:auto 30px auto auto;
   @media only screen and (max-width: 1630px) {
     margin:auto 50px auto auto;
@@ -76,7 +83,17 @@ a {
   }
 }
 
-.tool mat-icon,
-.back mat-icon {
+.tool mat-icon {
   cursor: pointer;
+}
+
+.back button {
+  color:rgb(82, 0, 158);
+  cursor: pointer;
+  min-width: 36px;
+  background-color: transparent;
+  align-items: center;
+  mat-icon {
+    width: 20px;
+  }
 }

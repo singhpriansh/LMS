@@ -1,18 +1,18 @@
-<div class="div" (contextmenu)="onRightClick($event,{})">
-  <div *ngIf="this.url != '/storage/trash' && this.location.path == '/'"
-    class="recents">
-    <mat-card *ngFor="let no of tiles">
-      <!-- (contextmenu)="onRightClick($event,{no:no})"> -->
-      <div class="cache">
-      </div>
-      <div class="info">
-        <div class="folder"></div>
-        <div class="list_file">Folder</div>
-        <div class="size">500kb</div>
-      </div>
-    </mat-card>
-  </div>
-  <mat-divider></mat-divider>
+<div *ngIf="this.url != '/storage/trash' && this.location.path == '/'"
+  class="recents">
+  <mat-card *ngFor="let no of tiles">
+    <!-- (contextmenu)="onRightClick($event,{no:no})"> -->
+    <div class="cache">
+    </div>
+    <div class="info">
+      <div class="folder"></div>
+      <div class="list_file">Folder</div>
+      <div class="size">500kb</div>
+    </div>
+  </mat-card>
+</div>
+<mat-divider></mat-divider>
+<div class="div {{one_screen}}" (contextmenu)="onRightClick($event,{})">
   <div class="list" *ngIf="this.content.files.length==0 && this.content.folders.length==0">
     <div class="list">
       <br>
@@ -33,7 +33,6 @@
     </mat-card>
   </div>
   <div *ngIf="iconview == 'list'" class="list">
-    <br>
     <mat-list>
       <mat-list-item *ngFor="let folder of this.content.folders">
         <mat-card (click)="onfolderclick(folder.name)"

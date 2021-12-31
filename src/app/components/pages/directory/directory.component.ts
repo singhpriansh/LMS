@@ -33,14 +33,11 @@ export class DirectoryComponent implements OnInit,OnDestroy {
         }else {
           this.path = "Trash";
         }
+        this.back = false;
         let totpath = res.path.split('/');
-        for(let i=0;i<totpath.length-1;i++){
-          if(totpath[i]==''){
-            this.path += " /";
-          }else{
-            this.back = true;
-            this.path += " "+totpath[i];
-          }
+        for(let i=1;i<totpath.length-1;i++){
+          this.back = true;
+          this.path += " / "+totpath[i];
         }
       })
     }
@@ -85,8 +82,8 @@ export class DirectoryComponent implements OnInit,OnDestroy {
   onbackClick() {
     let totpath = this.location.path.split('/');
     this.location.path="/";
-    for(let i=0;i<totpath.length-2;i++){
-      this.location.path += totpath[i];
+    for(let i=1;i<totpath.length-2;i++){
+      this.location.path += totpath[i]+'/';
     }
     this.dir.setloc(this.location.loc,this.location.path);
   }

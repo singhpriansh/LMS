@@ -12,7 +12,7 @@ mat-icon {
 .menu {
   list-style: none;
   display: flex;
-  width: 150px;
+  width: 200px;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
@@ -20,7 +20,6 @@ mat-icon {
   padding: 10px 0;
   mat-divider {
     align-self: center;
-    width: 90%;
     height: 0.5px;
     background-color: rgba(255, 255, 255, 0.171);
   }
@@ -48,7 +47,7 @@ mat-icon {
 }
 
 .menu li a:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.08);
   color: rgb(214, 166, 253);
 }
 
@@ -58,6 +57,11 @@ mat-icon {
 
 .menu li.trash a:hover {
   color: rgb(255, 100, 100);
+}
+
+.menu li.rename a:hover ,
+.menu li.new a:hover {
+  color: rgb(133, 251, 255);
 }
 
 .menu li.share a:hover {

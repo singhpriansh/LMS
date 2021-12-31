@@ -1,11 +1,11 @@
 <div #contextMenu class="context-menu">
-  <div class="menu">
-    <li (click)="cut()">
+  <ul class="menu">
+    <li *ngIf="type != 'dir'" (click)="cut()">
       <a ><i aria-hidden="true">
         <mat-icon>content_cut</mat-icon></i> Cut
       </a>
     </li>
-    <li >
+    <li *ngIf="type != 'dir'" (click)="copy()">
       <a ><i aria-hidden="true">
         <mat-icon>content_copy</mat-icon></i> Copy
       </a>
@@ -15,28 +15,39 @@
         <mat-icon>content_paste</mat-icon></i> Paste
       </a>
     </li>
-    <mat-divider></mat-divider>
     <li >
+      <mat-divider></mat-divider>
+    </li>
+    <li *ngIf="type != 'dir'" class="rename">
       <a ><i aria-hidden="true">
         <mat-icon>drive_file_rename_outline</mat-icon></i> Rename
       </a>
     </li>
-    <mat-divider></mat-divider>
-    <li *ngIf="folder != 'folder'" (click)="download()">
+    <li *ngIf="type == 'dir'" class="new">
+      <a ><i aria-hidden="true">
+        <mat-icon>create_new_folder</mat-icon></i> New folder
+      </a>
+    </li>
+    <li *ngIf="type != 'dir'">
+      <mat-divider></mat-divider>
+    </li>
+    <li *ngIf="type !== 'folder' && type !== 'dir'" (click)="download()">
       <a ><i aria-hidden="true">
         <mat-icon>file_download</mat-icon></i> Download
       </a>
     </li>
-    <li class="share">
+    <li *ngIf="type != 'dir'" class="share">
       <a ><i aria-hidden="true">
         <mat-icon>share</mat-icon></i> Share
       </a>
     </li>
-    <mat-divider></mat-divider>
-    <li class="trash" (click)="delete()">
+    <li *ngIf="type != 'dir'">
+      <mat-divider></mat-divider>
+    </li>
+    <li *ngIf="type != 'dir'" class="trash" (click)="delete()">
       <a ><i aria-hidden="true">
         <mat-icon>delete</mat-icon></i> Delete
       </a>
     </li>
-  </div>
+  </ul>
 </div>

@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   menudata!: menudata;
 
-  folder:string='';
+  type:string='';
 
   private menuSubs!: Subscription;
   private menudataSubs!: Subscription;
@@ -36,10 +36,20 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menudataSubs = this.rc.get()
     .subscribe(data => {
       this.menudata = data;
-      this.folder = data.object.type;
-      this.contextMenu.nativeElement.style.left = data.e.pageX-190 + "px";
-      this.contextMenu.nativeElement.style.top = data.e.pageY-80 + "px";
       this.contextMenu.nativeElement.style.display = "block";
+      if(window.innerWidth-data.e.pageX < 210){
+        this.contextMenu.nativeElement.style.left = data.e.pageX-400 + "px";
+      }else{
+        this.contextMenu.nativeElement.style.left = data.e.pageX-196 + "px";
+      }
+      if(window.innerHeight-data.e.pageY < 200){
+        this.contextMenu.nativeElement.style.top = data.e.pageY-270 + "px";
+      }else{
+        this.contextMenu.nativeElement.style.top = data.e.pageY-100 + "px";
+      }
+      if(data.object){
+        this.type = data.object.type;
+      }
     });
   }
 
@@ -55,7 +65,13 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   cut() {
-    this.dir.setfile(this.menudata.location,this.menudata.object.name);
+    console.log(this.menudata.object)
+    // this.dir.setfile(this.menudata.location,this.menudata.object.name);
+  }
+
+  copy() {
+    console.log(this.menudata.object)
+    // this.dir.setfile(this.menudata.location,this.menudata.object.name);
   }
 
   paste() {

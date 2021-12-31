@@ -14,6 +14,19 @@ mat-divider {
 
 mat-card {
   text-align: center;
+  cursor:default;
+}
+
+.div {
+  position: absolute;
+  width: 100%;
+  // border: 2px solid black;
+  height: calc(100% - 55px);
+  overflow: auto;
+}
+
+.one_screen {
+  height: calc(100% - 250px);
 }
 
 div.info {
@@ -27,7 +40,7 @@ div.info {
 .recents mat-card {
   float: left;
   flex: auto;
-  margin: 2rem 0 2rem 2rem;
+  margin: 1rem 0 1rem 2rem;
   width: 20%;
   @media only screen and (max-width: 1740px) {
     width: 19%;
@@ -58,12 +71,13 @@ div.info {
 }
 
 .items {
-  margin-top: 0rem;
   margin: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .list {
-  margin: 0.4rem;
+  margin: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .items mat-card {
@@ -197,10 +211,4 @@ ul.PDF {
   width: 30px;
   height: 25px;
   float: left;
-}
-
-.div {
-  position: absolute;
-  width: 100%;
-  height: calc(100% - 45px);
 }

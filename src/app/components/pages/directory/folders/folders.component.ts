@@ -13,6 +13,7 @@ import { DirectoryService } from '../directory.service';
 })
 
 export class FoldersComponent implements OnInit, OnDestroy {
+  one_screen:string='';
   iconview:string="grid";
   url!: string;
   location!: location;
@@ -22,6 +23,8 @@ export class FoldersComponent implements OnInit, OnDestroy {
     folders: []
   };
 
+  dirmenu:boolean = true;
+
   private iconStatSub!: Subscription;
   private locSubs!: Subscription;
 
@@ -29,8 +32,17 @@ export class FoldersComponent implements OnInit, OnDestroy {
     private storserv: StorageService,
     private rc: RightClickService,
     private router: Router) {
+      this.iconStatSub = this.dir.getIcons()
+      .subscribe(icon => {
+        this.iconview = icon;
+      });
       this.locSubs = this.dir.getloc()
       .subscribe(response => {
+        if(response.loc != 'trash' && response.path == '/'){
+          this.one_screen = "one_screen";
+        }else{
+          this.one_screen = '';
+        }
         this.location = {
           loc:response.loc,
           path:response.path
@@ -44,6 +56,7 @@ export class FoldersComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
+    this.dir.hide_menu();
     if(window.innerWidth>1097){
       if(window.innerWidth>1500){
         this.tiles = [0,1,2,3];
@@ -81,10 +94,6 @@ export class FoldersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.iconStatSub = this.dir.getIcons()
-    .subscribe(icon => {
-      this.iconview = icon;
-    });
     this.onResize();
     this.url = this.router.url;
   }
@@ -92,9 +101,19 @@ export class FoldersComponent implements OnInit, OnDestroy {
   onRightClick(e:MouseEvent,item:object) {
     e.preventDefault();
     if(Object.keys(item).length === 0 && item.constructor === Object){
-      this.dir.hide_menu();
+      if(this.dirmenu){
+        this.rc.setdata({
+          e:e,
+          object:{
+            type:'dir',
+          },
+          location:this.location
+        });
+      }else{
+        this.dirmenu = true;
+      }
     }else{
-      console.log(item);
+      this.dirmenu = false;
       this.rc.setdata({
         e:e,
         object:item,
