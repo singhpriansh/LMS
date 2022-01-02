@@ -5,8 +5,8 @@
     <div class="cache">
     </div>
     <div class="info">
-      <div class="folder"></div>
-      <div class="list_file">Folder</div>
+      <div class="DOCUMENT"></div>
+      <div class="list_file">Document</div>
       <div class="size">500kb</div>
     </div>
   </mat-card>
@@ -19,7 +19,7 @@
   </div>
   <div *ngIf="iconview == 'grid'" class="items">
     <mat-card *ngFor="let folder of this.content.folders"
-      (click)="onfolderclick(folder.name)"
+      (dblclick)="onfolderclick(folder.name)"
       (contextmenu)="onRightClick($event,folder)">
       <div class="folder"></div>
       <div class="name">{{ folder.name }}</div>
@@ -33,7 +33,7 @@
   <div *ngIf="iconview == 'list'" class="list">
     <mat-list>
       <mat-list-item *ngFor="let folder of this.content.folders">
-        <mat-card (click)="onfolderclick(folder.name)"
+        <mat-card (dblclick)="onfolderclick(folder.name)"
           (contextmenu)="onRightClick($event,folder)">
           <ul class="folder"></ul>
           <div class="file">{{ folder.name }}</div>

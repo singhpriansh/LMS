@@ -23,6 +23,10 @@ export class DirectoryService {
     this.file = JSON.parse(JSON.stringify(fileclip));
   }
 
+  getcliptype():string {
+    return this.file.cliptype;
+  }
+
   getmarkedfile() {
     const file = this.file;
     if(this.file.cliptype === 'cut'){

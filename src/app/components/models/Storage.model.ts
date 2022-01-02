@@ -17,7 +17,7 @@ export interface menudata {
 export interface fileclip {
   cliptype:string;
   location:location;
-  object:string;
+  object:string[];
 }
 
 export const default_filclip:fileclip = {
@@ -26,5 +26,5 @@ export const default_filclip:fileclip = {
     loc: '',
     path: ''
   },
-  object:''
+  object:[]
 };

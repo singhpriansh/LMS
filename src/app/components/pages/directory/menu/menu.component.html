@@ -1,5 +1,10 @@
 <div #contextMenu class="context-menu">
-  <ul class="menu">
+  <ul class="menu" *ngIf="this.location == '/root'">
+    <li *ngIf="type !== 'dir' && type !== 'folder'" (click)="open()">
+      <a ><i aria-hidden="true">
+        <mat-icon>open_in_new</mat-icon></i> Open
+      </a>
+    </li>
     <li *ngIf="type !== 'dir'" (click)="cut()">
       <a ><i aria-hidden="true">
         <mat-icon>content_cut</mat-icon></i> Cut
@@ -10,20 +15,20 @@
         <mat-icon>content_copy</mat-icon></i> Copy
       </a>
     </li>
-    <li *ngIf="markedfile.cliptype !== ''" (click)="paste()">
+    <li *ngIf="cliptype !== '' && (type === 'dir' || type === 'folder')" (click)="paste()">
       <a ><i aria-hidden="true">
         <mat-icon>content_paste</mat-icon></i> Paste
       </a>
     </li>
-    <li >
+    <li  *ngIf="cliptype !== ''" >
       <mat-divider></mat-divider>
     </li>
-    <li *ngIf="type !== 'dir'" class="rename">
+    <li *ngIf="type !== 'dir'" class="rename" (click)="rename()">
       <a ><i aria-hidden="true">
         <mat-icon>drive_file_rename_outline</mat-icon></i> Rename
       </a>
     </li>
-    <li *ngIf="type === 'dir'" class="new">
+    <li *ngIf="type === 'dir'" class="new" (click)="newfolder()">
       <a ><i aria-hidden="true">
         <mat-icon>create_new_folder</mat-icon></i> New folder
       </a>
@@ -44,6 +49,25 @@
     <li *ngIf="type !== 'dir'">
       <mat-divider></mat-divider>
     </li>
+    <li *ngIf="type !== 'dir'" class="trash" (click)="delete()">
+      <a ><i aria-hidden="true">
+        <mat-icon>delete</mat-icon></i> Delete
+      </a>
+    </li>
+  </ul>
+  <ul class="menu" *ngIf="this.location == '/trash'">
+    <li *ngIf="type !== 'dir'" class="trash" (click)="delete()">
+      <a ><i aria-hidden="true">
+        <mat-icon>delete</mat-icon></i> Delete
+      </a>
+    </li>
+    <li *ngIf="type === 'dir'" (click)="emptybin()">
+      <a ><i aria-hidden="true">
+        <mat-icon>delete_outline</mat-icon></i> Empty trash
+      </a>
+    </li>
+  </ul>
+  <ul class="menu" *ngIf="this.location == '/shared'">
     <li *ngIf="type !== 'dir'" class="trash" (click)="delete()">
       <a ><i aria-hidden="true">
         <mat-icon>delete</mat-icon></i> Delete

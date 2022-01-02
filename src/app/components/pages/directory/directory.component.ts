@@ -49,6 +49,7 @@ export class DirectoryComponent implements OnInit,OnDestroy {
 
   fileupload(event: any) {
     const file = (event.target as HTMLInputElement).files?.item(0);
+    console.log((event.target as HTMLInputElement).files);
     if(file){
       const files = new FormData();
       let detail = JSON.stringify({
@@ -101,8 +102,8 @@ export class DirectoryComponent implements OnInit,OnDestroy {
   onRightClickSupress(e: MouseEvent) {
     e.preventDefault();
   }
-  
-  onclick() {
+
+  hide_menu(){
     this.dir.hide_menu();
   }
 

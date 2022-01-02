@@ -15,15 +15,23 @@ exports.Initialise_dir = (id) => {
   this.Createfolder(drive+id+"/root","/media");
 }
 
-exports.Movefiles = (from,to) => {
-  fs.rename(from, to, err => {
-    if(err){
-      console.log("Error occured moving file to drive");
+exports.Movefile = (from,to) => {
+  fs.rename(from, to, (err) => {
+    if(err) {
+      console.log("Error occured moving file",err);
     }
   })
 }
 
-exports.Deletefile = (file,res) => {
+exports.Copyfile = (from,to) => {
+  fs.copyFile(from, to, (err) => {
+    if(err) {
+      console.log("Error occured coping file",err);
+    }
+  })
+}
+
+exports.Deletefile = (file) => {
   fs.unlink(file, err => {
     if(err){
       console.log("Error occured removing file",err);
@@ -31,25 +39,16 @@ exports.Deletefile = (file,res) => {
       console.log(file+ " deleted");
     }
   });
-  return res.status(201).json({
-    message: "File deleted"
-  });
 }
 
-exports.Deletefiles = (files,res) => {
-  files.forEach(file => {
-    fs.unlink(file, err => {
-      if(err){
-        console.log("Error occured removing file");
-      }else{
-        console.log(file+ " deleted");
-      }
-    })
-  });
-  return res.status(201).json({
-    message: "Files deleted"
-  });
+exports.Deletefolder = (folder) => {
+  try {
+    fs.rmSync(folder, { recursive: true, force: true });// delete folder
+  } catch (err) {
+    console.log("Error occured removing file",err);
+  }
 }
+
 
 exports.Createdrive = (id) => {
   fs.mkdir(path.join(drive, id),
@@ -91,7 +90,7 @@ exports.Viewfolder = (req,res) => {
       message:"No Folders here",
       content: content
     })
-  }else{
+  } else {
     if(req.body.loc != '/root' && req.body.loc != '/trash'){
       return res.status(404).json({
         message: "Resource not found"
@@ -116,33 +115,104 @@ exports.Viewfolder = (req,res) => {
   }
 }
 
+exports.New = (req,res) => {
+  if(req.body.loc !== '/root'){
+    return res.status(403).json({
+      message : "Action cannot be done"
+    })
+  }
+  const path = drive + req.userData.id + req.body.loc
+    + req.body.path;
+  // console.log(path);
+  this.Createfolder(path,req.body.name)
+  return res.status(201).json({
+    message:"Operation done"
+  })
+}
+
+exports.Rename = (req,res) => {
+  if(req.body.loc !== '/root' || req.body.initial_name == req.body.final_name){
+    return res.status(403).json({
+      message : "Action cannot be done"
+    })
+  }
+  const initial_loc = drive + req.userData.id + req.body.loc
+    + req.body.path + req.body.initial_name;
+  const final_loc = drive + req.userData.id + req.body.loc
+    + req.body.path + req.body.final_name;
+  // console.log(initial_loc,final_loc);
+  this.Movefile(initial_loc, final_loc);
+  return res.status(200).json({
+    message:"Operation done"
+  })
+}
+
 exports.Move = (req,res) => {
   if(req.body.from.loc == req.body.to.loc &&
      req.body.from.path == req.body.to.path){
-    return res.status(200).json({
+    return res.status(403).json({
       message : "Action cannot be done"
     })
   }
   if(req.body.from.loc == '/shared'){
-    return res.status(200).json({
+    return res.status(400).json({
       message: "Cannot be shared now"
     })
   }
   if(req.body.to.loc == '/shared'){
-    return res.status(200).json({
+    return res.status(400).json({
       message: "Cannot be move to drive"
     })
-  }else if(req.body.to.loc == 'delete'){
-    const initial = drive + req.userData.id + req.body.from.loc
-    + req.body.from.path + req.body.from.item;
-    return this.Deletefile(initial,res)
+  } else if(req.body.to.loc == 'delete'){
+    if(req.body.items){
+      req.body.items.forEach(item => {
+        const location = drive + req.userData.id + req.body.from.loc
+        + req.body.from.path + item;
+        if(fs.statSync(location).isDirectory()){
+          console.log("perma del",location)
+          this.Deletefolder(location);
+        } else {
+          this.Deletefile(location);
+        }
+      });
+    } else {
+      if(req.body.from.loc === "/trash"){
+        this.Deletefolder(drive + req.userData.id + req.body.from.loc);
+        this.Createfolder(drive + req.userData.id, "/trash");
+      }
+    }
+  }else{
+    req.body.items.forEach(item => {
+      // console.log(item)
+      const initial_loc = drive + req.userData.id + req.body.from.loc
+       + req.body.from.path + item;
+      const final_loc = drive + req.userData.id + req.body.to.loc
+       + req.body.to.path + item;
+      console.log(initial_loc,final_loc)
+      this.Movefile(initial_loc, final_loc);
+    })
   }
-  const initial = drive + req.userData.id + req.body.from.loc
-   + req.body.from.path + req.body.from.item;
-  const toloc = drive + req.userData.id + req.body.to.loc
-   + req.body.to.path + req.body.to.item;
-  this.Movefiles(initial, toloc);
   return res.status(200).json({
-    message:"File moved"
+    message:"Operation done"
+  })
+}
+
+exports.Copy = (req,res) => {
+  if(req.body.from.loc !== '/root' || req.body.to.loc !== '/root'){
+    return res.status(403).json({
+      message: "Operation cannot be performed"
+    })
+  }
+  req.body.items.forEach(item => {
+    // console.log(item)
+    const initial_loc = drive + req.userData.id + req.body.from.loc
+     + req.body.from.path + item;
+    const final_loc = drive + req.userData.id + req.body.to.loc
+     + req.body.to.path + item;
+    // console.log(initial_loc,final_loc)
+    this.Copyfile(initial_loc, final_loc);
+  })
+  return res.status(200).json({
+    message:"Operation done"
   })
 }

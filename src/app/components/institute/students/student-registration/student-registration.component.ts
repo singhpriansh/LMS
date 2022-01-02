@@ -13,6 +13,7 @@ export interface Selection {
   templateUrl: './student-registration.component.html',
   styleUrls: ['./student-registration.component.scss']
 })
+
 export class StudentRegistrationComponent implements OnInit {
   isLoading = false;
   hide1 = true;
@@ -37,6 +38,7 @@ export class StudentRegistrationComponent implements OnInit {
     {value: 'Electrical Engineering', viewValue: 'EE'},
     {value: 'Mechanical Engineering', viewValue: 'Mech'},
   ];
+
   constructor(private studentservice: StudentService) { }
 
   ngOnInit(): void {

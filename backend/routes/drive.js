@@ -6,8 +6,8 @@ const drive = require("../controllers/filehandling");
 const dl = require ("../controllers/filedownloader");
 const multer = require("../middleware/multerfile");
 
-router.get("",(req,res,next) => {
-  res.send("storage")
+router.get("",(req,res) => {
+  return res.send("storage")
 });
 
 router.post("",auth_check,drive.Viewfolder);
@@ -15,6 +15,12 @@ router.post("",auth_check,drive.Viewfolder);
 router.post("/download",auth_check,dl.Download);
 
 router.post("/move",auth_check,drive.Move);
+
+router.post("/copy",auth_check,drive.Copy);
+
+router.post("/rename",auth_check,drive.Rename);
+
+router.post("/new",auth_check,drive.New);
 
 router.put("/upload",auth_check,multer,(req,res) => {
   return res.status(201).json({

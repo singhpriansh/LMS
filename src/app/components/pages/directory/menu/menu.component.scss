@@ -2,6 +2,9 @@
 .context-menu {
   display: none;
   position: absolute;
+  ul {
+    margin: 0;
+  }
 }
 
 mat-icon {

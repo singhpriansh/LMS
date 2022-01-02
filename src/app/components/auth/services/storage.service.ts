@@ -21,44 +21,90 @@ export class StorageService {
   }
 
   download(location:location,item:string){
-    location = Object.assign(location,{item:item});
-    
-    return this.http.post (BACK_URL + "storage/download",location,{
+    const object = {
+      location: location,
+      item: item
+    };
+    return this.http.post (BACK_URL + "storage/download",object,{
       responseType : 'blob'
     })
   }
 
-  move(initloc:location,finloc:location,item:string){
-    initloc = Object.assign(initloc,{ item:item });
-    finloc = Object.assign(finloc,{ item:item });
+  copy(initloc:location,finloc:location,items:string[]){
+    initloc = Object.assign(initloc);
+    finloc = Object.assign(finloc);
     const object = {
       from:initloc,
-      to: finloc
+      to: finloc,
+      items: items
+    }
+    return this.http.post(BACK_URL + "storage/copy",object);
+  }
+
+  move(initloc:location,finloc:location,items:string[]){
+    initloc = Object.assign(initloc);
+    finloc = Object.assign(finloc);
+    const object = {
+      from:initloc,
+      to: finloc,
+      items: items
     }
     return this.http.post(BACK_URL + "storage/move",object);
   }
 
-  delete(location:location,item:string){
+  rename(location:location,initial_name:string,final_name:string){
+    const object = {
+      loc:location.loc,
+      path:location.path,
+      initial_name:initial_name,
+      final_name:final_name
+    }
+    return this.http.post(BACK_URL + "storage/rename",object);
+  }
+
+  new(location:location,name:string){
+    const object = {
+      loc:location.loc,
+      path:location.path,
+      name:name,
+    }
+    return this.http.post(BACK_URL + "storage/new",object);
+  }
+
+  delete(location:location,items:string[]){
     let object;
     if(location.loc == '/trash'){
-      location = Object.assign(location,{item:item});
       object = {
         from: location,
         to: {
           loc: 'delete',
-        }
+        },
+        items: items
       }
     }else{
-      location = Object.assign(location,{item:item});
       object = {
         from: location,
         to: {
           loc: '/trash',
           path:'/',
-          item:item
-        }
+        },
+        items:items
       }
     }
     return this.http.post(BACK_URL + "storage/move",object);
+  }
+
+  emptybin() {
+    console.log("yup")
+    const object = {
+      from: {
+        loc: '/trash',
+        path:'/',
+      },
+      to: {
+        loc: 'delete',
+      }
+    }
+    return this.http.post(BACK_URL + "storage/move", object);
   }
 }

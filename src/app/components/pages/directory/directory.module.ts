@@ -8,17 +8,22 @@ import { DirectoryComponent } from "./directory.component";
 import { FoldersComponent } from "./folders/folders.component";
 import { MenuComponent } from "./menu/menu.component";
 
+import { RenameComponent } from "./menu/rename/rename.component";
+import { ReactiveFormsModule } from "@angular/forms";
+
 @NgModule ({
   declarations: [
     FoldersComponent,
     DirectoryComponent,
-    MenuComponent
+    MenuComponent,
+    RenameComponent,
   ],
   imports: [
-    AngularMaterialModule,
     CommonModule,
+    ReactiveFormsModule,
+    AngularMaterialModule,
     DirectoryRoutingModule,
-    RouterModule
+    RouterModule,
   ],
   providers:[DirectoryService]
 })
