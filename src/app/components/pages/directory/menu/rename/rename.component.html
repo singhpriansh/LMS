@@ -1,0 +1,21 @@
+<form [formGroup]="form" (submit)="rename()">
+  <mat-form-field>
+    <input matInput
+      formControlName="name"
+      type="text"
+      value={{this.data.name}}
+      placeholder={{this.data.type}}/>
+      <mat-error>
+          Enter a valid name..
+      </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button *ngIf="this.data.type === 'Rename'"
+    type="submit">
+    Rename
+  </button>
+  <button mat-raised-button *ngIf="this.data.type !== 'Rename'"
+    type="submit">
+    Create folder
+  </button>
+</form>

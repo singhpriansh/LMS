@@ -1,0 +1,225 @@
+mat-icon {
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+mat-list {
+  padding: 0;
+}
+
+mat-divider {
+  width: 100%;
+  clear: both;
+}
+
+mat-card {
+  text-align: center;
+  cursor:default;
+}
+
+.div {
+  position: absolute;
+  width: 100%;
+  // border: 2px solid black;
+  height: calc(100% - 47px);
+  overflow: auto;
+}
+
+.one_screen {
+  height: calc(100% - 253px);
+}
+
+div.info {
+  width: 100%;
+  flex:auto;
+  height: 2rem;
+  margin: 0 0 auto 0;
+  padding: 0;
+}
+
+.recents mat-card {
+  float: left;
+  flex: auto;
+  margin: 1rem 0 1rem 2rem;
+  width: 20%;
+  @media only screen and (max-width: 1740px) {
+    width: 19%;
+  }
+  @media only screen and (max-width: 1500px) {
+    width: 25%;
+  }
+  @media only screen and (max-width: 1097px) {
+    width: 40%;
+  }
+  @media only screen and (max-width: 1020px) {
+    width: 38%;
+  }
+  @media only screen and (max-width: 900px) {
+    width: 37%;
+  }
+  @media only screen and (max-width: 850px) {
+    width: 35%;
+  }
+  @media only screen and (max-width: 760px) {
+    width: 33%;
+  }
+  @media only screen and (max-width: 700px) {
+    width: 32%;
+  }
+  @media only screen and (max-width: 670px) {
+    width: 75%;
+  }
+  @media only screen and (max-width: 816px) and (min-width:668px){
+    .info .size {
+      display: none;
+    }
+  }
+  // @media only screen and (max-width: 630px) {
+  //   width: 75%;
+  // }
+}
+
+.items {
+  margin: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.list {
+  margin: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.items mat-card {
+  float: left;
+  flex: auto;
+  margin: 0.5rem;
+  width: 80px;
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.list_file {
+  float: left;
+  text-align: left;
+  width:100px;
+  height: 1.3rem;
+  overflow: hidden;
+  margin:5px;
+  padding-left: 5px;
+}
+
+.size {
+  float: right;
+  margin-top: 5px;
+  margin-right:20px;
+}
+
+.list mat-card {
+  flex:auto;
+  height: 1.9rem;
+  margin: 0.5rem;
+  padding: 5px;
+  width: 95%;
+  @media only screen and (max-width: 1024px) {
+    width: 90%;
+  }
+  .file {
+    float: left;
+    text-align: left;
+    height: 1.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin:5px;
+    padding: 0;
+    width:calc(100% - 300px);
+    @media only screen and (max-width: 750px) {
+      width:calc(100% - 140px);
+    }
+  }
+  .date {
+    float:right;
+    margin-top: 5px;
+    margin-right: 50px;
+    @media only screen and (max-width: 750px) {
+      display: none;
+    }
+  }
+}
+
+.empty {
+  margin: 0 3rem 0 2rem;
+}
+
+.folder {
+  background-image: url(../../../../assets/folder.svg);
+  background-repeat: no-repeat;
+}
+
+.MEDIA, .IMAGES {
+  background-image: url(../../../../assets/vlc.svg);
+  background-repeat: no-repeat;
+}
+
+.DOCUMENT {
+  background-image: url(../../../../assets/doc.svg);
+  background-repeat: no-repeat;
+}
+
+.PDF {
+  background-image: url(../../../../assets/pdf.svg);
+  background-repeat: no-repeat;
+}
+
+div.folder {
+  margin: auto;
+  width: 80px;
+  height: 80px;
+}
+
+div.MEDIA, div.IMAGES {
+  margin: auto;
+  width: 80px;
+  height: 80px;
+}
+
+div.DOCUMENT {
+  margin: auto;
+  width: 70px;
+  height: 80px;
+}
+
+div.PDF {
+  margin: auto;
+  width: 70px;
+  height: 80px;
+}
+
+ul.folder ,
+ul.MEDIA ,
+ul.IMAGES ,
+ul.DOCUMENT ,
+ul.PDF {
+  height: 30px;
+  margin-left: 5px;
+  float: left;
+}
+
+.cache {
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+}
+
+.info .folder,
+.info .DOCUMENT,
+.info .MEDIA,
+.info .PDF
+{
+  margin-top: 5px;
+  width: 30px;
+  height: 25px;
+  float: left;
+}

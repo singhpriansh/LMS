@@ -1,24 +1,65 @@
-<mat-grid-list cols="4">
+<mat-grid-list cols="7" rowHeight="100vh">
+  <mat-grid-tile colspan="3">
+    <div class="cards">
+      <mat-accordion multi="false" class="mat-accordion">
+        <mat-expansion-panel class="subject" *ngFor="let subject of subjects">
+          <mat-expansion-panel-header>
+            <h3>
+              <span>{{subject}}</span>
+            </h3>
+          </mat-expansion-panel-header>
+          <div>
+            <h3><span class="span_width">code:</span> BCE - 302</h3>
+            <h3><span class="span_width">instructor:</span> Mayank Agarwal</h3>
+            <h3><span class="span_width">current unit:</span> UNIT 3</h3>
+            <h3><span class="span_width">covered:</span> topic1 topic2</h3>
+            <h3><span class="span_width">remaining:</span> topic3 topic4</h3>
+          </div>
+          <app-graph id="{{subject}}"></app-graph>
+          <div>
+            <a mat-button class="syllabus"
+              (click)="syllabus()">
+              Syllabus
+            </a>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <div>
-      <mat-card class="items" *ngFor="let subject of subjects">
-        {{subject}}
+      <mat-card class="cards" *ngFor="let subject of subjects;let i = index">
+        <h2>{{subject}}</h2>
+        <h4>instructor: Suyash Bharadwaj</h4>
+        <mat-progress-bar mode="determinate" value="{{20 + 10*i}}"></mat-progress-bar>
+        <h5>Next class : Monday 11:00am</h5>
       </mat-card>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile colspan="1">
+  <mat-grid-tile colspan="2">
     <div>
-      <mat-card class="items" *ngFor="let subject of subjects">
-          {{subject}}
-          <h5>The information about the subject</h5>
-      </mat-card>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <div>
-      <mat-card class="items" *ngFor="let subject of subjects">
-          {{subject}}
-      </mat-card>
+      <a mat-button class="items"
+        (click)="calender()">
+        Calender
+      </a>
+      <a mat-button class="items"
+        (click)="timetable()">
+        Time Table
+      </a>
+      <a mat-button class="items"
+        routerLink="/storage"
+        routerLinkActive="mat-accent">
+        Drive
+      </a>
+      <a mat-button class="items"
+        (click)="meeting()">
+        Meeting
+      </a>
+      <a mat-button class="items"
+        routerLink="/videomeet"
+        color="primary">
+        Classes
+      </a>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

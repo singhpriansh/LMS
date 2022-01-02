@@ -1,55 +1,74 @@
-<mat-grid-list cols="7">
+<mat-grid-list cols="7" rowHeight="100vh">
   <mat-grid-tile colspan="3">
+    <div class="cards">
+      <mat-accordion multi="false" class="mat-accordion">
+        <mat-expansion-panel class="subject" *ngFor="let subject of subjects;let i = index">
+          <mat-expansion-panel-header>
+            <h3>
+              <span>{{subject}}</span>
+            </h3>
+          </mat-expansion-panel-header>
+          <div>
+            <h3><span class="span_width">code:</span> BCE - 302</h3>
+            <h3><span class="span_width">batch:</span> CSE 4th year</h3>
+            <h3><span class="span_width">current unit:</span> UNIT 3</h3>
+            <h3><span class="span_width">covered:</span> topic1 topic2</h3>
+            <h3><span class="span_width">remaining:</span> topic3 topic4</h3>
+          </div>
+          <app-graph id="{{subject}}"></app-graph>
+          <div>
+            <a mat-button class="syllabus"
+              (click)="syllabus()">
+              Syllabus
+            </a>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
     <div>
-      <mat-card class="items" *ngFor="let subject of subjects">
-        {{subject}}
+      <mat-card class="cards" *ngFor="let i of [0,1,2,3,4];">
+        <h2>{{subjects[i]}}</h2>
+        <h4>batch: CSE 3rd year</h4>
+        <mat-progress-bar mode="determinate" value="{{20 + 10*i}}"></mat-progress-bar>
+        <h5>Next class : Monday 11:00am</h5>
       </mat-card>
     </div>
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <div>
-      <mat-card class="items" *ngFor="let subject of subjects">
-        {{subject}}
-        <h5>The information about the subject</h5>
-      </mat-card>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-    <div>
-      <a mat-button class="items">
-        <a mat-button
+      <a mat-button class="items"
         routerLinkActive="mat-accent"
         (click)="calender()">
-        Calender</a>
+        Calender
       </a>
-      <a mat-button class="items">
-        <a mat-button
+      <a mat-button class="items"
         routerLinkActive="mat-accent"
         (click)="timetable()">
-        Time Table</a>
+        Time Table
       </a>
-      <a mat-button class="items">
-        <a mat-button
-        routerLinkActive="mat-accent"
-        (click)="syllabus()">
-        Syllabus</a>
-      </a>
-      <a mat-button class="items">
-        <a mat-button routerLink="/faculty"
+      <a mat-button class="items"
+        routerLink="/storage"
         routerLinkActive="mat-accent">
-        Meeting</a>
+        Drive
       </a>
-      <a mat-button class="items">
-        <a mat-button routerLink="/testsheet"
+      <a mat-button class="items"
+        routerLinkActive="mat-accent"
+        (click)="meeting()">
+        Meeting
+      </a>
+      <a mat-button class="items"
+        routerLink="/testsheet"
         routerLinkActive="mat-accent"
         color="warn">
-        Take test</a>
+        Take test
       </a>
-      <a mat-button class="items">
-        <a mat-button routerLink="/classes"
+      <a mat-button class="items"
+        routerLink="/videomeet"
         routerLinkActive="mat-accent"
         color="primary">
-        Classes</a>
+        Classes
       </a>
     </div>
   </mat-grid-tile>

@@ -3,17 +3,66 @@
   display: block;
 }
 
-mat-grid-tile {
-  height:100%;
-}
-
-.items {
-  margin: 10px;
-  background-color: white;
-  color: black;
+span {
+  font-weight: 500;
 }
 
 div {
   width: 100%;
   align-self: start;
+}
+
+a {
+  width: 80%;
+}
+
+h2, h3 {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+h4, h5 {
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom:5px;
+}
+
+mat-grid-list {
+  display: flex;
+}
+
+app-graph {
+  max-height: 100px;
+  display: flex;
+  width: 100%;
+}
+
+.cards {
+  margin:10px;
+}
+
+.syllabus {
+  margin-top: 5px;
+  width: 100%;
+  background-color: rgb(255, 139, 255);
+}
+
+.span_code {
+  display: inline-block;
+  width: 85px;
+}
+
+.span_width {
+  display: inline-block;
+  width: 100px;
+}
+
+.subject {
+  margin:0px 10px 10px 10px;
+}
+
+.items {
+  margin: 10px;
+  background-color: white;
 }

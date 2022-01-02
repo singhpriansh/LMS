@@ -1,5 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { LoginService } from '../../auth/services/login.service';
 
 @Component({
@@ -7,8 +8,10 @@ import { LoginService } from '../../auth/services/login.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated=false;
+  loginSubs!: Subscription;
 
   constructor(
     // private authListenerSubs: Subscription,
@@ -31,7 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loginService
+    this.loginSubs = this.loginService
       .getAuthStatusListerner()
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
@@ -39,7 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.loginService.getAuthStatusListerner().unsubscribe();
+    this.loginSubs.unsubscribe();
   }
 
 }
