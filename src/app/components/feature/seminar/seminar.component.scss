@@ -1,5 +1,164 @@
+mat-card {
+  width:fill;
+  display: block;
+}
+
+mat-divider {
+  clear: both;
+}
+
+a {
+  float: left;
+  margin:20px;
+}
+
+h1, h2, h3, p, a{
+  text-align: center;
+}
+
 h1 {
-  color: black;
-  padding: 5rem;
-  margin: 5px;
+  span {
+    color:rgb(102, 56, 26);
+  }
+  color: rgb(255, 102, 0);
+  font-size: 50px;
+  padding: 2rem;
+  margin: 0;
+}
+
+h2, h3 {
+  padding-top: 1rem;
+  margin-bottom: 0;
+}
+
+h2.title {
+  font-style: italic;
+}
+
+h3.written {
+  padding-left: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  span {
+    font-size: 20px;
+  }
+  text-align: left;
+  line-height: 1.2;
+}
+
+.container {
+  margin: 2rem;
+  display: flex;
+}
+
+.event {
+  padding: 1rem;
+}
+
+.presenter {
+  float:right;
+  width: 40%;
+  display: block;
+}
+
+.screen {
+  float:left;
+  width: 60%;
+  display: block;
+  background-color: pink;
+  margin-bottom: 1rem;
+}
+
+.image {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-image: url(../../../assets/sample_qr.png);
+  background-repeat: no-repeat;
+  background-size: 100px;
+}
+
+.link {
+  margin: auto;
+  width: 50%;
+}
+
+$bubble-count: 50;
+$sway-type: "sway-left-to-right", "sway-right-to-left";
+
+@function random_range($min, $max) {
+  $rand: random();
+  $random_range: $min + floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+@function sample($list) {
+  @return nth($list, random(length($list)));
+}
+
+.bubbles {
+  float: left;
+  position: absolute;
+  width: calc(100% - 4rem);
+  height: calc(100% - 4rem);
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  left: var(--bubble-left-offset);
+  bottom: -75%;
+  display: block;
+  width: var(--bubble-radius);
+  height: var(--bubble-radius);
+  border-radius: 50%;
+  animation: float-up var(--bubble-float-duration) var(--bubble-float-delay) ease-in infinite;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(100, 255, 113,0.4);
+    border-radius: inherit;
+    animation: var(--bubble-sway-type) var(--bubble-sway-duration) var(--bubble-sway-delay) ease-in-out alternate infinite;
+  }
+
+  @for $i from 0 through $bubble-count {
+    &:nth-child(#{$i}) {
+      --bubble-left-offset: #{random_range(0vw, 100vw)};
+      --bubble-radius: #{random_range(1vw, 10vw)};
+      --bubble-float-duration: #{random_range(6s, 12s)};
+      --bubble-sway-duration: #{random_range(4s, 6s)};
+      --bubble-float-delay: #{random_range(0s, 4s)};
+      --bubble-sway-delay: #{random_range(0s, 4s)};
+      --bubble-sway-type: #{sample($sway-type)};
+    }
+  }
+}
+
+@keyframes float-up {
+  to {
+    transform: translateY(-175vh);
+  }
+}
+
+@keyframes sway-left-to-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes sway-right-to-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }

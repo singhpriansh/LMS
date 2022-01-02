@@ -3,16 +3,19 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { StudentAuthData } from "../../models/StudentAuthData.model";
+import { StudentData } from "../../models/StudentData.model";
 import { LoginService } from "./login.service";
+import { StorageService } from "./storage.service";
 
 const BACK_URL = environment.apiUrls;
 
 @Injectable({providedIn: 'root'})
 export class StudentService {
+
   constructor(private http: HttpClient,
     private loginService: LoginService,
-    private router: Router) {}
-
+    private drive: StorageService) {}
+  
   createStudentUser(
     name: string,
     pic: File,
@@ -24,32 +27,33 @@ export class StudentService {
     branch: string,
     doa: Date,
     password: string){
-      const img = new FormData();
-      img.append("file",pic,picname);
-      this.http.post<any>(BACK_URL + "file",img)
+      picname = picname.toLowerCase().split(' ').join('_');
+      const authdata: StudentAuthData = {
+        name:name,
+        picname:picname,
+        id:id,
+        dobirth:dob,
+        gender:gender,
+        qualdegree:qualdegree,
+        branch:branch,
+        doadmitn:doa,
+        password:password
+      };
+      this.http.post<{token:string, user:StudentData, message: String}>
+      (BACK_URL + "student/reg", authdata)
         .subscribe(response => {
-          const authdata: StudentAuthData = {
-            name: name,
-            picname: response.result,
-            id: id,
-            dobirth: dob,
-            gender: gender,
-            qualdegree: qualdegree,
-            branch: branch,
-            doadmitn: doa,
-            password: password
-          };
-          this.http.post<any>(BACK_URL + "student/reg", authdata)
-            .subscribe(response => {
-              console.log(response);
-              this.loginService.loginUser(id,password);
-            }, error => {
-              this.loginService.getAuthStatusListerner().next(false);
-              // this.authStatusListener.next(false);
-            });
+          if(this.loginService.login(response)){
+            const files = new FormData();
+            picname = JSON.stringify({
+              name: picname,
+              path: undefined
+            })
+            files.append("file",pic,picname);
+            this.drive.upload(files).subscribe();
+          }
         }, error => {
           this.loginService.getAuthStatusListerner().next(false);
-              // this.authStatusListener.next(false);
+          // this.authStatusListener.next(false);
         }
       );
     }

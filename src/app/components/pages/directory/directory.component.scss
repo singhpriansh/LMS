@@ -1,0 +1,94 @@
+mat-sidenav-container {
+  height: calc(100% - 50px);
+}
+
+mat-sidenav-container,
+mat-sidenav,
+mat-toolbar {
+  background: transparent;
+}
+
+mat-toolbar {
+  height: 45px;
+  cursor:default;
+}
+
+mat-sidenav {
+  max-width: 200px;
+}
+
+mat-icon {
+  padding-right: 5px;
+}
+
+mat-nav-list {
+  padding: 10px;
+}
+
+h2 {
+  padding-left:40px;
+}
+
+a {
+  margin: 4px;
+  width: 180px;
+  height: 35px;
+  text-align: left;
+}
+
+.upload {
+  color:rgb(82, 0, 158);
+  border:2px solid rgb(133, 255, 144);
+  border-radius: 20px;
+  background-color:rgba(133, 255, 143, 0.3);
+}
+
+.mat-flat-button {
+  background-color:rgba(133, 255, 143, 0.6);
+  border-radius: 20px !important;
+}
+
+.loc,.upload {
+  display: flex;
+}
+
+.mat-accent {
+  color: rgb(87, 0, 158);
+  background-color: rgba(100, 255, 113, 0.8);
+}
+
+.screen {
+  width: 100%;
+}
+
+.back {
+  margin-right: 10px;
+  display: flex;
+}
+
+.path {
+  width: 100%;
+  overflow: auto;
+}
+
+.tool {
+  display: flex;
+  padding-left: 10px;
+  margin:auto 30px auto auto;
+  @media only screen and (max-width: 800px) {
+    margin:auto 20px auto auto;
+  }
+}
+
+.tool button,
+.back button {
+  padding: 0;
+  color:rgb(82, 0, 158);
+  cursor: pointer;
+  min-width: 36px;
+  background-color: transparent;
+  align-items: center;
+  mat-icon {
+    width: 20px;
+  }
+}

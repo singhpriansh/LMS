@@ -1,0 +1,72 @@
+<mat-sidenav-container (contextmenu)="onRightClickSupress($event)" (click)="hide_menu()">
+  <mat-sidenav (contextmenu)="hide_menu()" mode="side" #sidenav opened>
+    <mat-toolbar color="accent">
+      <h2>Storage</h2>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <div class="upload">
+        <a mat-flat-button 
+          (click)="fileInput.click()">
+          <mat-icon>cloud_upload</mat-icon>
+          Upload</a>
+        <label hidden>
+          Upload
+          <input
+            label="upload"
+            type="file"
+            accept="*"
+            (change)="fileupload($event)"
+            #fileInput/>
+        </label>
+      </div>
+      <br>
+      <div class="loc">
+        <a mat-button
+          routerLink="drive"
+          routerLinkActive="mat-accent"
+          color="primary">
+          <mat-icon>call_to_action</mat-icon>
+          My Drive</a>
+      </div>
+      <div class="loc">
+        <a mat-button
+          routerLink="shared"
+          routerLinkActive="mat-accent"
+          color="primary">
+          <mat-icon>folder_shared</mat-icon>
+          Shared</a>
+      </div>
+      <div class="loc">
+        <a mat-button
+          routerLink="trash"
+          routerLinkActive="mat-accent">
+          <mat-icon>delete_sweep</mat-icon>
+          Trash</a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="screen">
+      <mat-toolbar (contextmenu)="hide_menu()" color="accent">
+        <div class="back">
+          <button mat-flat-button *ngIf="back" (click)="onbackClick()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          <mat-icon *ngIf="!back"></mat-icon>
+        </div>
+        <div class="path">{{path}}</div>
+        <div class="tool">
+          <button mat-flat-button *ngIf="view == 'grid'" (click)="onviewClick()">
+            <mat-icon>view_list</mat-icon>
+          </button>
+          <button mat-flat-button *ngIf="view == 'list'" (click)="onviewClick()">
+            <mat-icon>view_comfy</mat-icon>
+          </button>
+        </div>
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

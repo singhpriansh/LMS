@@ -6,6 +6,8 @@ const userauth = require("../controllers/userauth");
 router.get("", (req,res,next) => {
   res.send("Faculty here");
 })
-router.post("/reg",userauth.CreateFaculty);
+router.post("/reg",
+  userauth.CreateFaculty,
+  userauth.Login);
 
-module.exports = router
+module.exports = router;

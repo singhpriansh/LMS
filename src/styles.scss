@@ -1,11 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+::-webkit-scrollbar {
+    height: 5px;
+    width: 8px;               /* width of the entire scrollbar */
+}
 
-html, body { height: 100%; }
+::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: rgb(87, 0, 158);    /* color of the scroll thumb */
+}  
+
 body {
     background:rgb(255, 219, 206);
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 mat-dialog-container {
     background-color: rgb(255, 219, 206) !important;
     overflow: inherit !important;
