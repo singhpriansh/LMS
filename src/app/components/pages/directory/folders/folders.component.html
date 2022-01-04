@@ -10,44 +10,64 @@
       <div class="size">500kb</div>
     </div>
   </mat-card>
+  <mat-divider></mat-divider>
 </div>
-<mat-divider></mat-divider>
-<div class="div {{one_screen}}" (contextmenu)="onRightClick($event,{})">
+<div class="div" ngClass='one_screen' (contextmenu)="onRightClick($event,{})">
   <div class="empty" *ngIf="this.content.files.length==0 && this.content.folders.length==0">
     <br>
     <mat-card>The location is empty</mat-card>
   </div>
   <div *ngIf="iconview == 'grid'" class="items">
-    <mat-card *ngFor="let folder of this.content.folders"
+    <div class="element" *ngFor="let folder of this.content.folders"
+      [ngClass]="[folder.class]"
+      (click)="select(folder)"
       (dblclick)="onfolderclick(folder.name)"
       (contextmenu)="onRightClick($event,folder)">
-      <div class="folder"></div>
-      <div class="name">{{ folder.name }}</div>
-    </mat-card>
-    <mat-card *ngFor="let file of this.content.files"
+      <mat-card>
+        <div class="folder"></div>
+        <div class="name">{{ folder.name }}</div>
+      </mat-card>
+    </div>
+    <div class="element" *ngFor="let file of this.content.files"
+      [ngClass]="[file.class]"
+      (click)="select(file)"
+      (dblclick)="open(file)"
       (contextmenu)="onRightClick($event,file)">
-      <div class="{{ file.type }}"></div>
-      <div class="name">{{ file.name }}</div>
-    </mat-card>
+      <mat-card>
+        <div class="{{ file.type }}"></div>
+        <div class="name">{{ file.name }}</div>
+      </mat-card>
+    </div>
   </div>
   <div *ngIf="iconview == 'list'" class="list">
     <mat-list>
       <mat-list-item *ngFor="let folder of this.content.folders">
-        <mat-card (dblclick)="onfolderclick(folder.name)"
+        <div class="element" style="width: 100%;"
+          [ngClass]="[folder.class]"
+          (click)="select(folder)"
+          (dblclick)="onfolderclick(folder.name)"
           (contextmenu)="onRightClick($event,folder)">
-          <ul class="folder"></ul>
-          <div class="file">{{ folder.name }}</div>
-          <div class="size"></div>
-          <div class="date">{{ toreadabledate(folder.mtime) }}</div>
-        </mat-card>
+          <mat-card>
+            <ul class="folder"></ul>
+            <div class="file">{{ folder.name }}</div>
+            <div class="size"></div>
+            <div class="date">{{ toreadabledate(folder.mtime) }}</div>
+          </mat-card>
+        </div>
       </mat-list-item>
       <mat-list-item *ngFor="let file of this.content.files">
-        <mat-card (contextmenu)="onRightClick($event,file)">
-          <ul class="{{file.type}}"></ul>
-          <div class="file">{{ file.name }}</div>
-          <div class="size">{{ readablesize(file.size) }}</div>
-          <div class="date">{{ toreadabledate(file.mtime) }}</div>
-        </mat-card>
+        <div class="element" style="width: 100%;"
+          [ngClass]="[file.class]"
+          (click)="select(file)"
+          (dblclick)="open(file)"
+          (contextmenu)="onRightClick($event,file)">
+          <mat-card>
+            <ul class="{{file.type}}"></ul>
+            <div class="file">{{ file.name }}</div>
+            <div class="size">{{ readablesize(file.size) }}</div>
+            <div class="date">{{ toreadabledate(file.mtime) }}</div>
+          </mat-card>
+        </div>
       </mat-list-item>
      </mat-list>
   </div>

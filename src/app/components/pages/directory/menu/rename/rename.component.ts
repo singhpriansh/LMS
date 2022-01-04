@@ -28,7 +28,7 @@ export class RenameComponent implements OnInit {
   }
 
   nameValidator(control: AbstractControl): ValidationErrors | null {
-    var format = /[ `!@$%^&\-=\[\]{};':"\\|,\/?]/;
+    var format = /[ `!@$%^&\=\[\]{};':"\\|,\/?]/;
     const forbid = format.test(control.value);
     return forbid ? { 'forbidden': {value: control.value}} : null;
   }

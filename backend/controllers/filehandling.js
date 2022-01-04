@@ -84,35 +84,39 @@ exports.Viewfolder = (req,res) => {
     files: [],
     folders: []
   };
-  if(req.body.loc == '/shared'){
+  if(req.body.loc === '/shared'){
     // console.log("Cannot be processed now");
     return res.status(200).json({
       message:"No Folders here",
       content: content
     })
-  } else {
-    if(req.body.loc != '/root' && req.body.loc != '/trash'){
-      return res.status(404).json({
-        message: "Resource not found"
-      })
-    }
-    const totpath = drive + req.userData.id + req.body.loc + req.body.path;
-    fs.readdirSync(totpath).forEach(
-      file => {
-        file = Object.assign({name:file},fs.statSync(totpath + "/" + file));
-        if(fs.statSync(totpath + "/" + file.name).isDirectory()){
-          file = Object.assign(file,{type:"folder"});
-          content.folders.push(file);
-        } else {
-          file = Object.assign(file,{type:this.Filetype(totpath + "/" + file.name)})
-          content.files.push(file);
-        }
-    });
-    return res.status(200).json({
-      message: "content retrieved",
-      content: content
+  }
+  if(req.body.loc !== '/root' && req.body.loc !== '/trash'){
+    return res.status(404).json({
+      message: "Resource not found"
     })
   }
+  if(req.body.loc === '/trash' && req.body.path !== '/'){
+    return res.status(403).json({
+      message : "Cannot browse trash"
+    })
+  }
+  const totpath = drive + req.userData.id + req.body.loc + req.body.path;
+  fs.readdirSync(totpath).forEach(
+    file => {
+      file = Object.assign({name:file},fs.statSync(totpath + "/" + file));
+      if(fs.statSync(totpath + "/" + file.name).isDirectory()){
+        file = Object.assign(file,{type:"folder"});
+        content.folders.push(file);
+      } else {
+        file = Object.assign(file,{type:this.Filetype(totpath + "/" + file.name)})
+        content.files.push(file);
+      }
+  });
+  return res.status(200).json({
+    message: "content retrieved",
+    content: content
+  })
 }
 
 exports.New = (req,res) => {
@@ -169,7 +173,6 @@ exports.Move = (req,res) => {
         const location = drive + req.userData.id + req.body.from.loc
         + req.body.from.path + item;
         if(fs.statSync(location).isDirectory()){
-          console.log("perma del",location)
           this.Deletefolder(location);
         } else {
           this.Deletefile(location);

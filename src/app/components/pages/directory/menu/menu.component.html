@@ -58,7 +58,7 @@
   <ul class="menu" *ngIf="this.location == '/trash'">
     <li *ngIf="type !== 'dir'" class="trash" (click)="delete()">
       <a ><i aria-hidden="true">
-        <mat-icon>delete</mat-icon></i> Delete
+        <mat-icon>delete</mat-icon></i> Delete forever
       </a>
     </li>
     <li *ngIf="type === 'dir'" (click)="emptybin()">
