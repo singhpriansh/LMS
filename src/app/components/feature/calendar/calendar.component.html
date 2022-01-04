@@ -61,19 +61,24 @@
   </div>
   <div class="calendar" [class.flip]="this.flip">
     <div class="current-date">
-      <h1>{{ this.day }} {{ this.datenum }}{{this.salutation}}</h1>
-      <h1>{{ this.month }} {{ this.year }}</h1>
+      <h1>{{ this.day }} {{ this.datenum }}{{this.salutation}}  {{ this.month }} {{ this.year }}</h1>
+      <button mat-flat-button (click)="close()"><mat-icon>close</mat-icon></button>
     </div>
     <div class="date-schroll">
-      <button class="round" (click)="previousMonth()">
+      <button mat-flat-button (click)="previousMonth()">
         <svg  width="20px" height="20px" viewBox="0 0 1024 1024" class="icon">
           <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"/>
         </svg>
       </button>
-      <h3>{{ MONTH_MAP.get(this.date.toDateString().split(' ')[1]) }} 
-        {{ this.date.toDateString().split(' ')[3] }}
-      </h3>
-      <button class="round" (click)="nextMonth()">
+      <div>
+        <mat-divider></mat-divider>
+        <h3>
+          {{ MONTH_MAP.get(this.date.toDateString().split(' ')[1]) }} 
+          {{ this.date.toDateString().split(' ')[3] }}
+        </h3>
+        <mat-divider></mat-divider>
+      </div>
+      <button mat-flat-button (click)="nextMonth()">
         <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon">
           <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"/>
         </svg>
@@ -93,16 +98,16 @@
         <div *ngFor="let week of [0,1,2,3,4,5]">
           <!-- class => active -> curent
           class => event -> forevent -->
-          <span *ngFor="let day of [0,1,2,3,4,5,6]"
-            class="{{ this.detectclass(this.calendar[week][day]) }}">
-            <div *ngIf="this.focusmonth === 'current-month'"
-              (click)="this.setevent(this.calendar[week][day])">
-              {{ this.calendar[week][day].split(" ")[2] }}
-            </div>
-            <div *ngIf="this.focusmonth === 'other-month'">
-              {{ this.calendar[week][day].split(" ")[2] }}
-            </div>
-          </span>
+          <a mat-flat-button *ngFor="let day of [0,1,2,3,4,5,6]"
+            [ngClass]="[this.detectclass(this.calendar[week][day])]">
+              <div *ngIf="this.focusmonth === 'current-month'"
+                (click)="this.setevent(this.calendar[week][day])">
+                {{ this.calendar[week][day].split(" ")[2] }}
+              </div>
+              <div *ngIf="this.focusmonth === 'other-month'">
+                {{ this.calendar[week][day].split(" ")[2] }}
+              </div>
+            </a>
         </div>
       </div>
     </div>

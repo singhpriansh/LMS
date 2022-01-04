@@ -19,8 +19,20 @@ body {
 }
 
 h1, h3 {
+	text-align: center;
 	margin-bottom: 0;
 	color: black;
+}
+
+mat-divider {
+	width: 100%;
+}
+
+.mat-flat-button {
+	padding: 0;
+	min-width: 38px;
+  border-radius: 20px;
+	align-items: center;
 }
 
 .container {
@@ -44,25 +56,42 @@ h1, h3 {
   // perspective: 1000;
 	transition: .9s;
 	transform-style: preserve-3d;
-	width:450px;
+	width: 450px;
 	backface-visibility: hidden;
+	.actions button {
+		border-radius: 6px;
+	}
+	.current-date button,
+	.date-schroll button {
+		border: 1px solid rgb(82, 0, 158);
+		background-color: rgba(82, 0, 158, 0.3);
+		border-radius: 20px;
+	}
 }
 
 
-.display{
+.display {
 	display: none;
 }
 
 .current-date {
+	align-items: center;
 	display: flex;
 	justify-content: space-between;
-	padding: 20px 40px;
+	padding: 15px 30px;
 }
 
-.date-schroll{
+.date-schroll {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	padding: 0 70px;
+	div {
+		width: 80%;
+	}
+	button {
+		min-width: 35px;
+	}
 }
 
 .current-date h1 {
@@ -101,25 +130,36 @@ h1, h3 {
 	display: flex;
 	font-size: 1rem;
 	font-weight: 400;
+	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 5px;
+	// margin-bottom: 5px;
 	width: 100%;
+	a {
+		border: none;
+		align-items: center;
+		margin:5px 0;
+		div {
+			padding-left: 8px;
+		}
+	}
 }
 
 .other-month {
 	opacity: .3;
 }
 
-.weeks span {
-	padding: 10px;
+.weeks a:not(.active) {
+	background-color: transparent;
 }
 
-.weeks span.active {
-	background: rgb(255, 184, 159);
-	border-radius: 15%;
+.weeks a.active {
+	background-color: rgba(255, 185, 159, 0.6);
+  border-radius: 20px;
 }
 
-.weeks span:not(.other-month):hover div {
+.weeks a:not(.other-month):hover div {
+  background-color:rgba(82, 0, 158, 0.3);
+  border-radius: 20px;
 	cursor: pointer;
 	font-weight: 600;
 }
@@ -153,12 +193,6 @@ input::placeholder {
 input,
 textarea {
 	color:black;
-}
-
-.round {
-	border-radius: 30%;
-	background-color: rgb(255, 100, 255);
-	border-color:rgb(255, 100, 255);;
 }
 
 .timeinput {
@@ -222,7 +256,11 @@ textarea {
 }
 
 .actions button:first-of-type {
-	border-right: 1px solid black;
+	border-right: 0.5px solid rgb(20, 20, 20);
+}
+
+.actions button:not(:first-of-type){
+	border-left: 0.5px solid rgb(20, 20, 20);
 }
 
 button:hover {
@@ -230,10 +268,13 @@ button:hover {
 }
 
 .save:hover {
-	background-color: rgb(14, 228, 14) !important;
+  background-image: linear-gradient(to bottom,
+	rgba(14, 228, 14, 0.5), rgba(14, 228, 14, 0.9)) !important;
 }
+
 .dismiss:hover {
-	background-color: red !important;
+  background-image: linear-gradient(to bottom,
+	rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0.9)) !important;
 }
 
 /* Flip animation */

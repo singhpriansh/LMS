@@ -37,7 +37,7 @@ p {
 }
 
 .control {
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgb(65, 65, 65));;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgb(65, 65, 65));
   height: 50px;
 }
 
@@ -104,6 +104,23 @@ input {
 
 .chat {
   height: 40px;
+  align-items: center;
+  button {
+    background-color: transparent;
+    float: right;
+    margin: 2px;
+    padding:0;
+    min-width: 36px;
+    margin-right: 4px;
+    border-radius: 20px;
+    mat-icon {
+      margin-top: 3px;
+      margin-right: 3px;
+      vertical-align: top;
+      font-size: 32px;
+      color: white;
+    }
+  }
 }
 
 .svg {
