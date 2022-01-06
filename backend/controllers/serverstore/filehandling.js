@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require('path');
 
-const EXT_FILE = require('../models/ext_map');
+const EXT_FILE = require('../../models/ext_map');
 
 const drive = "backend/drive/";
 

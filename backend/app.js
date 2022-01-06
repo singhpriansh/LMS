@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 const apiroute = require("./routes/api");
-const mongodb = require("./controllers/database");
+const mongodb = require("./controllers/mongodb/database");
 
 mongodb.connect();
 // mongoose.connect("mongodb+srv://mongodb:3nYH8uOZTozuTNK8@cluster0.c7q1k.mongodb.net/LMS?retryWrites=true&w=majority")

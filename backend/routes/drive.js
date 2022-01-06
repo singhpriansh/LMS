@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const auth_check = require("../middleware/auth_check");
-const drive = require("../controllers/filehandling");
-const dl = require ("../controllers/filedownloader");
+const drive = require("../controllers/serverstore/filehandling");
+const dl = require ("../controllers/serverstore/filedownloader");
 const multer = require("../middleware/multerfile");
 
 router.get("",(req,res) => {

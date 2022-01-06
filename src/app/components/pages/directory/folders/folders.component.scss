@@ -25,7 +25,21 @@ mat-card {
   }
 }
 
+.element:hover {
+  border-radius: 5px;
+  background-color: rgba(82, 0, 158, 0.2);
+}
+
 .select {
+  border-radius: 5px;
+  background-color: rgba(82, 0, 158, 0.3);
+  transition: linear;
+  -webkit-transition: linear;
+  -moz-transition: linear;
+  -ms-transition: linear;
+  -o-transition: linear;
+}
+.select:hover {
   border-radius: 5px;
   background-color: rgba(82, 0, 158, 0.3);
 }

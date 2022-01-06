@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const User = require("../models/user");
 const database = require("./database").database;
-const drive = require("./filehandling");
+const drive = require("../serverstore/filehandling");
 
 exports.CreateStudent = (req, res, next) => {
   database.collection('users').findOne({ id: req.body.id })
@@ -11,7 +11,7 @@ exports.CreateStudent = (req, res, next) => {
       return res.status(409).json({
         message: "User already exist"
       })
-    }else{
+    } else {
       bcrypt.hash(req.body.password, 10).then(hash => {
         database.collection('users').insertOne({
           user: "Student",
@@ -28,7 +28,7 @@ exports.CreateStudent = (req, res, next) => {
           drive.Initialise_dir(response.insertedId.toString());
           next()
         }).catch(err => {
-          console.log(err)
+          console.log(err);
           res.status(500).json({
             message: 'Invalid authentication credentials'
           });
@@ -45,7 +45,7 @@ exports.CreateFaculty = (req, res, next) => {
       return res.status(409).json({
         message: "User already exist"
       })
-    }else{
+    } else {
       bcrypt.hash(req.body.password, 10).then(hash => {
         database.collection('users').insertOne({
           user: "Faculty",

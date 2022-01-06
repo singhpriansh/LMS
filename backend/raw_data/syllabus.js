@@ -1,17 +1,15 @@
 const SYLLABUS = [
   {
     branch: "Computer Science and Engineering",
-    subject: [
-      {
+    subjects: {
+      "ECH 101": {
         name: "Engineering Chemistry",
-        code: "ECH 101",
         unit: [
           {
-            unit_number: 1,
             sections: [
               {
                 name: "Periodicity & Chemical Bonding",
-                section_topics: [
+                topics: [
                   "Atomic radii",
                   "Ionization potential",
                   "Electro negativity",
@@ -26,19 +24,18 @@ const SYLLABUS = [
               },
               {
                 name: "Phase Rule",
-                section_topics: [
-                    "Gibbs phase rule (without derivation)",
-                    "Applications of Phase rule to one component system (H2O and S) and two component system (KI- H2O system)"
+                topics: [
+                  "Gibbs phase rule (without derivation)",
+                  "Applications of Phase rule to one component system (H2O and S) and two component system (KI- H2O system)"
                 ]
               }
-            ]
+            ],
           },
           {
-            unit_number: 2,
             sections: [
               {
                 name: "Chemical kinetics",
-                section_topics: [
+                topics: [
                   "Arrhenius equation",
                   "determination of activation energy",
                   "Theories of reaction rates(collision and absolute reaction rate theory)"
@@ -46,7 +43,7 @@ const SYLLABUS = [
               },
               {
                 name: "Photochemistry",
-                section_topics: [
+                topics: [
                   "Laws of Photochemistry",
                   "Quantum yield",
                   "Fluorescence",
@@ -58,11 +55,10 @@ const SYLLABUS = [
             ]
           },
           {
-            unit_number: 3,
             sections: [
               {
                 name: "Water Analysis",
-                section_topics: [
+                topics: [
                   "Hard & soft water",
                   "Specification of water",
                   "Analysis of water-alkalinity",
@@ -84,7 +80,7 @@ const SYLLABUS = [
               },
               {
                 name: "Polymers",
-                section_topics: [
+                topics: [
                   "Polymers",
                   "Thermoplastics",
                   "Thermosetting plastic",
@@ -103,23 +99,22 @@ const SYLLABUS = [
             ] 
           },
           {
-            unit_number: 4,
             sections: [
               {
                 name: "Fuels",
-                section_topics: [
+                topics: [
                   "Definition and classification",
                   "Calorific value; Gross & Net calorific value and their determination by Bomb calorimeter",
                   "Solid fuels Coke-it’s manufacture by Otto Hoffman oven and uses",
                   {
-                    "Liquid fuels":[
+                    "Liquid fuels": [
                       "Conversion of coal into liquid fuels (Bergius process & Fischer Tropsch process and mechanism)",
                       "Petroleum- its chemical composition and fractional distillation",
                       "Cracking of Heavy oil residues (Thermal cracking and catalytic cracking)",
                       "Knocking & Anti knocking agents",
                       "octane and cetane numbers and their significance"
                     ],
-                    "Gaseous fuels":[
+                    "Gaseous fuels": [
                       "Natural Gas",
                       "Producer gas",
                       "Water gas",
@@ -135,25 +130,24 @@ const SYLLABUS = [
               },
               {
                 name: "Corrosion",
-                section_topics: [
-                    "Definition and types of corrosion",
-                    "Electrochemical Theory of corrosion",
-                    "Laws of oxide film",
-                    "Different theories of corrosion",
-                    "Atmospheric corrosion",
-                    "Stress corrosion water line",
-                    "Pitting and soil corrosion",
-                    "Protective measures against corrosion "
+                topics: [
+                  "Definition and types of corrosion",
+                  "Electrochemical Theory of corrosion",
+                  "Laws of oxide film",
+                  "Different theories of corrosion",
+                  "Atmospheric corrosion",
+                  "Stress corrosion water line",
+                  "Pitting and soil corrosion",
+                  "Protective measures against corrosion "
                 ]
               }
             ]
           },
           {
-            unit_number: 5,
             sections: [
               {
                 name: "Lubricants",
-                section_topics: [
+                topics: [
                   "Principle of Lubrication",
                   "types of Lubrication",
                   "Lubricating oil",
@@ -171,7 +165,7 @@ const SYLLABUS = [
               },
               {
                 name: "Name Reactions",
-                section_topics: [
+                topics: [
                   "Reimer Tieman reaction",
                   "Aldol Condensation",
                   "Diel’s Alder Reaction",
@@ -183,16 +177,14 @@ const SYLLABUS = [
           }
         ]
       },
-      {
+      "ECS 802" : {
         name: "Advanced Computer Networks",
-        code: "ECS 802",
         unit: [
           {
-            unit_number: 1,
             sections: [
               {
                 name: "Modeling",
-                section_topics: [
+                topics: [
                   "OSI model and TCP/IP model",
                   "Layered architecture",
                   "layer interfaces",
@@ -206,7 +198,7 @@ const SYLLABUS = [
           }
         ]
       }
-    ]
+    }
   }
 ];
 

@@ -8,6 +8,11 @@ async function connect() {
     await client.connect();
     console.log("Connected to the DB");
     const database = client.db('LMS');
+    // code for creating indexes...
+    // client.db('LMS').collection('syllabuses').createIndex('id')
+    // .then(response => {
+    //   console.log(response);
+    // });
     collections = await database.listCollections().toArray();
 
     console.log("Collections :");
@@ -16,7 +21,7 @@ async function connect() {
     console.error(err);
     console.log("Error connecting db");
     collection = client.db('LMS').listCollections().toArray();
-    console.log("Collections :".collection);
+    console.log("Collections :",collection);
   }
 };
 
