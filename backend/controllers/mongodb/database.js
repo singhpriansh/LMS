@@ -9,7 +9,7 @@ async function connect() {
     console.log("Connected to the DB");
     const database = client.db('LMS');
     // code for creating indexes...
-    // client.db('LMS').collection('syllabuses').createIndex('id')
+    // client.db('LMS').collection('syllabuses').createIndex('subjects.subject.code')
     // .then(response => {
     //   console.log(response);
     // });

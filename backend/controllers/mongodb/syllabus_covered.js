@@ -1,11 +1,10 @@
-const database = require("./database").database;
-
-exports.CreateBranch = (req,res,next) => {
-  database.collection('syllabuses').findOne({ branch : req.body.branch })
+exports.Covered_Syllabus = (req,res,next) => {
+  database.collection('covered_syllabus').findOne({ branch : req.body.branch })
   .then(syllabus => {
-    if(syllabus){
+    if(syllabus) {
+      const code = req.body.code;
       const subjects = Object.assign(syllabus.subjects,req.body.subjects);
-      database.collection('syllabuses').updateOne(
+      database.collection('covered_syllabus').updateOne(
       { branch : req.body.branch },
       {
         $set : {
@@ -25,7 +24,7 @@ exports.CreateBranch = (req,res,next) => {
         })
       })
     } else {
-      database.collection('syllabuses').insertOne({
+      database.collection('covered_syllabus').insertOne({
         "branch" : req.body.branch,
         "subjects" : req.body.subject
       })
@@ -49,3 +48,9 @@ exports.CreateBranch = (req,res,next) => {
     })
   })
 }
+
+// syllabus: {
+//   unit: 0,
+//   sections: 0,
+//   topics: 0
+// }

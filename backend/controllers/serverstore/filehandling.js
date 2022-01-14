@@ -7,7 +7,7 @@ const drive = "backend/drive/";
 
 exports.Initialise_dir = (id) => {
   this.Createdrive(id);
-  this.Createfolder(drive+id,"/root")
+  this.Createfolder(drive+id,"/root");
   this.Createfolder(drive+id,"/trash");
   fs.closeSync(fs.openSync(drive+id+"/shared.txt","w"));
   this.Createfolder(drive+id+"/root","/images");

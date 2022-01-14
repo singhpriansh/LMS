@@ -1,9 +1,8 @@
 const database = require("./database").database;
 
 const sem = {
-  'Teachers': [],
-  'Subjects': [],
-  'Students': [],
+  'Faculty': [],
+  'Students': []
 };
 
 const _4_yr_sem = {
@@ -26,7 +25,7 @@ const _2_yr_sem = {
 
 exports.CreateSemester = (req,res,next) => {
   database.collection('semesters')
-  .findOne({ year: req.body.year, sem: req.body.sem })
+  .findOne({ year: req.body.year })
   .then(sem => {
     if (sem) {
       return res.status(409).json({
@@ -55,10 +54,9 @@ exports.CreateSemester = (req,res,next) => {
       }
       database.collection('semesters').insertOne({
         year: 2022,
-        sem: 'odd',
         batch: batch
       }).then(response => {
-        console.log(response);
+        console.log("Semester made : ",response);
         res.status(201).json({
           message: "Semester created"
         });
@@ -69,5 +67,36 @@ exports.CreateSemester = (req,res,next) => {
         })
       });
     }
-  });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      message: "Error accessing database"
+    })
+  })
+}
+
+exports.Add_Teachers_To_Batch = (year,degree,branch,sem,id,code) => {
+  const array = "batch."+degree+"."+branch+"."+sem+".Faculty";
+  return database.collection('semesters')
+  .updateOne(
+    { year: Number(year) },
+    { $push : {
+      [array]: {
+        teacher: id,
+        subject: code,
+      }
+    }
+  })
+}
+
+exports.Add_Students_To_Batch = (year,degree,branch,sem,id) => {
+  const array = "batch."+degree+"."+branch+"."+sem+".Students";
+  return database.collection('semesters')
+  .updateOne(
+    { year: Number(year) },
+    { $push : {
+      [array]: id
+    }
+  })
 }
