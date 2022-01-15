@@ -1,9 +1,8 @@
 exports.Covered_Syllabus = (req,res,next) => {
-  database.collection('covered_syllabus').findOne({ branch : req.body.branch })
+  database.collection('covered_syllabus').findOne({ year : req.body.year })
   .then(syllabus => {
     if(syllabus) {
-      const code = req.body.code;
-      const subjects = Object.assign(syllabus.subjects,req.body.subjects);
+      const subjects = Object.assign(syllabus.subjects,req.body.sub_syllabus);
       database.collection('covered_syllabus').updateOne(
       { branch : req.body.branch },
       {
@@ -25,8 +24,9 @@ exports.Covered_Syllabus = (req,res,next) => {
       })
     } else {
       database.collection('covered_syllabus').insertOne({
+        "year" : req.body.year,
         "branch" : req.body.branch,
-        "subjects" : req.body.subject
+        "subjects" : req.body.sub_syllabus
       })
       .then(result => {
         console.log(result);
@@ -49,8 +49,38 @@ exports.Covered_Syllabus = (req,res,next) => {
   })
 }
 
-// syllabus: {
+exports.GetStudentSyllabusCovered = (req,res) => {
+  database.collections('covered_syllabus')
+  .findOne({ branch : req.body.branch })
+  .then(syllabus => {
+    if (syllabus) {
+      res.status(202).json(syllabus)
+    } else {
+      res.status(202).json({
+        message: "Not available"
+      })
+    }
+  })
+}
+
+exports.GetFacultySyllabusCovered = (req,res) => {
+  response = {};
+  req.body.branches.forEach(item => {
+    database.collections('covered_syllabus')
+    .findOne({ branch : item.branch })
+    .then(syllabus => {
+      if (syllabus) {
+        response = Object.assign(syllabus[item.code],response);
+      }
+    })
+  });
+  res.status(202).json(response);
+}
+
+// code: {
 //   unit: 0,
 //   sections: 0,
-//   topics: 0
+//   topics: 0,
+//   days: [],
+//   covered: [],
 // }

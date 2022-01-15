@@ -1,6 +1,6 @@
 const database = require("./database").database;
 
-exports.CreateBranch = (req,res,next) => {
+exports.CreateBranch = (req,res) => {
   database.collection('syllabuses').findOne({ branch : req.body.branch })
   .then(syllabus => {
     if(syllabus){
@@ -48,4 +48,32 @@ exports.CreateBranch = (req,res,next) => {
       message: "Error occured creating branch"
     })
   })
+}
+
+exports.GetStudentSyllabus = (req,res) => {
+  database.collections('syllabuses')
+  .findOne({ branch : req.body.branch })
+  .then(syllabus => {
+    if (syllabus) {
+      res.status(202).json(syllabus)
+    } else {
+      res.status(202).json({
+        message: "Not available"
+      })
+    }
+  })
+}
+
+exports.GetFacultySyllabus = (req,res) => {
+  response = {};
+  req.body.branches.forEach(item => {
+    database.collections('syllabuses')
+    .findOne({ branch : item.branch })
+    .then(syllabus => {
+      if (syllabus) {
+        response = Object.assign(syllabus[item.code],response);
+      }
+    })
+  });
+  res.status(202).json(response);
 }

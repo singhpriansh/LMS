@@ -7,7 +7,7 @@ const login = require("./login");
 const logout = require("./logout");
 const syllabus = require("./syllabus");
 const drive = require("./drive");
-const batch = require("./batch")
+const batch = require("./batch");
 
 router.use('/faculty',faculty);
 router.use('/student',student);
