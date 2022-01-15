@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { StudentService } from '../../auth/services/student.service';
 import { CalendarComponent } from '../../feature/calendar/calendar.component';
 import { MeetingComponent } from '../../feature/meeting/meeting.component';
 import { SyllabusComponent } from '../../feature/syllabus/syllabus.component';
@@ -11,13 +12,10 @@ import { TimetableComponent } from '../../feature/timetable/timetable.component'
   styleUrls: ['./students.component.scss']
 })
 export class StudentsComponent implements OnInit {
-  subjects = [
-    "English",
-    "Hindi",
-    "Maths"
-  ];
+  subjects:Array<any> = [];
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,
+    private studService: StudentService) { }
   timetable(): void {
     const dialogRef = this.dialog.open(TimetableComponent, {
       minWidth: '700px',
@@ -47,6 +45,12 @@ export class StudentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.studService.getSyllabus()
+    .subscribe(res => {
+      for (let key of Object.keys(res.subjects)){
+        this.subjects.push({ code:key, subject: res.subjects[key] });
+      }
+    })
   }
 
 }

@@ -6,7 +6,7 @@ exports.CreateBranch = (req,res) => {
     if(syllabus){
       const subjects = Object.assign(syllabus.subjects,req.body.subjects);
       database.collection('syllabuses').updateOne(
-      { branch : req.body.branch },
+      { "branch" : req.body.branch },
       {
         $set : {
           "subjects" : subjects
@@ -51,8 +51,8 @@ exports.CreateBranch = (req,res) => {
 }
 
 exports.GetStudentSyllabus = (req,res) => {
-  database.collections('syllabuses')
-  .findOne({ branch : req.body.branch })
+  database.collection('syllabuses')
+  .findOne({ branch: req.body.branch })
   .then(syllabus => {
     if (syllabus) {
       res.status(202).json(syllabus)
@@ -67,7 +67,7 @@ exports.GetStudentSyllabus = (req,res) => {
 exports.GetFacultySyllabus = (req,res) => {
   response = {};
   req.body.branches.forEach(item => {
-    database.collections('syllabuses')
+    database.collection('syllabuses')
     .findOne({ branch : item.branch })
     .then(syllabus => {
       if (syllabus) {

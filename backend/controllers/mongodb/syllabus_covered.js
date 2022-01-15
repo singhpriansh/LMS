@@ -1,10 +1,13 @@
+const database = require("../mongodb/database").database;
+
 exports.Covered_Syllabus = (req,res,next) => {
   database.collection('covered_syllabus').findOne({ year : req.body.year })
   .then(syllabus => {
     if(syllabus) {
       const subjects = Object.assign(syllabus.subjects,req.body.sub_syllabus);
       database.collection('covered_syllabus').updateOne(
-      { branch : req.body.branch },
+      { "year" : req.body.year,
+        "branch" : req.body.branch },
       {
         $set : {
           "subjects" : subjects
@@ -50,8 +53,12 @@ exports.Covered_Syllabus = (req,res,next) => {
 }
 
 exports.GetStudentSyllabusCovered = (req,res) => {
-  database.collections('covered_syllabus')
-  .findOne({ branch : req.body.branch })
+  console.log(req.body);
+  console.log({ year : Number(req.body.toString()[0]),
+    branch: req.body.branch });
+  database.collection('covered_syllabus')
+  .findOne({ year : Number(req.body.toString()[0]),
+    branch: req.body.branch })
   .then(syllabus => {
     if (syllabus) {
       res.status(202).json(syllabus)
@@ -66,8 +73,9 @@ exports.GetStudentSyllabusCovered = (req,res) => {
 exports.GetFacultySyllabusCovered = (req,res) => {
   response = {};
   req.body.branches.forEach(item => {
-    database.collections('covered_syllabus')
-    .findOne({ branch : item.branch })
+    database.collection('covered_syllabus')
+    .findOne({ batch: req.body.batch,
+      branch : item.branch })
     .then(syllabus => {
       if (syllabus) {
         response = Object.assign(syllabus[item.code],response);

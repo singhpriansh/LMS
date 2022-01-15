@@ -5,17 +5,17 @@
         <mat-expansion-panel class="subject" *ngFor="let subject of subjects">
           <mat-expansion-panel-header>
             <h3>
-              <span>{{subject}}</span>
+              <span>{{ subject.subject.name }}</span>
             </h3>
           </mat-expansion-panel-header>
           <div>
-            <h3><span class="span_width">code:</span> BCE - 302</h3>
+            <h3><span class="span_width">code:</span>{{ subject.code }}</h3>
             <h3><span class="span_width">instructor:</span> Mayank Agarwal</h3>
             <h3><span class="span_width">current unit:</span> UNIT 3</h3>
             <h3><span class="span_width">covered:</span> topic1 topic2</h3>
             <h3><span class="span_width">remaining:</span> topic3 topic4</h3>
           </div>
-          <app-graph id="{{subject}}"></app-graph>
+          <app-graph id="{{ subject.subject.name }}"></app-graph>
           <div>
             <a mat-button class="syllabus"
               (click)="syllabus()">
@@ -29,7 +29,7 @@
   <div class="current_subjects">
     <div>
       <mat-card class="cards" *ngFor="let subject of subjects;let i = index">
-        <h2>{{subject}}</h2>
+        <h2>{{ subject.subject.name }}</h2>
         <h4>instructor: Suyash Bharadwaj</h4>
         <mat-progress-bar mode="determinate" value="{{20 + 10*i}}"></mat-progress-bar>
         <h5>Next class : Monday 11:00am</h5>
