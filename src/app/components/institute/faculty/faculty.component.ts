@@ -4,7 +4,6 @@ import { CalendarComponent } from '../../feature/calendar/calendar.component';
 import { MeetingComponent } from '../../feature/meeting/meeting.component';
 import { SyllabusComponent } from '../../feature/syllabus/syllabus.component';
 import { TimetableComponent } from '../../feature/timetable/timetable.component';
-import * as Sub from "../../auth/services/subject";
 import { SyllabusService } from '../../auth/services/syllabus.service';
 
 @Component({
@@ -37,7 +36,7 @@ export class FacultyComponent implements OnInit {
   calender(): void {
     const dialogRef = this.dialog.open(CalendarComponent, {
       minWidth: '550px',
-      width: '600px'
+      width: '550px'
     })
   }
 

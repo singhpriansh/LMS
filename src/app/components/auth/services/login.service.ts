@@ -47,10 +47,10 @@ export class LoginService {
     if(token != ''){
       this.userId = response.user._id;
       this.saveAuthData(token, this.userId);
-      if(response.user.user === "Faculty"){
-        this.desk = '/faculty';
-      }else{
+      if(response.user.user === "Student"){
         this.desk = '/student';
+      } else {
+        this.desk = '/faculty';
       }
       this.setdesk(this.desk);
       this.router.navigate([this.desk]);

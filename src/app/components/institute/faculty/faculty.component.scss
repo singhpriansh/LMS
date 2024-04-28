@@ -1,5 +1,4 @@
 :host {
-  padding: 5px;
   display: block;
 }
 
@@ -13,7 +12,7 @@ div {
 }
 
 a {
-  width: 80%;
+  width: 100%;
 }
 
 h2, h3 {
@@ -28,14 +27,38 @@ h4, h5 {
   margin-bottom:5px;
 }
 
-mat-grid-list {
-  display: flex;
-}
-
 app-graph {
   max-height: 100px;
   display: flex;
   width: 100%;
+}
+
+.page {
+  width: 100%;
+  height: calc(100vh - 50px);
+  display: flex;
+  overflow: auto;
+}
+
+.subjects {
+  width:40%;
+  height:100%;
+  display: flex;
+  float:left;
+}
+
+.current_subjects {
+  width:35%;
+  height:100%;
+  display: flex;
+  float:left;
+}
+
+.tools {
+  width:20%;
+  height:100%;
+  display: flex;
+  float:left;
 }
 
 .cards {

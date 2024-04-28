@@ -57,4 +57,14 @@ export class StudentService {
         }
       );
     }
+
+  getSyllabus(){
+    return this.http.get<any>
+    (BACK_URL + "syllabus/student")
+  }
+
+  getCompletedSyllabus(){
+    return this.http.get<any>
+    (BACK_URL + "syllabus/studentsyll")
+  }
 }

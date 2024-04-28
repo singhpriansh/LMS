@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { RenameComponent } from '../../pages/directory/menu/rename/rename.component';
 
 const DAY_MAP = new Map();
 DAY_MAP.set("Sun","Sunday");
@@ -51,7 +53,9 @@ export class CalendarComponent implements OnInit {
   // yesterday = new Date(this.date);
   // tommorow = new Date(this.date);
   
-  constructor() {
+  constructor(public dialogRef: MatDialogRef<RenameComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: { type:string, name:string } ){
+      ){
     this.setToday();
   }
 
@@ -82,15 +86,19 @@ export class CalendarComponent implements OnInit {
     let vardate = new Date(date.getFullYear(), date.getMonth(), 1);
     let day = this.datetoStringArr(vardate)[0];
     while(day != "Sun"){
-      vardate = this.previosDate(vardate);
+      vardate = this.previousDate(vardate);
       day = this.datetoStringArr(vardate)[0];
     }
-    vardate = this.previosDate(vardate);
+    vardate = this.previousDate(vardate);
     day = this.datetoStringArr(vardate)[0];
     return vardate;
   }
 
-  detectclass(date: string){
+  close(){
+    this.dialogRef.close({ event: 'close' });
+  }
+
+  detectclass(date: string) {
     if(date.split(" ")[2] === '01') {
       if(this.focusmonth === 'other-month'){
         this.focusmonth = 'current-month';
@@ -119,7 +127,7 @@ export class CalendarComponent implements OnInit {
     return newdate;
   }
   
-  previosDate(date: Date) {
+  previousDate(date: Date) {
     date.setDate(date.getDate() - 1);
     return date;
   }

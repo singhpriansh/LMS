@@ -198,6 +198,18 @@ export class MenuComponent implements OnInit, OnDestroy {
     });
   }
 
+  restore() {
+    const location:location = {
+      loc: '/root',
+      path: '/'
+    }
+    this.storserv.move(this.menudata.location,location,[this.menudata.object.name])
+      .subscribe(res => {
+        // console.log(res);
+        this.dir.setloc(this.menudata.location.loc,this.menudata.location.path);
+      });
+  }
+
   ngOnDestroy(): void {
     this.menuSubs.unsubscribe();
     this.menudataSubs.unsubscribe();

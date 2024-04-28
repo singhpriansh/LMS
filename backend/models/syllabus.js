@@ -25,4 +25,4 @@ const syllabusSchema = mongoose.Schema ({
 });
 
 syllabusSchema.plugin(uniqueValidator);
-module.exports = mongoose.model("Syllabus",syllabusSchema);
+// module.exports = mongoose.model("Syllabus",syllabusSchema);

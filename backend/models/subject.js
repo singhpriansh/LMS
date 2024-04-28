@@ -20,4 +20,4 @@ const subjectSchema = mongoose.Schema ({
 });
 
 subjectSchema.plugin(uniqueValidator);
-module.exports = mongoose.model("Subject",subjectSchema);
+// module.exports = mongoose.model("Subject",subjectSchema);

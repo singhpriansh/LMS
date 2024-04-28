@@ -14,7 +14,34 @@ mat-divider {
 
 mat-card {
   text-align: center;
-  cursor:default;
+}
+
+.element {
+  width:fit-content;
+  display: flex;
+  float: left;
+  mat-card {
+    z-index: -1;
+  }
+}
+
+.element:hover {
+  border-radius: 5px;
+  background-color: rgba(82, 0, 158, 0.2);
+}
+
+.select {
+  border-radius: 5px;
+  background-color: rgba(82, 0, 158, 0.3);
+  transition: linear;
+  -webkit-transition: linear;
+  -moz-transition: linear;
+  -ms-transition: linear;
+  -o-transition: linear;
+}
+.select:hover {
+  border-radius: 5px;
+  background-color: rgba(82, 0, 158, 0.3);
 }
 
 .div {
@@ -86,7 +113,7 @@ div.info {
 
 .list {
   margin: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 
 .items mat-card {
@@ -120,7 +147,7 @@ div.info {
 .list mat-card {
   flex:auto;
   height: 1.9rem;
-  margin: 0.5rem;
+  margin: 4px 8px;
   padding: 5px;
   width: 95%;
   @media only screen and (max-width: 1024px) {

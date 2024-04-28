@@ -15,7 +15,7 @@ module.exports = (req,res,next) => {
   req.body.data.forEach(object => {
     // fs.readFile(object.data, (err, data) => {
       let loc = path + object.path + object.name;
-      console.log(loc);
+      // console.log(loc);
       fs.writeFile(loc, object.data, (err) => {
         if (err) {
           console.log("Error uploading file:",err)
